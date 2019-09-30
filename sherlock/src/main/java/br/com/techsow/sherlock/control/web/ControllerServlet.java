@@ -1,4 +1,4 @@
-package br.com.techsow.sherlock.model.control.web;
+package br.com.techsow.sherlock.control.web;
 
 import java.io.IOException;
 
@@ -19,14 +19,14 @@ public class ControllerServlet extends HttpServlet {
 
 	private static final long serialVersionUID = -4896279813971208948L;
 
-	@Override
+		@Override
 		protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 			
-			String task = req.getParameter("tarefa");
-			task = "br.com.techsow.sherlock.model.web."+task;
+			String tarefa = req.getParameter("tarefa");
+			tarefa= "br.com.techsow.sherlock.control.web."+tarefa;
 			
 			try {
-				Class<?> classe = Class.forName(task);
+				Class<?> classe = Class.forName(tarefa);
 				Task instance = (Task) classe.newInstance();
 				String url = instance.processTask(req, resp);
 				req.getRequestDispatcher(url).forward(req,resp);

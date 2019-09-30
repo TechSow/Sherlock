@@ -1,7 +1,5 @@
 package br.com.techsow.sherlock.model.bo;
 
-import java.sql.SQLException;
-
 import br.com.techsow.sherlock.model.dao.UsuarioDAO;
 import br.com.techsow.sherlock.model.entities.Usuario;
 import br.com.techsow.sherlock.model.interfaces.bo.IUsuarioBO;
