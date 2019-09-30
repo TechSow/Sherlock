@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 
 public class ConnectionFactory {
-	public static  Connection conectar()throws ClassNotFoundException, SQLException{
-		return DriverManager.getConnection("jdbc:oracle:thin:@oracle.fiap.com.br:1521:ORCL","rm83958","010201");
+	public static  Connection getConnection()throws ClassNotFoundException, SQLException{
+		return DriverManager.getConnection("jdbc:oracle:thin:@oracle.fiap.com.br:1521:ORCL","rm83214","280501");
 	}
 }

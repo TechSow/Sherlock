@@ -1,4 +1,4 @@
-package br.com.techsow.sherlock.model.beans;
+package br.com.techsow.sherlock.model.entities;
 
 public class Usuario {
 	private int idUsuario,adm,professor;
