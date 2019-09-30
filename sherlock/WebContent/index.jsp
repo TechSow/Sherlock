@@ -14,27 +14,27 @@
 		<div class="toast-body">${error}</div>
 	</div>
 </c:if>
+<div class="container d-flex">
+	<div class="row">
 
-<form action="controller" method="POST">
-	<input type="hidden" name="tarefa" id="tarefa" value="Login" />
-	<div class="form-group">
-		<label for="email">Endereço de email</label> 
-		<input
-			type="email" class="form-control" name="email" id="email"
-			placeholder="Seu email" required /> <small id="emailHelp"
-			class="form-text text-muted">
-			Nunca vamos compartilhar seu
-			email, com ninguém.</small>
+		<form action="controller" method="POST">
+			<input type="hidden" name="tarefa" id="tarefa" value="Login" />
+			<div class="form-group">
+				<label for="email">Endereço de email</label> <input type="email"
+					class="form-control" name="email" id="email"
+					placeholder="Seu email" required /> <small id="emailHelp"
+					class="form-text text-muted"> Nunca vamos compartilhar seu
+					email, com ninguém.</small>
+			</div>
+			<div class="form-group">
+				<label for="senha">Senha</label> <input type="password"
+					class="form-control" name="senha" id="senha" placeholder="Senha"
+					required />
+			</div>
+			<button type="submit" class="btn btn-primary">logar</button>
+		</form>
 	</div>
-	<div class="form-group">
-		<label for="senha">Senha</label> 
-		<input type="password"
-			class="form-control" name="senha" id="senha" placeholder="Senha"
-			required/>
-	</div>
-	<button type="submit" class="btn btn-primary">logar</button>
-</form>
-
+</div>
 
 </body>
 </html>
