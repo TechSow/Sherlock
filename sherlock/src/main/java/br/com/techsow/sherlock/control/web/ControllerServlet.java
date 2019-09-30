@@ -14,7 +14,7 @@ import br.com.techsow.sherlock.model.interfaces.web.Task;
  * 
  * Controller master que irá receber todas requisiões e re-encaminhará para o devido tratamento.
  */
-@WebServlet(urlPatterns = "/controller")
+@WebServlet("/controller")
 public class ControllerServlet extends HttpServlet {
 
 	private static final long serialVersionUID = -4896279813971208948L;
