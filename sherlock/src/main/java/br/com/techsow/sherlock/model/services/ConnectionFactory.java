@@ -15,7 +15,5 @@ public class ConnectionFactory {
 				"jdbc:oracle:thin:@oracle.fiap.com.br:1521:ORCL", 
 				"rm83214",
 				"280501");
-		
-		 
 	}
 }

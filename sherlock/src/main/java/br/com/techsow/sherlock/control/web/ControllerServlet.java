@@ -9,16 +9,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import br.com.techsow.sherlock.model.interfaces.web.Task;
-/**
- * @author Breno
- * 
- * Controller master que irá receber todas requisiões e re-encaminhará para o devido tratamento.
- */
-@WebServlet("/controller")
+
+@WebServlet(urlPatterns = "/controller")
 public class ControllerServlet extends HttpServlet {
 
-	private static final long serialVersionUID = -4896279813971208948L;
 
+	private static final long serialVersionUID = -8057350787510620108L;
+
+	/**
+	 * @author Breno
+	 * 
+	 * Controller master que irá receber todas requisiões e re-encaminhará para o devido tratamento.
+	 */
 		@Override
 		protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 			

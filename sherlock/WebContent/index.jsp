@@ -1,19 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:import url="partial/head.jsp" />
 
-<c:if test="${not empty error}">
-	<div class="toast" role="alert" aria-live="assertive"
-		data-authide="true" data-animation="true" aria-atomic="true">
-		<div class="toast-header">
-			<strong class="mr-auto">Sherlock</strong>
-			<button type="button" class="ml-2 mb-1 close" data-dismiss="toast"
-				aria-label="Close">
-				<span aria-hidden="true">&times;</span>
-			</button>
-		</div>
-		<div class="toast-body">${error}</div>
-	</div>
-</c:if>
+
 <div class="container d-flex">
 	<div class="row">
 
@@ -35,6 +23,29 @@
 		</form>
 	</div>
 </div>
+<!-- references code pen https://codepen.io/kipp0/pen/pPNrrj -->
+<c:if test="${not empty erro}">
+
+	<div id="toast">
+		<i class="fas fa-biohazard text-danger" id="img"></i>
+		<div id="desc" class="bg-danger">${erro}</div>
+	</div>
+</c:if>
 
 </body>
+<script>
+	$(document).ready(function() {
+		function launch_toast() {
+			var x = document.getElementById("toast")
+			x.className = "show";
+			setTimeout(function() {
+				x.className = x.className.replace("show", "");
+			}, 5000);
+		}
+		launch_toast();
+
+	})
+</script>
+
+
 </html>
