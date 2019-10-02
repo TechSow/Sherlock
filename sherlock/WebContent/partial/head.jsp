@@ -24,6 +24,7 @@
 	integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
 	crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/368533be5c.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" type="text/css" href="css/grid.css" />
 <link rel="stylesheet" type="text/css" href="css/toast.css" />
 </head>
-<body>
+<body class="grid-container">

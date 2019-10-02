@@ -8,16 +8,14 @@
 		<form action="controller" method="POST">
 			<input type="hidden" name="tarefa" id="tarefa" value="Login" />
 			<div class="form-group">
-				<label for="email">Endereço de email</label> 
-				<input type="email"
+				<label for="email">Endereço de email</label> <input type="email"
 					class="form-control" name="emailOuApelido" id="email"
-					placeholder="Seu email ou apelido" required /> <small id="emailHelp"
-					class="form-text text-muted"> Nunca vamos compartilhar seu
-					email, com ninguém.</small>
+					placeholder="Seu email ou apelido" required /> <small
+					id="emailHelp" class="form-text text-muted"> Nunca vamos
+					compartilhar seu email, com ninguém.</small>
 			</div>
 			<div class="form-group">
-				<label for="senha">Senha</label> 
-				<input type="password"
+				<label for="senha">Senha</label> <input type="password"
 					class="form-control" name="senha" id="senha" placeholder="Senha"
 					required />
 			</div>
@@ -38,11 +36,13 @@
 <script>
 	$(document).ready(function() {
 		function launch_toast() {
-			var x = document.getElementById("toast")
-			x.className = "show";
-			setTimeout(function() {
-				x.className = x.className.replace("show", "");
-			}, 5000);
+			let toast = $("#toast");
+			if (toast.length > 0) {
+				toast.className = "show";
+				setTimeout(function() {
+					toast.className = toast.className.replace("show", "");
+				}, 5000);
+			}
 		}
 		launch_toast();
 
