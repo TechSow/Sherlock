@@ -1,8 +1,8 @@
 package br.com.techsow.sherlock.model.entities;
 
 public class Usuario {
-	private int idUsuario,adm,professor;
-	private String email, senha;
+	private int idUsuario,adm,professor, aluno;
+	private String email, senha, apelido;
 	
 	/**
 	 * Construtor vazio para operações onde o usuário não é encontrado.
@@ -15,9 +15,17 @@ public class Usuario {
 	 * @param senha
 	 */
 	
-	public Usuario(String email, String senha) {
-		this.email = email;
-		this.senha = senha;
+	public Usuario(String emailOuApelido, String senha) {
+		if(emailOuApelido.contains("@") && emailOuApelido.contains(".com")) {
+			this.email = emailOuApelido;
+			this.senha = senha;
+			this.apelido = "";
+		}else {
+			this.apelido = emailOuApelido;
+			this.senha = senha;
+			this.email = "";
+		}
+		
 	}
 	
 	/**
@@ -29,11 +37,22 @@ public class Usuario {
 	 * @param professor
 	 */
 	
-	public Usuario(int idUsuario, String email, String senha, int adm, int professor) {
-		this(email,senha);
+	public Usuario(int idUsuario, String email, String senha, int adm, int professor,int aluno, String apelido) {
 		this.idUsuario = idUsuario;
-		this.adm = adm;
+		this.email = email;
+		this.senha = senha;
+		this.aluno = aluno;
+		this.adm = adm; 
 		this.professor = professor;
+		this.apelido = apelido;
+	}
+
+	public int getAluno() {
+		return aluno;
+	}
+
+	public void setAluno(int aluno) {
+		this.aluno = aluno;
 	}
 
 	public int getIdUsuario() {
@@ -74,6 +93,14 @@ public class Usuario {
 
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+
+	public String getApelido() {
+		return apelido;
+	}
+
+	public void setApelido(String apelido) {
+		this.apelido = apelido;
 	}
 	
 	

@@ -18,10 +18,11 @@ public class Login implements Task {
 	public String processTask(HttpServletRequest req, HttpServletResponse resp) {
 
 		
-		String email = req.getParameter("email");
+		String emailOuApelido = req.getParameter("emailOuApelido");
 		String senha = req.getParameter("senha");
 		
-		Usuario usuario = new UsuarioBO().loginUser(new Usuario(email,senha));
+		Usuario usuario = new Usuario(emailOuApelido,senha);
+		usuario = new UsuarioBO().loginUser(usuario);
 		
 		if(usuario != null) {
 			HttpSession session = req.getSession();

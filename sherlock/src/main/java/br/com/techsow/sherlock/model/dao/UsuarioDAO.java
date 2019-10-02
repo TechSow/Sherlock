@@ -33,11 +33,13 @@ public class UsuarioDAO extends BaseDAO implements IUsuarioRepository{
 
 		if(rs.next()) {
 			return new Usuario(
-					rs.getInt("ID_USUARIO"),
-					rs.getString("EMAIL"),
-					rs.getString("SENHA"),
-					rs.getInt("ADMINISTRADOr"),
-					rs.getInt("PROFESSOR"));
+					rs.getInt(1),
+					rs.getString(2),
+					rs.getString(3),
+					rs.getInt(4),
+					rs.getInt(5),
+					rs.getInt(6),
+					rs.getString(7));
 
 		}
 		
@@ -58,13 +60,20 @@ public class UsuarioDAO extends BaseDAO implements IUsuarioRepository{
 
 	
 	public Usuario loginUser(Usuario user) throws Exception {
-		stmt = conn.prepareStatement("SELECT * FROM TS_T_USUARIO WHERE EMAIL = ? AND SENHA = ?");
-		stmt.setString(1, user.getEmail());
-		stmt.setString(2, user.getSenha());
+		
+		if(user.getEmail().isEmpty()) {
+			stmt = conn.prepareStatement("SELECT * FROM TS_T_USUARIO WHERE APELIDO = ? AND SENHA = ?");
+			stmt.setString(1, user.getApelido());
+			stmt.setString(2, user.getSenha());
+		}else {
+			stmt = conn.prepareStatement("SELECT * FROM TS_T_USUARIO WHERE EMAIL =? AND SENHA =?");
+			stmt.setString(1, user.getEmail());
+			stmt.setString(2, user.getSenha());
+		}
 		rs = stmt.executeQuery();
 
 		if(rs.next()) {
-			return this.getById(rs.getInt("ID_USUARIO"));
+			return this.getById(rs.getInt(1));
 		}else {
 			return null;
 		}

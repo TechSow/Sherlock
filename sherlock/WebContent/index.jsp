@@ -8,14 +8,16 @@
 		<form action="controller" method="POST">
 			<input type="hidden" name="tarefa" id="tarefa" value="Login" />
 			<div class="form-group">
-				<label for="email">Endereço de email</label> <input type="email"
-					class="form-control" name="email" id="email"
-					placeholder="Seu email" required /> <small id="emailHelp"
+				<label for="email">Endereço de email</label> 
+				<input type="email"
+					class="form-control" name="emailOuApelido" id="email"
+					placeholder="Seu email ou apelido" required /> <small id="emailHelp"
 					class="form-text text-muted"> Nunca vamos compartilhar seu
 					email, com ninguém.</small>
 			</div>
 			<div class="form-group">
-				<label for="senha">Senha</label> <input type="password"
+				<label for="senha">Senha</label> 
+				<input type="password"
 					class="form-control" name="senha" id="senha" placeholder="Senha"
 					required />
 			</div>
