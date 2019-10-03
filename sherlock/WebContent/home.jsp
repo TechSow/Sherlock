@@ -10,7 +10,11 @@
   	<h1>Seja bem vindo ${usuario.apelido}</h1>
   </div>
   <div class="nav">
-  
+  <c:forEach var="curso" items="${cursos}">
+  	<ul>
+  		<li>${curso.nome}</li>
+  	</ul>
+  </c:forEach>
   </div>
   <div class="logo">
   
