@@ -56,7 +56,7 @@ public class CursoDAO extends BaseDAO implements ICursoRepository {
 	}
 
 
-	public List<Curso> getAll() throws Exception {
+	public ArrayList<Curso> getAll() throws Exception {
 		stmt = conn.prepareStatement("SELECT * FROM TS_T_CURSO");
 		rs = stmt.executeQuery();
 		ArrayList<Curso> cursos = null;

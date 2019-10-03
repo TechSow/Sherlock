@@ -1,12 +1,15 @@
 package br.com.techsow.sherlock.model.bo;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import br.com.techsow.sherlock.model.dao.CursoDAO;
 import br.com.techsow.sherlock.model.entities.Curso;
 import br.com.techsow.sherlock.model.interfaces.bo.ICursoBO;
 
 public class CursoBO implements ICursoBO{
 
+	
 	
 	public int add(Curso obj) {
 		
@@ -44,9 +47,14 @@ public class CursoBO implements ICursoBO{
 	}
 
 	
-	public List<Curso> getAll() {
-		
-		return null;
+	public ArrayList<Curso> getAll() {
+		ArrayList<Curso> cursos = null;
+		try(CursoDAO dao = new CursoDAO()){
+			cursos = dao.getAll();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return cursos;
 	}
 
 }
