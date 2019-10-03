@@ -4,7 +4,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.techsow.sherlock.model.bo.Curso;
+import br.com.techsow.sherlock.model.entities.Curso;
 import br.com.techsow.sherlock.model.interfaces.repository.ICursoRepository;
 import br.com.techsow.sherlock.model.services.ConnectionFactory;
 

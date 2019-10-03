@@ -2,7 +2,8 @@ package br.com.techsow.sherlock.model.interfaces.bo;
 
 import java.util.List;
 
-import br.com.techsow.sherlock.model.bo.Curso;
+import br.com.techsow.sherlock.model.entities.Curso;
+
 
 public interface ICursoBO extends IBaseBO<Curso>{
 	public int updateNome(Curso c, String nome);

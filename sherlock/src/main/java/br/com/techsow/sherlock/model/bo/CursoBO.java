@@ -2,6 +2,7 @@ package br.com.techsow.sherlock.model.bo;
 
 import java.util.List;
 
+import br.com.techsow.sherlock.model.entities.Curso;
 import br.com.techsow.sherlock.model.interfaces.bo.ICursoBO;
 
 public class CursoBO implements ICursoBO{
