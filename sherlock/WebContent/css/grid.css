@@ -1,0 +1,17 @@
+.grid-container {
+  display: grid;
+  height:100vh;
+  grid-template-columns: 200px 1fr;
+  grid-template-rows: 100px 1fr 30px;
+  grid-template-areas: "logo header" "nav main" "nav footer";
+}
+
+.main { grid-area: main; }
+
+.footer { grid-area: footer; }
+
+.logo { grid-area: logo; }
+
+.header { grid-area: header; }
+
+.nav { grid-area: nav; }
