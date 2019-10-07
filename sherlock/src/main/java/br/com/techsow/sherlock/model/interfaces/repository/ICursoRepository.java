@@ -3,7 +3,6 @@ package br.com.techsow.sherlock.model.interfaces.repository;
 import java.util.List;
 
 import br.com.techsow.sherlock.model.entities.Curso;
-import br.com.techsow.sherlock.model.entities.Materia;
 
 public interface ICursoRepository extends IBaseRepository<Curso> {
 	public int updateNome(Curso c, String nome) throws Exception;
