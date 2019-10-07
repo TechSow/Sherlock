@@ -1,10 +1,14 @@
 package br.com.techsow.sherlock.control.web;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import br.com.techsow.sherlock.model.bo.CursoBO;
 import br.com.techsow.sherlock.model.bo.UsuarioBO;
+import br.com.techsow.sherlock.model.entities.Curso;
 import br.com.techsow.sherlock.model.entities.Usuario;
 import br.com.techsow.sherlock.model.interfaces.web.Task;
 /**
@@ -27,6 +31,8 @@ public class Login implements Task {
 		if(usuario != null) {
 			HttpSession session = req.getSession();
 			session.setAttribute("usuario", usuario);
+			ArrayList<Curso> cursos = new CursoBO().getAll();
+			session.setAttribute("cursos", cursos);
 			return "home.jsp";
 		}
 		

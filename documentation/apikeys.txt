@@ -1,0 +1,16 @@
+// instância dos alunos da FIAP
+apiKey: "bL140DnTUZAM6xuym0ERZrzOnW9zC3BNMMLMXT0hixij"  
+ 
+// customização acústica
+acousticCustomizationId: "5be7a6a4-6bc8-4331-9c39-2d81423957cc"   
+ 
+// customização de linguagem
+customizationId: "91f977d7-d099-4310-b12a-8cb9193f71a2"
+ 
+
+gira
+
+trello
+
+
+moode

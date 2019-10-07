@@ -1,5 +1,9 @@
 package br.com.techsow.sherlock.model.entities;
-
+/**
+ * beans do usuário
+ * @author Breno
+ *
+ */
 public class Usuario {
 	private int idUsuario,adm,professor, aluno;
 	private String email, senha, apelido;
@@ -10,7 +14,7 @@ public class Usuario {
 	public Usuario() { }
 	
 	/**
-	 * Construtor para login
+	 * Construtor para login onde o usuario pode informar ou o email ou o apelido
 	 * @param email
 	 * @param senha
 	 */
@@ -96,7 +100,7 @@ public class Usuario {
 	}
 
 	public String getApelido() {
-		return apelido;
+		return apelido;	
 	}
 
 	public void setApelido(String apelido) {
