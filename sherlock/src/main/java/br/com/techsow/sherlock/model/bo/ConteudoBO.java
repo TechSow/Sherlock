@@ -19,4 +19,35 @@ public class ConteudoBO implements IConteudoBO {
 		return conteudos;
 	}
 
+	
+	public int add(Conteudo obj) {
+	
+		return 0;
+	}
+
+	
+	public Conteudo getById(int id) {
+		Conteudo conteudo = null;
+		try(ConteudoDAO dao = new ConteudoDAO()){
+			conteudo = dao.getById(id);
+		}catch( Exception e) {
+			e.printStackTrace();
+		}
+		return conteudo;
+	}
+
+	@Override
+	public int kill(int id) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int update(Conteudo obj) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	
 }

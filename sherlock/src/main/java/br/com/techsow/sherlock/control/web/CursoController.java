@@ -15,7 +15,7 @@ public class CursoController implements Task{
 		int id_curso = Integer.parseInt(req.getParameter("id_curso"));
 		ArrayList<Materia> materias = new MateriaBO().getMateriasFromCursoId(id_curso); 
 		req.setAttribute("materias", materias);
-		return "curso.jsp";
+		return "materia.jsp";
 	}
 
 }

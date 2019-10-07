@@ -3,10 +3,10 @@
 
 <div class="main">
 
-	<c:forEach var="conteudo" items="${conteudos}">
+	<c:forEach var="materia" items="${materias}">
 		<ul>
 			<li>
-			<a href="/sherlock/controller?tarefa=ConteudoController&id_conteudo=${conteudo.id_conteudo}">${conteudo.titulo}</a></li>
+			<a href="/sherlock/controller?tarefa=MateriaController&id_materia=${materia.id_materia}">${materia.nome}</a></li>
 		</ul>
 	</c:forEach>
 
@@ -16,22 +16,17 @@
 	<c:forEach var="curso" items="${cursos}">
 		<ul>
 			<li><a
-				href="/sherlock/controller?tarefa=Curso&id_curso=${curso.id_curso}">${curso.nome}</a></li>
+				href="/sherlock/controller?tarefa=CursoController&id_curso=${curso.id_curso}">${curso.nome}</a></li>
 		</ul>
 	</c:forEach>
 </div>
 <div class="logo"></div>
 <div class="header">
 	<h1>Seja bem vindo ${usuario.apelido}</h1>
-
 </div>
 <div class="nav"></div>
 <div class="footer"></div>
 
-
-
-</body>
-</html>
 
 </body>
 </html>
