@@ -28,8 +28,9 @@ public class ConteudoDAO extends BaseDAO implements IConteudoRepository {
 			int id_conteudo = rs.getInt(1);
 			String nome = rs.getString (2);
 			String url_pdf = rs.getString(3);
+			int hasbot = rs.getInt(4);
 			
-			conteudo = new Conteudo(id_conteudo, nome, url_pdf);
+			conteudo = new Conteudo(id_conteudo, nome, url_pdf, hasbot);
 			
 		}
 		return conteudo;
@@ -61,8 +62,8 @@ public class ConteudoDAO extends BaseDAO implements IConteudoRepository {
 			int id = rs.getInt(1);
 			String titulo = rs.getString(2);
 			String url_pdf = rs.getString(3);
-			
-			conteudos.add(new Conteudo(id,titulo,url_pdf));
+			int hasbot = rs.getInt(4);
+			conteudos.add(new Conteudo(id,titulo,url_pdf,hasbot));
 			
 		}
 		return conteudos;

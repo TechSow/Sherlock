@@ -5,7 +5,7 @@ package br.com.techsow.sherlock.model.entities;
  *
  */
 public class Conteudo {
-	private int id_conteudo;
+	private int id_conteudo, hasbot;
 	String titulo, url_pdf;
 	
 	/**
@@ -14,8 +14,8 @@ public class Conteudo {
 	 * @param titulo
 	 * @param url_pdf
 	 */
-	public Conteudo(int id_conteudo, String titulo, String url_pdf) {
-		this(titulo,url_pdf);
+	public Conteudo(int id_conteudo, String titulo, String url_pdf, int hasbot) {
+		this(titulo,url_pdf,hasbot);
 		this.id_conteudo = id_conteudo;
 	}
 
@@ -24,9 +24,10 @@ public class Conteudo {
 	 * @param titulo
 	 * @param url_pdf
 	 */
-	public Conteudo(String titulo, String url_pdf) {
+	public Conteudo(String titulo, String url_pdf, int hasbot) {
 		this.titulo = titulo;
 		this.url_pdf = url_pdf;
+		this.hasbot = hasbot;
 	}
 
 	
@@ -38,20 +39,28 @@ public class Conteudo {
 		this.id_conteudo = id_conteudo;
 	}
 
-	public String gettitulo() {
-		return titulo;
-	}
-
-	public void settitulo(String titulo) {
-		this.titulo = titulo;
-	}
-
 	public String getUrl_pdf() {
 		return url_pdf;
 	}
 
 	public void setUrl_pdf(String url_pdf) {
 		this.url_pdf = url_pdf;
+	}
+
+	public int getHasbot() {
+		return hasbot;
+	}
+
+	public void setHasbot(int hasbot) {
+		this.hasbot = hasbot;
+	}
+
+	public String getTitulo() {
+		return titulo;
+	}
+
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
 	}
 	
 	

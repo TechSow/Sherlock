@@ -60,7 +60,6 @@ public class UsuarioDAO extends BaseDAO implements IUsuarioRepository{
 
 	
 	public Usuario loginUser(Usuario user) throws Exception {
-		
 		if(user.getEmail().isEmpty()) {
 			stmt = conn.prepareStatement("SELECT * FROM TS_T_USUARIO WHERE APELIDO = ? AND SENHA = ?");
 			stmt.setString(1, user.getApelido());

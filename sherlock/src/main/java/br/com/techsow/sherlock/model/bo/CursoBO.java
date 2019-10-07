@@ -49,11 +49,13 @@ public class CursoBO implements ICursoBO{
 	
 	public ArrayList<Curso> getAll() {
 		ArrayList<Curso> cursos = null;
+		
 		try(CursoDAO dao = new CursoDAO()){
 			cursos = dao.getAll();
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
+		
 		return cursos;
 	}
 

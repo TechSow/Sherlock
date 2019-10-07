@@ -54,6 +54,12 @@ public class CursoDAO extends BaseDAO implements ICursoRepository {
 		return 0;
 	} 
 	
+	/*
+	 * 
+	 * implementar tabela de ts_t_curso_usuario "curso 1 --> n curso"
+	 * 
+	 */
+	
 	public ArrayList<Curso> getAll() throws Exception {
 		stmt = conn.prepareStatement("SELECT * FROM TS_T_CURSO");
 		rs = stmt.executeQuery();
