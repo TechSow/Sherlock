@@ -16,7 +16,7 @@ import br.com.techsow.sherlock.model.interfaces.web.Task;
  * @author Breno
  *
  */
-public class Login implements Task {
+public class LoginController implements Task {
 
 	
 	public String processTask(HttpServletRequest req, HttpServletResponse resp) {

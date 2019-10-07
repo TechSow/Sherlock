@@ -52,25 +52,7 @@ public class CursoDAO extends BaseDAO implements ICursoRepository {
 	public int updateDescricao(Curso c, String descricao) throws Exception {
 
 		return 0;
-	}
-
-	//public ArrayList<Materia> getMateriasFromCursoId(int id) throws Exception{
-//		SELECT 
-//	    ID_MATERIA, NOME_MATERIA, EMENTA_MATERIA 
-//	FROM 
-//	    TS_T_CURSO_MATERIA CM 
-//	INNER JOIN
-//	    TS_T_CURSO C 
-//	ON
-//	    CM.FK_ID_CURSO = C.ID_CURSO
-//	INNER JOIN
-//	    TS_T_MATERIA M
-//	ON
-//	    M.ID_MATERIA = CM.FK_ID_MATERIA
-//	WHERE
-//	    FK_ID_CURSO = 1
-//		return null;
-	//}
+	} 
 	
 	public ArrayList<Curso> getAll() throws Exception {
 		stmt = conn.prepareStatement("SELECT * FROM TS_T_CURSO");

@@ -9,5 +9,4 @@ public interface ICursoRepository extends IBaseRepository<Curso> {
 	public int updateNome(Curso c, String nome) throws Exception;
 	public int updateDescricao(Curso c, String descricao) throws Exception;
 	public List<Curso> getAll() throws Exception;
-	//public List<Materia> getMateriasFromCursoId() throws Exception;
 }
