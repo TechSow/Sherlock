@@ -2,7 +2,6 @@ package br.com.techsow.sherlock.model.dao;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 import br.com.techsow.sherlock.model.entities.Curso;
 import br.com.techsow.sherlock.model.interfaces.repository.ICursoRepository;
@@ -55,15 +54,41 @@ public class CursoDAO extends BaseDAO implements ICursoRepository {
 		return 0;
 	}
 
-
+	//public ArrayList<Materia> getMateriasFromCursoId(int id) throws Exception{
+//		SELECT 
+//	    ID_MATERIA, NOME_MATERIA, EMENTA_MATERIA 
+//	FROM 
+//	    TS_T_CURSO_MATERIA CM 
+//	INNER JOIN
+//	    TS_T_CURSO C 
+//	ON
+//	    CM.FK_ID_CURSO = C.ID_CURSO
+//	INNER JOIN
+//	    TS_T_MATERIA M
+//	ON
+//	    M.ID_MATERIA = CM.FK_ID_MATERIA
+//	WHERE
+//	    FK_ID_CURSO = 1
+//		return null;
+	//}
+	
 	public ArrayList<Curso> getAll() throws Exception {
 		stmt = conn.prepareStatement("SELECT * FROM TS_T_CURSO");
 		rs = stmt.executeQuery();
-		ArrayList<Curso> cursos = null;
-		Curso curso = null;
+		ArrayList<Curso> cursos = new ArrayList<Curso>();
+		
 		while(rs.next()) {
-			curso = new Curso(rs.getInt(1),rs.getString(2), rs.getString(3), rs.getLong(4));
-			cursos.add(curso);
+			Long duracao = rs.getLong(4); 
+			String nome = rs.getString(3);
+			String descricao = rs.getString(2);
+			int id = rs.getInt(1);
+			
+			if(duracao == 0) 
+				cursos.add(new Curso(id, nome, descricao));
+			else
+				cursos.add(new Curso(id,nome,descricao, duracao));				
+			
+			
 		}
 		
 		return cursos;

@@ -12,7 +12,7 @@
   <div class="nav">
   <c:forEach var="curso" items="${cursos}">
   	<ul>
-  		<li>${curso.nome}</li>
+  		<li><a href="/sherlock/controller?tarefa=Curso&id_curso=${curso.id_curso}">${curso.nome}</a></li>
   	</ul>
   </c:forEach>
   </div>

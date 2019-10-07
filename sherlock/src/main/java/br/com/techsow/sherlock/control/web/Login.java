@@ -32,7 +32,7 @@ public class Login implements Task {
 			HttpSession session = req.getSession();
 			session.setAttribute("usuario", usuario);
 			ArrayList<Curso> cursos = new CursoBO().getAll();
-			req.setAttribute("cursos", cursos);
+			session.setAttribute("cursos", cursos);
 			return "home.jsp";
 		}
 		
