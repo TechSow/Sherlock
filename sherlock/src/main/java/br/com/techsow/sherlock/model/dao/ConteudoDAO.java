@@ -54,7 +54,7 @@ public class ConteudoDAO extends BaseDAO implements IConteudoRepository {
 	public ArrayList<Conteudo> getConteudoFromMateriaId(int id_materia) throws Exception {
 		ArrayList<Conteudo> conteudos = new ArrayList<Conteudo>();
 		stmt = conn.prepareStatement(
-				"select ID_CONTEUDO, TITULO, URL_PDF from ts_t_materia_conteudo inner join ts_t_CONTEUDO on TS_T_MATERIA_CONTEUDO.FK_ID_CONTEUDO = TS_T_CONTEUDO.ID_CONTEUDO where ts_t_materia_conteudo.fk_id_materia = ? ORDER BY ORDEM");
+				"select ID_CONTEUDO, TITULO, URL_PDF, HASBOT from ts_t_materia_conteudo inner join ts_t_CONTEUDO on TS_T_MATERIA_CONTEUDO.FK_ID_CONTEUDO = TS_T_CONTEUDO.ID_CONTEUDO where ts_t_materia_conteudo.fk_id_materia = ? ORDER BY ORDEM");
 		stmt.setInt(1, id_materia);
 		rs = stmt.executeQuery();
 

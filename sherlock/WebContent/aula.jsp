@@ -19,9 +19,10 @@
 <body
 	style="margin: 0px !important; padding: 0px !important; overflow: hidden;">
 	<iframe
-		style="width: 98%; height: 100vh; margin: 0 !important; padding: 0 !important; overflow-x: hidden;"
+		style="width: 100%; height: 100vh; margin: 0 !important; padding: 0 !important; overflow-x: hidden !important;"
 		src="${conteudo.url_pdf}" frameborder="0"></iframe>
-	<c:if test="${usuario.hasbot == 1}">
+	<!--  erro de cache brabríssimo  -->
+	<c:if test="${conteudo.hasbot == 1}">
 		<c:import url="bot.jsp" />
 	</c:if>
 </body>
