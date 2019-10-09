@@ -6,7 +6,7 @@
 	<div class="row">
 
 		<form action="controller" method="POST">
-			<input type="hidden" name="tarefa" id="tarefa" value="Login" />
+			<input type="hidden" name="tarefa" id="tarefa" value="LoginController" />
 			<div class="form-group">
 				<label for="email">Endereço de email</label> <input type="email"
 					class="form-control" name="emailOuApelido" id="email"

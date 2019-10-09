@@ -13,35 +13,27 @@ import br.com.techsow.sherlock.model.interfaces.web.Task;
 @WebServlet(urlPatterns = "/controller")
 public class ControllerServlet extends HttpServlet {
 
-
 	private static final long serialVersionUID = -8057350787510620108L;
 
 	/**
 	 * @author Breno
 	 * 
-	 * Controller master que irá receber todas requisiões e re-encaminhará para o devido tratamento.
+	 *         Controller master que irá receber todas requisiões e re-encaminhará
+	 *         para o devido tratamento.
 	 */
-		@Override
-		protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-			
-			String tarefa = req.getParameter("tarefa");
-			tarefa= "br.com.techsow.sherlock.control.web."+tarefa;
-			
-			try {
-				Class<?> classe = Class.forName(tarefa);
-				Task instance = (Task) classe.newInstance();
-				String url = instance.processTask(req, resp);
-				req.getRequestDispatcher(url).forward(req,resp);
-			}catch(ClassNotFoundException | 
-					IllegalAccessException | 
-					InstantiationException e) {
-				e.printStackTrace();
-			}
-			
-			
-			
-		}
-	
+	@Override
+	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-	
+		String tarefa = req.getParameter("tarefa");
+		tarefa = "br.com.techsow.sherlock.control.web." + tarefa;
+
+		try {
+			Class<?> classe = Class.forName(tarefa);
+			Task instance = (Task) classe.newInstance();
+			String url = instance.processTask(req, resp);
+			req.getRequestDispatcher(url).forward(req, resp);
+		} catch (ClassNotFoundException | IllegalAccessException | InstantiationException e) {
+			e.printStackTrace();
+		}
+	}
 }
