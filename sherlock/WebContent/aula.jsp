@@ -12,9 +12,6 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <title>${title}</title>
 <c:import url="imports/imports.html" />
-<c:if test="${usuario.hasbot == 1}">
-		<c:import url="bot.jsp" />
-	</c:if>
 </head>
 <body
 	style="margin: 0px !important; padding: 0px !important; overflow: hidden;">
