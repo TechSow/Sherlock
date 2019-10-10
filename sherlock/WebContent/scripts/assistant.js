@@ -1,3 +1,6 @@
+$(document).ready(function(){
+	callBot("");
+})
 function callBot(msg) {
 	var xhr = new XMLHttpRequest();
 	xhr.open("POST", "assistant", true);
@@ -5,11 +8,9 @@ function callBot(msg) {
 	xhr.addEventListener("load", function() {
 		if (xhr.status == 200) {
 			// Codigo de sucesso
-			var resposta = JSON.parse(xhr.responseText);
-//			respostas.forEach(function(resposta) {
-				console.log(resposta);
-				setMessage(xhr.responseText);
-//			});
+			var respostas = JSON.parse(xhr.responseText);
+			setMessage(respostas[0].text, "bot");
+			
 		} else {
 			// Codigo de deu ruim!
 			console.log(xhr.status);
@@ -81,10 +82,7 @@ function setMessage(response) {
 	if ($('.message-input').val() != '') {
 		return false;
 	}
-	// $(
-	// '<div class="message loading new"><figure class="avatar"><img
-	// src="http://askavenue.com/img/17.jpg" /></figure><span></span></div>')
-	// .appendTo($('.mCSB_container'));
+
 	updateScrollbar();
 	$('.message.loading').remove();
 	$(
@@ -94,9 +92,7 @@ function setMessage(response) {
 	setDate();
 	updateScrollbar();
 
-	// setTimeout(
-	// function() {
-	// }, 1000 + (Math.random() * 20) * 100);
+
 }
 
 $('.button').click(function() {
