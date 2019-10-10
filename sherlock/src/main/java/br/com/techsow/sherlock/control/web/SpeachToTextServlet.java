@@ -61,6 +61,7 @@ public class SpeachToTextServlet extends HttpServlet{
 				.contentType(HttpMediaType.AUDIO_WAV)
 				.model("pt-BR_BroadbandModel")
 				.languageCustomizationId("91f977d7-d099-4310-b12a-8cb9193f71a2")
+				.acousticCustomizationId("5be7a6a4-6bc8-4331-9c39-2d81423957cc")
 				.build();
 		
 		SpeechRecognitionResults transcript = service.recognize(recognizeOptions)

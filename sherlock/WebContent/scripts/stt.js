@@ -65,6 +65,7 @@ function sendBlob(blob) {
 			console.log(xhr.responseText);
 		}
 	});
+	xhr.responseType = 'blob';
 	xhr.send(blob);
 }
 

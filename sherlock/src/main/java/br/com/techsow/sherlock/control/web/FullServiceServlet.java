@@ -40,7 +40,7 @@ public class FullServiceServlet extends HttpServlet {
 		AssistantServlet assistant = new AssistantServlet();
 		String response = assistant.assistantApi(msg).getOutput().getGeneric().get(0).getText();
 		System.out.println(response);
-		TextToSpeachServlet ttss = new TextToSpeachServlet(msg);
+		TextToSpeachServlet ttss = new TextToSpeachServlet(response);
 		ttss.doPost(req, resp);
 	}
 	
