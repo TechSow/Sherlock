@@ -1,0 +1,513 @@
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+    font-family: "montserrat", sans-serif;
+}
+
+.logo-center a {
+    text-decoration: none;
+    color: #ff7979;
+}
+
+
+/* --- FUNDO DA PAGINA --- */
+
+.landing-page {
+    width: 100%;
+    height: 100vh;
+    background: #000;
+    position: relative;
+    overflow: hidden;
+}
+
+.landing-page::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: url(../assets/astro.png) no-repeat;
+    background-size: cover;
+    opacity: .6;
+    animation: anim 120s linear infinite;
+}
+
+@keyframes anim {
+    30% {
+        transform: scale(2);
+    }
+    100% {
+        transform: scale(1.5);
+    }
+}
+
+
+/* --- LOGO --- */
+
+.logo-center {
+    width: 100%;
+    height: 15vh;
+    z-index: 1;
+    text-decoration: none;
+    position: relative;
+    font-size: 30px;
+    color: #ff7979;
+    text-align: center;
+    padding: 22px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+
+/* --- PAGINA DE APRESENTÇÃO DA TECH-SOW --- */
+
+.page-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    width: 100%;
+    max-width: 800px;
+    text-align: center;
+    padding: 0 40px;
+    box-sizing: border-box;
+}
+
+.page-content h1 {
+    color: #ff7979;
+    text-transform: uppercase;
+    font-size: 50px;
+    font-weight: 900;
+    margin-bottom: 20px;
+}
+
+.page-content p {
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+.page-content a {
+    display: inline-block;
+    text-decoration: none;
+    color: #ff7979;
+    border: 2px solid #ff7979;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    transition: 0.4s linear;
+}
+
+.page-content a:hover {
+    color: #fff;
+    background: #ff7979;
+}
+
+.text {
+    padding: 10px;
+    text-align: justify;
+}
+
+.text div {
+    margin-bottom: 6px;
+}
+
+
+/* --- FORM DO LOIGN --- */
+
+#login-form,
+#cadastro-form,
+#redefinirsenha-form {
+    width: 360px;
+    background: rgba(166, 200, 211, 0.76);
+    height: 480px;
+    z-index: 1;
+    padding: 80px 40px;
+    border-radius: 10px;
+    left: 40%;
+    position: absolute;
+    box-shadow: 10px 30px 100px 30px rgba(182, 130, 212, 0.479);
+}
+
+#login-form h1 {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.txtb {
+    border-bottom: 2px solid #adadad;
+    position: relative;
+    margin: 30px 0px;
+}
+
+.txtb input {
+    font-size: 15px;
+    color: #333;
+    border: none;
+    width: 100%;
+    outline: none;
+    background: none;
+    padding: 0 5px;
+    height: 40px;
+}
+
+.txtb span::before {
+    content: attr(data-placeholder);
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    color: #adadad;
+    transform: translateY(-50%);
+    z-index: -1;
+    transition: .5s;
+}
+
+.focus+span::before {
+    top: -5px;
+}
+
+.focus+span::after {
+    width: 100%;
+}
+
+.logbtn,
+.red-btn,
+.cad-btn {
+    display: block;
+    width: 100%;
+    height: 50px;
+    border: none;
+    background: linear-gradient(120deg, #ff7979b2, #ab5cc4e3, #ff7979b2);
+    background-size: 200%;
+    color: #fff;
+    outline: none;
+    cursor: pointer;
+    transition: .5s;
+}
+
+.logbtn:hover,
+.cad-btn:hover,
+.red-btn:hover {
+    background-position: right;
+}
+
+.bottom-text {
+    margin-top: 60px;
+    text-align: center;
+    font-size: 13px;
+    text-decoration: none;
+}
+
+
+/* animação do form*/
+
+#login,
+#cadastro,
+#redefinirsenha {
+    animation-name: fade;
+    animation-duration: 500ms;
+}
+
+form .txtb:nth-child(1) {
+    animation: move 500ms;
+}
+
+form .txtb:nth-child(2) {
+    animation: move 400ms;
+    animation-delay: 100ms;
+    animation-fill-mode: backwards;
+}
+
+form .txtb:nth-child(3) {
+    animation: move 400ms;
+    animation-delay: 150ms;
+    animation-fill-mode: backwards;
+}
+
+form .txtb:nth-child(4) {
+    animation: move 400ms;
+    animation-delay: 200ms;
+    animation-fill-mode: backwards;
+}
+
+form .logbtn,
+.cad-btn,
+.red-btn {
+    animation: move 400ms;
+    animation-delay: 250ms;
+    animation-fill-mode: backwards;
+}
+
+@keyframes move {
+    from {
+        opacity: 0;
+        transform: translateX(-35%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0%);
+    }
+}
+
+@keyframes fade {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+/* --- HOMER DO USUARIO --- */
+
+.container {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    grid-template-rows: 10vh 85vh 5vh;
+    grid-template-areas: "h n" "m a" "f f";
+    position: relative;
+    overflow: hidden;
+}
+
+
+/* --- LOGO DA EQUIPE */
+
+#topo {
+    grid-area: h;
+    font-size: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.log-esq {
+    margin: 30px 30px;
+    text-decoration: none;
+}
+
+.log-esq a {
+    text-decoration: none;
+    color: #ff7979;
+}
+
+
+/* --- SETOR DO USUARIO --- */
+
+#usuario {
+    grid-area: n;
+    font-size: 20px;
+    position: relative;
+    margin: 8px 23px 0 8px;
+    list-style: none;
+}
+
+#icone {
+    float: right;
+    z-index: 1;
+    color: #ff7979;
+    width: 50%;
+    height: 50px;
+    top: 20px;
+    text-align: center;
+    position: relative;
+}
+
+#hm {
+    float: left;
+    z-index: 1;
+    width: 50%;
+    height: 50px;
+    top: 20px;
+    color: #ff7979;
+    text-align: center;
+    position: relative;
+}
+
+
+/* --- CONTEUDO --- */
+
+#corpo {
+    grid-area: m;
+    z-index: 1;
+    position: relative;
+    color: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+}
+
+.update-curso {
+    margin: 10% 30%;
+    width: 300px;
+    height: 380px;
+    padding: 80px 40px;
+    border-radius: 10px;
+    position: relative;
+    box-shadow: 10px 30px 100px 30px rgba(215, 172, 240, 0.438);
+}
+
+#contexto {
+    width: 80%;
+    height: 100%;
+    font-size: 16px;
+    text-justify: auto;
+    text-align: center;
+    margin: 0 9%;
+}
+
+#titulo {
+    color: #ff7979;
+    margin: 5% 10px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+#corpo h2 {
+    font-size: 23px;
+    text-align: center;
+}
+
+#corpo h3 {
+    text-align: center;
+    margin: 0 10%;
+    font-size: 18px;
+}
+
+
+/* --- MENU --- */
+
+#middle {
+    grid-area: a;
+    padding: 20px;
+    z-index: 1;
+    top: 20px;
+    position: relative;
+}
+
+.menu {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+    top: 50%;
+    transform: translate(-50% -50%);
+}
+
+#title-menu {
+    text-align: center;
+}
+
+.item {
+    border-top: 1px solid #297fb9af;
+    overflow: hidden;
+}
+
+.btn {
+    display: block;
+    padding: 16px 20px;
+    background: #3498dba6;
+    color: #ff7979;
+    position: relative;
+}
+
+.btn:before {
+    content: "";
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    background: #3498dba6;
+    left: 20px;
+    bottom: -7px;
+    transform: rotate(45deg);
+}
+
+.btn i {
+    margin-right: 10px;
+}
+
+.smenu {
+    background: rgba(51, 51, 51, 0);
+    overflow: hidden;
+    transition: max-height 0.3s;
+    max-height: 0;
+}
+
+.smenu a {
+    display: block;
+    padding: 16px 26px;
+    color: purple;
+    font-size: 14px;
+    margin: 4px 0;
+    position: relative;
+}
+
+.smenu a:before {
+    content: "";
+    position: absolute;
+    width: 6px;
+    height: 100%;
+    background: #3498db;
+    left: 0;
+    top: 0;
+    transition: 0.3s;
+    opacity: 0;
+}
+
+.smenu a:hover:before {
+    opacity: 1;
+}
+
+.item:target .smenu {
+    max-height: 10em;
+}
+
+
+/* --- IMAGEN CHET-BOOT ---*/
+
+
+/* --- RODAPE ---*/
+
+#rodape {
+    grid-area: f;
+    text-align: center;
+    margin: 20px;
+    display: block;
+}
+
+
+/* --- tester ---*/
+
+.sm-container {
+    text-align: center;
+}
+
+.sm-container i {
+    color: #ff7979;
+    font-size: 20px;
+    cursor: pointer;
+    transition: 0, 4s;
+}
+
+.sm-container i:hover {
+    transform: scale(1.2);
+}
+
+.sm-menu {
+    z-index: 1;
+    background: #487ab0;
+    position: absolute;
+    border-radius: 8px;
+    display: none;
+}
+
+.sm-menu::before {
+    content: "";
+    width: 10px;
+    height: 10px;
+    background: #487ab0;
+    position: absolute;
+    top: -5px;
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg);
+}

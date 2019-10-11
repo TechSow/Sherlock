@@ -6,7 +6,7 @@ package br.com.techsow.sherlock.model.entities;
  */
 public class Materia {
 	private int id_materia;
-	private String nome, ementa;
+	private String nome, ementa, urlImg;
 	
 	/**
 	 * construtor cheio para pesquisas no banco de dados
@@ -14,20 +14,30 @@ public class Materia {
 	 * @param nome
 	 * @param ementa
 	 */
-	public Materia(int id_materia, String nome, String ementa) {
+	public Materia(int id_materia, String nome, String ementa,String urlImg) {
 		this.id_materia = id_materia;
 		this.nome = nome;
 		this.ementa = ementa;
+		this.urlImg= urlImg;
 	}
 	
+	public String geturlImg() {
+		return urlImg;
+	}
+
+	public void seturlImg(String urlImg) {
+		this.urlImg = urlImg;
+	}
+
 	/**
 	 * consturtor semi cheio para criar novas matérias
 	 * @param nome
 	 * @param ementa
 	 */
-	public Materia(String nome, String ementa) {
+	public Materia(String nome, String ementa,String urlImg) {
 		this.nome = nome;
 		this.ementa = ementa;
+		this.urlImg = urlImg;
 	}
 	
 	

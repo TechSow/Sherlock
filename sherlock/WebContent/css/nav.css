@@ -1,0 +1,23 @@
+.lista{
+	padding: 20px;
+    background: linear-gradient(-130deg,#20222f,#20221c);
+    margin: 0;
+}
+.item{
+	padding: 10px 0 10px 0;
+    border-bottom: 1px solid #fff;
+    transition: all 100ms ease;
+    list-style:none; 
+}
+.item:hover{
+	color:#494977;
+	border-bottom: 1px solid #494977;	
+}
+.item a{
+	text-decoration:none;
+	color: #fff;
+}
+.item a:hover{
+	
+	color:#494977;
+}

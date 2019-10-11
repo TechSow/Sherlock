@@ -1,32 +1,47 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:import url="partial/head.jsp" />
 
-<div class="main">
 
-	<c:forEach var="materia" items="${materias}">
-		<ul>
-			<li>
-			<a href="/sherlock/controller?tarefa=MateriaController&id_materia=${materia.id_materia}">${materia.nome}</a></li>
-		</ul>
-	</c:forEach>
+<c:choose>
+	<c:when test="${not empty usuario }">
+		<body class="grid-container">
+			<div class="main">
+				<c:import url="sccafolding/mainMateria.jsp" />
+			</div>
+			<div class="nav">
+				<ul class="lista">
+					<c:if test="${usuario.adm == 1}">
+						<li class="item"><a href="#">Área do administrador</a></li>
+					</c:if>
+					<c:if test="${usuario.professor == 1}">
+						<li class="item"><a href="#">Área do Professor</a></li>
+					</c:if>
+					<li class="item"><a href="/sherlock/home.jsp">Lista de Cursos</a></li>
+				</ul>
+			</div>
+			<div class="logo">
+				<c:import url="sccafolding/logo.html" />
+			</div>
+			<div class="header">
+				<div>
+					<h2>Listagem de matérias</h2>
+					<p>seja bem vindo ${usuario.apelido} !</p>
+				</div>
+				<div>
+					<i class="fa fa-user" aria-hidden="true"></i> <a
+						href="/sherlock/controller?tarefa=LogoutController"><i
+						class="fa fa-power-off" aria-hidden="true"></i></a>
+				</div>
+			</div>
 
-
-</div>
-<div class="nav">
-	<c:forEach var="curso" items="${cursos}">
-		<ul>
-			<li><a
-				href="/sherlock/controller?tarefa=CursoController&id_curso=${curso.id_curso}">${curso.nome}</a></li>
-		</ul>
-	</c:forEach>
-</div>
-<div class="logo"></div>
-<div class="header">
-	<h1>Seja bem vindo ${usuario.apelido}</h1>
-</div>
-<div class="nav"></div>
-<div class="footer"></div>
-
-
+			<div class="footer">
+				<c:import url="sccafolding/footer.html" />
+			</div>
+	</c:when>
+	<c:otherwise>
+		<body>
+			<c:import url="errors/erro401.html" />
+	</c:otherwise>
+</c:choose>
 </body>
 </html>
