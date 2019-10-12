@@ -16,6 +16,7 @@ public class ConteudoBO implements IConteudoBO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 		return conteudos;
 	}
 
