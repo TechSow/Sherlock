@@ -1,5 +1,8 @@
 package br.com.techsow.sherlock.model.dao;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import br.com.techsow.sherlock.model.entities.Usuario;
@@ -8,7 +11,7 @@ import br.com.techsow.sherlock.model.services.ConnectionFactory;
 /**
  * Classe DAO responsável pelas consultas e transações com a entidade Usuario no banco de dados
  * para a aplicação.
- * @author Breno Sapucaia
+ * @author Breno Sapucaia e Italo Chagas
  *
  */
 public class UsuarioDAO extends BaseDAO implements IUsuarioRepository{
@@ -16,17 +19,36 @@ public class UsuarioDAO extends BaseDAO implements IUsuarioRepository{
 	public UsuarioDAO() throws SQLException, ClassNotFoundException{
 		conn = ConnectionFactory.getConnection();
 	}
-	
-	public int add(Usuario obj) throws SQLException {
-		
-		
-		
-		return 0;
+
+	public int add(Usuario u) throws SQLException {
+
+		stmt= conn.prepareStatement("insert into TS_T_USUARIO (ID_USUARIO,EMAIL,SENHA, ADMINISTRADOR, PROFESSOR) values(?,?,?,?,?)");
+		stmt.setInt(1, this.generateId());
+		stmt.setString(2, u.getEmail());
+		stmt.setString(3, u.getSenha());
+		stmt.setInt(4, u.getAdm());
+		stmt.setInt(5, u.getProfessor());
+
+		return stmt.executeUpdate();
+
 	}
 
-	
+	public int generateId() throws SQLException {
+		int id=0;
+
+		PreparedStatement stmt = conn.prepareStatement("SELECT * FROM USUARIOTS");
+		ResultSet rs = stmt.executeQuery();
+
+		while(rs.next()) {
+			id++;
+
+			id += 1;
+		}
+		return id ;	
+	}
+
 	public Usuario getById(int id) throws Exception {
-		
+
 		stmt = conn.prepareStatement("SELECT * FROM  TS_T_USUARIO WHERE ID_USUARIO=?");
 		stmt.setInt(1, id);
 		rs=stmt.executeQuery();
@@ -42,23 +64,23 @@ public class UsuarioDAO extends BaseDAO implements IUsuarioRepository{
 					rs.getString(7));
 
 		}
-		
+
 		return null;
 	}
 
-	
+
 	public int kill(int id) throws Exception {
-		
+
 		return 0;
 	}
 
-	
+
 	public int update(Usuario obj) throws Exception {
-		
+
 		return 0;
 	}
 
-	
+
 	public Usuario loginUser(Usuario user) throws Exception {
 		if(user.getEmail().isEmpty()) {
 			stmt = conn.prepareStatement("SELECT * FROM TS_T_USUARIO WHERE APELIDO = ? AND SENHA = ?");
@@ -78,22 +100,22 @@ public class UsuarioDAO extends BaseDAO implements IUsuarioRepository{
 		}
 	}
 
-	
+
 	public int updateSenha(Usuario user, String senhaNova) throws Exception {
-		
+
 		return 0;
 	}
 
-	
+
 	public int updateEmail(Usuario user, String emailNovo) throws Exception {
-		
+
 		return 0;
 	}
 
-	
+
 	public void close() throws SQLException {
 		conn.close();
 	}
 
-	
+
 }

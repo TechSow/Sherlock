@@ -1,0 +1,3 @@
+create sequence c_usuario_seq
+increment by 1
+start with 10;
