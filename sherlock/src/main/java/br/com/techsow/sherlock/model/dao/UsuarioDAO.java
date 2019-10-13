@@ -22,8 +22,7 @@ public class UsuarioDAO extends BaseDAO implements IUsuarioRepository{
 
 	public int add(Usuario u) throws SQLException {
 
-		stmt= conn.prepareStatement("insert into TS_T_USUARIO (ID_USUARIO,EMAIL,APELIDO,SENHA, ADM, PROFESSOR, ALUNO) "
-				+ 					"values(c_usuario_seq.nextval,?,?,?,?,?,?');");
+		stmt= conn.prepareStatement("insert into TS_T_USUARIO(ID_USUARIO,EMAIL,APELIDO,SENHA, ADM, PROFESSOR, ALUNO) values(c_usuario_seq.nextval,?,?,?,?,?,?)");
 
 
 		stmt.setString(1, u.getEmail());

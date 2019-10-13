@@ -16,7 +16,7 @@
   <div class="grid">
 
     <form action="controller" method="POST" class="form login">
-    	<input type="hidden" name="tarefa" id="tarefa" value="LoginController" />
+    	<input type="hidden" name="tarefa" id="tarefa" value="CadastroUsuario" />
 
       <div class="form__field">
         <label style="margin-bottom:0 !important"for="login__username"><svg class="icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#user"></use></svg><span class="hidden">Email</span></label>
@@ -30,7 +30,7 @@
       
        <div class="form__field">
         <label style="margin-bottom:0 !important"for="login__password"><svg class="icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#lock"></use></svg><span class="hidden">Password</span></label>
-        <input id="login__password" type="password" name="confirmarSenha" class="form__input" placeholder="Senha" required>
+        <input id="login__password" type="password" name="senha" class="form__input" placeholder="Senha" required>
       </div>
 
 

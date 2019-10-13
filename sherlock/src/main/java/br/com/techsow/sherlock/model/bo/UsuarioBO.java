@@ -54,9 +54,10 @@ public class UsuarioBO implements IUsuarioBO {
 		}
 
 		///////////////////////////////////////
-		if( verificarId != null || verificarId.getIdUsuario() > 0 ) {
-			return "O usuário já existe";
-		}
+		/*
+		 * if( verificarId != null || verificarId.getIdUsuario() > 0 ) { return
+		 * "O usuário já existe"; }
+		 */
 		//////////////////////////////////////
 
 		int ret = 0;

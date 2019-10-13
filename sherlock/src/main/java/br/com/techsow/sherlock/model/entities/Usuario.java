@@ -50,6 +50,30 @@ public class Usuario {
 		this.professor = professor;
 		this.apelido = apelido;
 	}
+	
+	
+	
+	public Usuario(String email, String apelido, String senha, int adm, int professor,int aluno) {
+		this.idUsuario = idUsuario;
+		this.email = email;
+		this.senha = senha;
+		this.aluno = aluno;
+		this.adm = adm; 
+		this.professor = professor;
+		this.apelido = apelido;
+	}
+
+	/**
+	 * 
+	 * @param email
+	 * @param apelido
+	 * @param senha
+	 */
+	public Usuario(String email, String apelido, String senha) {
+		this.email = email;
+		this.senha = senha;
+		this.apelido = apelido;
+	}
 
 	public int getAluno() {
 		return aluno;
