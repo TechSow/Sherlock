@@ -66,9 +66,9 @@ public class CursoDAO extends BaseDAO implements ICursoRepository {
 		return stmt.executeUpdate();
 	}
 	
-	public int updateDuracao(Curso c, String novaDuracao) throws Exception {
+	public int updateDuracao(Curso c, int novaDuracao) throws Exception {
 		stmt = conn.prepareStatement("UPDATE TS_T_CURSO SET DURACAO=? WHERE ID_CURSO=?");
-		stmt.setString(1, novaDuracao);
+		stmt.setInt(1, novaDuracao);
 		stmt.setInt(2, c.getId_curso());
 		return stmt.executeUpdate();
 	}
@@ -90,10 +90,10 @@ public class CursoDAO extends BaseDAO implements ICursoRepository {
 	}
 	
 	@Override
-	public int kill(Curso c) throws Exception {
+	public int kill(int id) throws Exception {
 
 		stmt = conn.prepareStatement("DELETE FROM TS_T_CURSO WHERE ID_CURSO=?");
-		stmt.setInt(1, c.getId_curso());
+		stmt.setInt(1, id);
 		return stmt.executeUpdate();	}
 
 
@@ -141,11 +141,7 @@ public class CursoDAO extends BaseDAO implements ICursoRepository {
 		return 0;
 	}
 
-	@Override
-	public int kill(int id) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+
 
 
 

@@ -99,7 +99,7 @@ public class MateriaBO implements IMateriaBO{
 		}
 
 		try (MateriaDAO dao = new MateriaDAO()){
-			dao.UpdateNome(m, nomeNovo);
+			dao.updateNome(m, nomeNovo);
 		} catch (SQLException | ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
@@ -116,7 +116,7 @@ public class MateriaBO implements IMateriaBO{
 		}
 
 		try (MateriaDAO dao = new MateriaDAO()){
-			dao.UpdateEmenta(m, novaEmenta);
+			dao.updateEmenta(m, novaEmenta);
 		} catch (SQLException | ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (Exception e) {

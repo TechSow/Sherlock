@@ -57,7 +57,7 @@ public class MateriaDAO extends BaseDAO implements IMateriaRepository{
 		return 0;
 	}
 
-	public int UpdateNome(Materia m,String nomeNovo)throws Exception{
+	public int updateNome(Materia m,String nomeNovo)throws Exception{
 		stmt=conn.prepareStatement("UPDATE TS_T_MATERIA SET NOME_MATERIA=? WHERE ID_MATERIA=?" );
 		stmt.setString(1, nomeNovo);
 		stmt.setInt(2, m.getId_materia());
@@ -66,7 +66,7 @@ public class MateriaDAO extends BaseDAO implements IMateriaRepository{
 
 	
 	
-	public int UpdateEmenta(Materia m,String novaEmenta)throws Exception{
+	public int updateEmenta(Materia m,String novaEmenta)throws Exception{
 		stmt=conn.prepareStatement("UPDATE TS_T_MATERIA set EMENTA_MATERIA=? WHERE ID_MATERIA=?");
 		stmt.setString(1, novaEmenta);
 		stmt.setInt(2, m.getId_materia());
