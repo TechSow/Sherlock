@@ -3,11 +3,8 @@ package br.com.techsow.sherlock.model.bo;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import br.com.techsow.sherlock.model.dao.CursoDAO;
-import br.com.techsow.sherlock.model.dao.MateriaDAO;
 import br.com.techsow.sherlock.model.dao.MateriaDAO;
 import br.com.techsow.sherlock.model.entities.Materia;
-import br.com.techsow.sherlock.model.entities.Usuario;
 import br.com.techsow.sherlock.model.interfaces.bo.IMateriaBO;
 
 public class MateriaBO implements IMateriaBO{
@@ -78,7 +75,7 @@ public class MateriaBO implements IMateriaBO{
 	public Materia getById(int id) {
 		Materia materia= null;
 
-		
+
 		try (MateriaDAO dao = new MateriaDAO()) {
 			materia = dao.getById(id);
 		} catch (Exception e) {
@@ -89,7 +86,6 @@ public class MateriaBO implements IMateriaBO{
 	}
 
 
-
 	public int kill(int id) {
 
 		return 0;
@@ -97,11 +93,11 @@ public class MateriaBO implements IMateriaBO{
 
 
 	public String updateNome(Materia m, String nomeNovo) {
-		
+
 		if(nomeNovo.length() > 100) {
 			return "Nome da matéria maior do que o esperado";
 		}
-		
+
 		try (MateriaDAO dao = new MateriaDAO()){
 			dao.UpdateNome(m, nomeNovo);
 		} catch (SQLException | ClassNotFoundException e) {
@@ -109,8 +105,31 @@ public class MateriaBO implements IMateriaBO{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		return "Materia Adicionada";
+	}
+
+	public String updateEmenta(Materia m, String novaEmenta) {
+
+		if(novaEmenta.length() > 100) {
+			return "Ementa excede quantidade de caracteres.";
+		}
+
+		try (MateriaDAO dao = new MateriaDAO()){
+			dao.UpdateEmenta(m, novaEmenta);
+		} catch (SQLException | ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return "Materia Adicionada";
+	}
+
+
+	// Nao esta sendo utilizado, mas a interface obriga a implementacao
+	public int update(Materia m) {
+		return 0;
 	}
 
 

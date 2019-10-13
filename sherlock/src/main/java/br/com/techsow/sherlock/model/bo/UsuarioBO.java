@@ -11,7 +11,7 @@ import br.com.techsow.sherlock.model.interfaces.bo.IUsuarioBO;
 
 public class UsuarioBO implements IUsuarioBO {
 
-	String add(Usuario user) {
+	public String add(Usuario user) {
 
 		/* Não é mais necessário, ja que nome é atributo da entidade PESSOA no banco
 		 * if(user.getNome().length() < 5) { return

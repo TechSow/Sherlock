@@ -11,9 +11,9 @@ public class CursoBO implements ICursoBO{
 
 	
 	
-	public int add(Curso obj) {
+	public String add(Curso obj) {
 		
-		return 0;
+		return "NOK";
 	}
 
 	

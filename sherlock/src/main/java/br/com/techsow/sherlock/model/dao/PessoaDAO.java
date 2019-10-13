@@ -65,12 +65,12 @@ public class PessoaDAO extends BaseDAO{
 	}
 	
 	
-	public int updateSobrenome(Pessoa pessoa, String sobreNomeNovo) throws Exception{
+	public int updateSobrenome(Pessoa pessoa, String sobrenomeNovo) throws Exception{
 
 		int idPessoa = pessoa.getId(); 
 		stmt = conn.prepareStatement("UPDATE TS_T_PESSOA SET SOBRENOME=? WHERE ID_PESSOA=?");
 
-		stmt.setString(1, sobreNomeNovo);
+		stmt.setString(1, sobrenomeNovo);
 		stmt.setInt(2, idPessoa);
 
 		return stmt.executeUpdate();

@@ -13,9 +13,16 @@ public class CursoDAO extends BaseDAO implements ICursoRepository {
 		conn = ConnectionFactory.getConnection();
 	}
 
-	public int add(Curso obj) throws SQLException {
+	public int add(Curso c) throws SQLException {
 
-		return 0;
+		stmt = conn.prepareStatement("INSERT INTO TS_T_CURSO(c_curso_seq.nextval,NOME,DESCRICAO,DURACAO, DIFICULDADE, URLIMG)VALUES(?,?,?,?,?)");
+		stmt.setString(1, c.getNome());
+		stmt.setString(2, c.getDescricao());
+		stmt.setLong(3, c.getDuracao());
+		stmt.setInt(4, c.getDificuldade());
+		stmt.setString(5, c.getUrlImg());
+		return stmt.executeUpdate();
+		
 	}
 
 	public Curso getById(int id) throws Exception {
@@ -30,33 +37,77 @@ public class CursoDAO extends BaseDAO implements ICursoRepository {
 	}
 
 	
-	public int kill(int id) throws Exception {
+	public int getCursoId(int cod) throws Exception {
+		stmt = conn.prepareStatement("SELECT ID_CURSO FROM TS_T_CURSO WHERE ID_CURSO=?");
+		stmt.setInt(1, cod);
+		rs = stmt.executeQuery();
+		if (rs.next()) {
+			return rs.getInt("ID_CURSO");
 
-		return 0;
+		} else {
+			return rs.getInt("ID_CURSO");
+		}
 	}
+	
+	@Override
+	public int updateNome(Curso c, String nomeNovo) throws Exception {
+		stmt = conn.prepareStatement("UPDATE TS_T_CURSO SET NOME=? WHERE ID_MATERIA=?");
+		stmt.setString(1, nomeNovo);
+		stmt.setInt(2, c.getId_curso());
+		return stmt.executeUpdate();
 
-	public int update(Curso obj) throws Exception {
-
-		return 0;
 	}
+	
+	@Override
+	public int updateDescricao(Curso c, String novaDescricao) throws Exception {
+		stmt = conn.prepareStatement("UPDATE TS_T_CURSO SET DESCRICAO=? WHERE ID_CURSO=?");
+		stmt.setString(1, novaDescricao);
+		stmt.setInt(2, c.getId_curso());
+		return stmt.executeUpdate();
+	}
+	
+	public int updateDuracao(Curso c, String novaDuracao) throws Exception {
+		stmt = conn.prepareStatement("UPDATE TS_T_CURSO SET DURACAO=? WHERE ID_CURSO=?");
+		stmt.setString(1, novaDuracao);
+		stmt.setInt(2, c.getId_curso());
+		return stmt.executeUpdate();
+	}
+	
+	
+	public int updateUrl(Curso c, String novaUrl) throws Exception {
+		stmt = conn.prepareStatement("UPDATE TS_T_CURSO SET DURACAO=? WHERE ID_CURSO=?");
+		stmt.setString(1, novaUrl);
+		stmt.setInt(2, c.getId_curso());
+		return stmt.executeUpdate();
+	}
+	
+	
+	public int updateDificuldade(Curso c, int novaDificuldade) throws Exception {
+		stmt = conn.prepareStatement("UPDATE TS_T_CURSO SET DIFICULDADE=? WHERE ID_CURSO=?");
+		stmt.setInt(1, novaDificuldade);
+		stmt.setInt(2, c.getId_curso());
+		return stmt.executeUpdate();
+	}
+	
+	@Override
+	public int kill(Curso c) throws Exception {
+
+		stmt = conn.prepareStatement("DELETE FROM TS_T_CURSO WHERE ID_CURSO=?");
+		stmt.setInt(1, c.getId_curso());
+		return stmt.executeUpdate();	}
+
 
 	public void close() throws SQLException {
 		conn.close();
 	}
 
-	public int updateNome(Curso c, String nome) throws Exception {
-
-		return 0;
-	}
-
-	public int updateDescricao(Curso c, String descricao) throws Exception {
-
-		return 0;
-	} 
+		
+	
 	
 	/*
 	 * 
 	 * implementar tabela de ts_t_curso_usuario "curso 1 --> n curso"
+	 * OSB: Ja existe tabela ts_t_usu_cur
 	 * 
 	 */
 	
@@ -82,5 +133,20 @@ public class CursoDAO extends BaseDAO implements ICursoRepository {
 		
 		return cursos;
 	}
+
+
+	@Override
+	public int update(Curso obj) throws Exception {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int kill(int id) throws Exception {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
 
 }
