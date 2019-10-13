@@ -26,14 +26,14 @@ public class UsuarioBO implements IUsuarioBO {
 		}
 
 		if(user.getSenha().length()  < 6) {
-			return "A senha tem que ser maior que 6 caracteres.";
+			return "Senha muito pequena.";
 		}
 
 		if(user.getEmail().length()>80) {
-			return "Excedeu a quantidade de caracteres";
+			return "Email excedeu a quantidade de caracteres";
 		}
 		if(user.getSenha().length()>150) {
-			return "Excedeu a quantidade de caracteres";
+			return "Senha excedeu a quantidade de caracteres";
 		}
 
 		///////////////////////////////////////////////
@@ -43,12 +43,38 @@ public class UsuarioBO implements IUsuarioBO {
 		//////////////////////////////////////////////
 
 		UsuarioDAO dao = null;
-		Usuario verificarId = null;
+		Usuario verificar = null;
 
 		try {
 			dao= new UsuarioDAO();
-			verificarId = dao.getById(user.getIdUsuario());
+			verificar = dao.getById(user.getIdUsuario());
 
+			if(verificar != null) {
+				return "Usuario com ID duplicado";
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		try {
+			dao= new UsuarioDAO();
+			verificar = dao.getByEmail(user.getEmail());
+
+			if(verificar != null) {
+				return "Email ja cadastrado";
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			dao= new UsuarioDAO();
+			verificar = dao.getByApelido(user.getApelido());
+
+			if(verificar != null) {
+				return "Apelido indisponivel";
+			}
 		}catch(Exception e) {
 			e.printStackTrace();
 		}

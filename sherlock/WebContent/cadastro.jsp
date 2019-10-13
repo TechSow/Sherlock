@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Login</title>
+    <title>Cadastro</title>
 	<c:import url="partial/bootstrap.html"/>
 	<link rel="stylesheet" href="css/toast.css">
 	<link rel="stylesheet" href="css/login.css">
@@ -45,6 +45,9 @@
       </div>
 
     </form>
+    
+    <p class="text--center">Ja possui login? <a href="login.jsp"> ir para login</a> <svg class="icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="assets/images/icons.svg#arrow-right"></use></svg></p>
+    
 
   </div>
 

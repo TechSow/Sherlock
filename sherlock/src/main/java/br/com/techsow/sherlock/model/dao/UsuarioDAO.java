@@ -70,7 +70,52 @@ public class UsuarioDAO extends BaseDAO implements IUsuarioRepository{
 
 		return null;
 	}
+	
+	
+	
+	public Usuario getByEmail(String email) throws Exception {
 
+		stmt = conn.prepareStatement("SELECT * FROM  TS_T_USUARIO WHERE EMAIL=?");
+		stmt.setString(1, email);
+		rs=stmt.executeQuery();
+
+		if(rs.next()) {
+			return new Usuario(
+					rs.getInt(1),
+					rs.getString(2),
+					rs.getString(3),
+					rs.getInt(4),
+					rs.getInt(5),
+					rs.getInt(6),
+					rs.getString(7));
+
+		}
+
+		return null;
+	}
+
+	
+	
+	public Usuario getByApelido(String apelido) throws Exception {
+
+		stmt = conn.prepareStatement("SELECT * FROM  TS_T_USUARIO WHERE APELIDO=?");
+		stmt.setString(1, apelido);
+		rs=stmt.executeQuery();
+
+		if(rs.next()) {
+			return new Usuario(
+					rs.getInt(1),
+					rs.getString(2),
+					rs.getString(3),
+					rs.getInt(4),
+					rs.getInt(5),
+					rs.getInt(6),
+					rs.getString(7));
+
+		}
+
+		return null;
+	}
 
 	public int kill(int id) throws Exception {
 

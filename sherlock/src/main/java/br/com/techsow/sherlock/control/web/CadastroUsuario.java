@@ -20,8 +20,8 @@ public class CadastroUsuario implements Task {
 		Usuario usuario = new Usuario(email, apelido, senha,0,0,1);
 		String usuarioBO = new UsuarioBO().add(usuario);
 		
-		
-		return "index.jsp";
+		req.setAttribute("erro", usuarioBO);
+		return "cadastro.jsp";
 		
 		
 	}
