@@ -15,7 +15,12 @@ public class MateriaDAO extends BaseDAO implements IMateriaRepository{
 	
 	
 	public int add(Materia obj) throws SQLException {
-		
+		stmt=con.prepareStatement("insert into TS_T_MATERIA(ID_MATERIA,TS_T_CURSO_ID_CURSO,NOME,EMENTA)VALUES(?,?,?,?)");
+		stmt.setInt(1, m.getId());
+		stmt.setInt(2, m.getId_curso().getId());
+		stmt.setString(3, m.getNome());
+		stmt.setString(4, m.getEmenta());
+		return stmt.executeUpdate();
 		return 0;
 	}
 

@@ -1,9 +1,14 @@
 package br.com.techsow.sherlock.model.dao;
 
+import java.sql.SQLException;
+import java.util.List;
+
+import br.com.techsow.sherlock.model.entities.Conteudo;
+import br.com.techsow.sherlock.model.entities.Pessoa;
 import br.com.techsow.sherlock.model.interfaces.repository.IConteudoRepository;
 import br.com.techsow.sherlock.model.services.ConnectionFactory;
 
-public class PessoaDAO extends BaseDAO implements IConteudoRepositor{
+public class PessoaDAO extends BaseDAO{
 
 
 	public PessoaDAO() throws Exception {
@@ -11,9 +16,9 @@ public class PessoaDAO extends BaseDAO implements IConteudoRepositor{
 			conn = ConnectionFactory.getConnection();
 	}
 
-
-	public Pessoa getPessoa(int id) throws Exception{
-		stmt = con.prepareStatement("SELECT * FROM  TS_T_PESSOA WHERE ID_PESSOA=?");
+	public Pessoa getById(int id) throws Exception{
+		UsuarioDAO userDao = null;
+		stmt = conn.prepareStatement("SELECT * FROM  TS_T_PESSOA WHERE ID_PESSOA=?");
 		stmt.setInt(1, id);
 		rs=stmt.executeQuery();
 		
@@ -22,7 +27,7 @@ public class PessoaDAO extends BaseDAO implements IConteudoRepositor{
 					rs.getInt("ID_PESSOA"),
 					rs.getString("NOME"),
 					rs.getString("SOBRENOME"),
-					new UsuarioDAO().getUser(rs.getInt("ID_USUARIO")));
+					userDao.getById(rs.getInt("ID_USUARIO")));
 					
 		}else {
 			return new Pessoa();
@@ -30,18 +35,17 @@ public class PessoaDAO extends BaseDAO implements IConteudoRepositor{
 	}
 	
 	
-	public int addPessoa(Pessoa p)throws Exception{
-		stmt=con.prepareStatement("insert into TS_T_PESSOA (ID_PESSOA,NOME,SOBRENOME,ID_USUARIO) values(?,?,?,?)");
-		stmt.setInt(1, p.getId());
-		stmt.setString(2, p.getNome());
-		stmt.setString(3, p.getSobrenome());
-		stmt.setInt(4, p.getUsuarioId().getId());
+	public int add(Pessoa p)throws Exception{
+		stmt=conn.prepareStatement("insert into TS_T_PESSOA (ID_PESSOA,NOME,SOBRENOME,ID_USUARIO) values(c_pessoa_seq.nextval,?,?,?)");
+		stmt.setString(1, p.getNome());
+		stmt.setString(2, p.getSobrenome());
+		stmt.setInt(3, p.getUsuarioId().getIdUsuario());
 		return stmt.executeUpdate();
 	}
 	
 	
 	public int killPessoa(int id) throws Exception{
-		stmt = con.prepareStatement("delete from TS_T_PESSOA where ID_PESSOA =? ");
+		stmt = conn.prepareStatement("delete from TS_T_PESSOA where ID_PESSOA =? ");
 		stmt.setInt(1, id);
 		return stmt.executeUpdate();
 
@@ -51,7 +55,7 @@ public class PessoaDAO extends BaseDAO implements IConteudoRepositor{
 	public int updateNome(Pessoa pessoa, String nomeNovo) throws Exception{
 
 		int idPessoa = pessoa.getId(); 
-		stmt = con.prepareStatement("UPDATE TS_T_PESSOA SET NOME =? WHERE ID_PESSOA=?");
+		stmt = conn.prepareStatement("UPDATE TS_T_PESSOA SET NOME =? WHERE ID_PESSOA=?");
 
 		stmt.setString(1, nomeNovo);
 		stmt.setInt(2, idPessoa);
@@ -61,10 +65,10 @@ public class PessoaDAO extends BaseDAO implements IConteudoRepositor{
 	}
 	
 	
-	public int updateSobreNome(Pessoa pessoa, String sobreNomeNovo) throws Exception{
+	public int updateSobrenome(Pessoa pessoa, String sobreNomeNovo) throws Exception{
 
 		int idPessoa = pessoa.getId(); 
-		stmt = con.prepareStatement("UPDATE TS_T_PESSOA SET SOBRENOME=? WHERE ID_PESSOA=?");
+		stmt = conn.prepareStatement("UPDATE TS_T_PESSOA SET SOBRENOME=? WHERE ID_PESSOA=?");
 
 		stmt.setString(1, sobreNomeNovo);
 		stmt.setInt(2, idPessoa);
@@ -76,7 +80,7 @@ public class PessoaDAO extends BaseDAO implements IConteudoRepositor{
 	public int updateIdade(Pessoa pessoa, int idadeNova) throws Exception{
 
 		int idPessoa = pessoa.getId(); 
-		stmt = con.prepareStatement("UPDATE TS_T_PESSOA SET IDADE=? WHERE ID_PESSOA=?");
+		stmt = conn.prepareStatement("UPDATE TS_T_PESSOA SET IDADE=? WHERE ID_PESSOA=?");
 
 		stmt.setInt(1, idadeNova);
 		stmt.setInt(2, idPessoa);
@@ -87,6 +91,6 @@ public class PessoaDAO extends BaseDAO implements IConteudoRepositor{
 	
 	
 	public void close() throws SQLException{
-		con.close();
+		conn.close();
 	}
 }
