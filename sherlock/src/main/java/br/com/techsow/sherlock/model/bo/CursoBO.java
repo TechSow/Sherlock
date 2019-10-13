@@ -4,9 +4,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import br.com.techsow.sherlock.model.dao.CursoDAO;
-import br.com.techsow.sherlock.model.dao.MateriaDAO;
 import br.com.techsow.sherlock.model.entities.Curso;
-import br.com.techsow.sherlock.model.entities.Materia;
 import br.com.techsow.sherlock.model.interfaces.bo.ICursoBO;
 
 public class CursoBO implements ICursoBO{
