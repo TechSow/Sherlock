@@ -110,7 +110,7 @@ public class MateriaBO implements IMateriaBO{
 			e.printStackTrace();
 		}
 		
-		return 0;
+		return "Materia Adicionada";
 	}
 
 
