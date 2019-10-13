@@ -22,12 +22,16 @@ public class UsuarioDAO extends BaseDAO implements IUsuarioRepository{
 
 	public int add(Usuario u) throws SQLException {
 
-		stmt= conn.prepareStatement("insert into TS_T_USUARIO (ID_USUARIO,EMAIL,SENHA, ADMINISTRADOR, PROFESSOR) values(?,?,?,?,?)");
-		stmt.setInt(1, this.generateId());
-		stmt.setString(2, u.getEmail());
+		stmt= conn.prepareStatement("insert into TS_T_USUARIO (ID_USUARIO,EMAIL,APELIDO,SENHA, ADM, PROFESSOR, ALUNO) "
+				+ 					"values(c_usuario_seq.nextval,?,?,?,?,?,?');");
+
+
+		stmt.setString(1, u.getEmail());
+		stmt.setString(2, u.getApelido());
 		stmt.setString(3, u.getSenha());
 		stmt.setInt(4, u.getAdm());
 		stmt.setInt(5, u.getProfessor());
+		stmt.setInt(6, u.getAluno());
 
 		return stmt.executeUpdate();
 
@@ -102,14 +106,26 @@ public class UsuarioDAO extends BaseDAO implements IUsuarioRepository{
 
 
 	public int updateSenha(Usuario user, String senhaNova) throws Exception {
+		//String senhaAntinga = usuario.getSenha();
 
-		return 0;
+		int idUsuario = user.getIdUsuario(); 
+		stmt = conn.prepareStatement("UPDATE TS_T_USUARIO SET SENHA =? WHERE ID_USUARIO=?");
+
+		stmt.setString(1, senhaNova);
+		stmt.setInt(2, idUsuario);
+
+		return stmt.executeUpdate();
 	}
 
 
 	public int updateEmail(Usuario user, String emailNovo) throws Exception {
+		int idUsuario = user.getIdUsuario();
 
-		return 0;
+		stmt = conn.prepareStatement("UPDATE TS_T_USUARIO SET EMAIL =? WHERE ID_USUARIO=?");
+		stmt.setString(1, emailNovo);
+		stmt.setInt(2, idUsuario);
+
+		return stmt.executeUpdate();
 	}
 
 
