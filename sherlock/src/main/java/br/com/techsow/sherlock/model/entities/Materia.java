@@ -1,12 +1,20 @@
 package br.com.techsow.sherlock.model.entities;
 /**
  * entidade matéria
- * @author breno
+ * @author breno e Italo Chagas
  *
  */
 public class Materia {
 	private int id_materia;
 	private String nome, ementa, urlImg;
+	
+	
+
+	/**
+	 * construtor vazio para objetos null;
+	 */
+	public Materia() {}
+	
 	
 	/**
 	 * construtor cheio para pesquisas no banco de dados
