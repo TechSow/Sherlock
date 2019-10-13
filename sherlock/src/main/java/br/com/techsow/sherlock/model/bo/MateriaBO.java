@@ -1,41 +1,47 @@
 package br.com.techsow.sherlock.model.bo;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
+import br.com.techsow.sherlock.model.dao.CursoDAO;
+import br.com.techsow.sherlock.model.dao.MateriaDAO;
 import br.com.techsow.sherlock.model.dao.MateriaDAO;
 import br.com.techsow.sherlock.model.entities.Materia;
+import br.com.techsow.sherlock.model.entities.Usuario;
 import br.com.techsow.sherlock.model.interfaces.bo.IMateriaBO;
 
 public class MateriaBO implements IMateriaBO{
 
-	
-	public String add(Materia obj) {
-		
+
+	public String add(Materia materia) {
+
 		if(materia.getEmenta().length() > 100) {
-			return "Tamanho da descricao excedeu o limite de caracteres";
+			return "Tamanho da descricao excedeu o limite de caracteres.";
 		}
 
 		if(materia.getNome().length() > 100) {
-			return "Nome da matéria maior do que o esperado";
+			return "Nome da matéria maior do que o esperado.";
 		}
 
-		if(materia.getId_curso().getId() == 0) {
-			return "ID do curso nao encontrado. Curso não existe";
+		if(materia.geturlImg().length() > 300) {
+			return "URL ultrapassa tamanho de 300 caracteres.";
 		}
+		/* Curso foi retirado da entidade materia
+		 * if(materia.getId_curso().getId() == 0) { return
+		 * "ID do curso nao encontrado. Curso não existe"; }
+		 */
 
-		
-		CursoDAO cursoDao = null;
-		try {
-			
-			cursoDao = new CursoDAO();
-			if(cursoDao.getCursoId(materia.getId_curso().getId()) == 1) {
-				return "O curso informado ja contem essa máteria";
-			}
-		} catch (Exception e1) {
-			e1.printStackTrace();
-		}
-		
+
+		/*Necessário avaliar como validar se uma materia ja pertence a um curso
+		 * 
+		 * CursoDAO cursoDao = null; try {
+		 * 
+		 * cursoDao = new CursoDAO();
+		 * if(cursoDao.getCursoId(materia.getId_curso().getId()) == 1) { return
+		 * "O curso informado ja contem essa máteria"; } } catch (Exception e1) {
+		 * e1.printStackTrace(); }
+		 */
+
 
 		/////////////////////////////////////////
 		//Espaco para os requisitos funcioinais//
@@ -47,7 +53,7 @@ public class MateriaBO implements IMateriaBO{
 
 		try {
 			materiaDao = new MateriaDAO();
-			retorno = materiaDao.addMateria(materia)	;
+			retorno = materiaDao.add(materia);
 
 
 		} catch (Exception e) {
@@ -66,27 +72,48 @@ public class MateriaBO implements IMateriaBO{
 			return "Materia não pode ser cadastrado. Verificar dados informados";
 		}
 
-	}			}
+	}			
 
-	
+
 	public Materia getById(int id) {
+		Materia materia= null;
+
 		
-		return null;
+		try (MateriaDAO dao = new MateriaDAO()) {
+			materia = dao.getById(id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return materia;
 	}
 
-	
+
+
 	public int kill(int id) {
+
+		return 0;
+	}
+
+
+	public String updateNome(Materia m, String nomeNovo) {
+		
+		if(nomeNovo.length() > 100) {
+			return "Nome da matéria maior do que o esperado";
+		}
+		
+		try (MateriaDAO dao = new MateriaDAO()){
+			dao.UpdateNome(m, nomeNovo);
+		} catch (SQLException | ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 		return 0;
 	}
 
-	
-	public int update(Materia obj) {
-		
-		return 0;
-	}
 
-	
 	public ArrayList<Materia> getMateriasFromCursoId(int id_curso) {
 		ArrayList<Materia> materias = new ArrayList<Materia>();
 		try(MateriaDAO dao = new MateriaDAO()){
@@ -94,8 +121,8 @@ public class MateriaBO implements IMateriaBO{
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		return materias;
 	}
-	
+
 }

@@ -72,14 +72,15 @@ public class UsuarioBO implements IUsuarioBO {
 			}
 		}
 
-		return "usuario OK";
+		return "usuario criado";
 
 	}
 
 
+////////////////////////////////////////////////////
 	public Usuario getById(int id) {
 		Usuario usuario = null;
-
+		
 		try (UsuarioDAO dao = new UsuarioDAO()) {
 			usuario = dao.getById(id);
 		} catch (Exception e) {
@@ -88,16 +89,20 @@ public class UsuarioBO implements IUsuarioBO {
 
 		return usuario;
 	}
+//////////////////////////////////////////////////
 
 	public int kill(int id) {
 
 		return 0;
 	}
 
+//////////////////////////////////////////////////
 	public int update(Usuario obj)  {
 
 		return 0;
 	}
+	
+//////////////////////////////////////////////////
 
 	public Usuario loginUser(Usuario user)  {
 		Usuario usuario = null;
