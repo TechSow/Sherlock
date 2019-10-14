@@ -7,27 +7,25 @@ import br.com.techsow.sherlock.model.bo.UsuarioBO;
 import br.com.techsow.sherlock.model.entities.Usuario;
 import br.com.techsow.sherlock.model.interfaces.web.Task;
 
-public class CadastroUsuario implements Task {
+public class CadastroProfessor implements Task {
 
 
 	/**
 	 * @author Italo
 	 * 
-	 *         Classe criada para lidar com as requisicoes de criacao de novos usuarios
-	 *         A requisicao vem da Servlet Controller
+	 *         Classe criada para lidar com as requisicoes de tornar um Usuario comum em professor na plataforma
+	 *         A requisicao vem da Servlet Controller pela jsp cadastroProfessor
 	 */
 	@Override
 	public String processTask(HttpServletRequest req, HttpServletResponse resp) {
 
 		String email = req.getParameter("email");
-		String apelido = req.getParameter("apelido");
-		String senha = req.getParameter("senha");
 		
-		Usuario usuario = new Usuario(email, apelido, senha,0,0,1);
-		String usuarioBO = new UsuarioBO().add(usuario);
+		Usuario usuario = new UsuarioBO().getByEmail(email);
+		String usuarioBO = new UsuarioBO().updateToProfessor(usuario);
 		
 		req.setAttribute("erro", usuarioBO);
-		return "cadastro.jsp";
+		return "home.jsp";
 		
 		
 	}

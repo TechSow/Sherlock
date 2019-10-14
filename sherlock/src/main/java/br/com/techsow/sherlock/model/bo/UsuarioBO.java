@@ -11,6 +11,12 @@ import br.com.techsow.sherlock.model.interfaces.bo.IUsuarioBO;
 
 public class UsuarioBO implements IUsuarioBO {
 
+	/**
+	 * @author Italo
+	 * 
+	 *         Classe criada para efetuar as validacoes da entidade Usuario
+	 *         Essa classe é chamada pela classe CadastroUsuario
+	 */
 	public String add(Usuario user) {
 
 		/* Não é mais necessário, ja que nome é atributo da entidade PESSOA no banco
@@ -78,13 +84,7 @@ public class UsuarioBO implements IUsuarioBO {
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-
-		///////////////////////////////////////
-		/*
-		 * if( verificarId != null || verificarId.getIdUsuario() > 0 ) { return
-		 * "O usuário já existe"; }
-		 */
-		//////////////////////////////////////
+				
 
 		int ret = 0;
 		try {
@@ -99,7 +99,7 @@ public class UsuarioBO implements IUsuarioBO {
 			}
 		}
 
-		return "usuario criado";
+		return "Usuario criado";
 
 	}
 
@@ -110,6 +110,18 @@ public class UsuarioBO implements IUsuarioBO {
 		
 		try (UsuarioDAO dao = new UsuarioDAO()) {
 			usuario = dao.getById(id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return usuario;
+	}
+//////////////////////////////////////////////////
+	public Usuario getByEmail(String email) {
+		Usuario usuario = null;
+		
+		try (UsuarioDAO dao = new UsuarioDAO()) {
+			usuario = dao.getByEmail(email);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -142,7 +154,19 @@ public class UsuarioBO implements IUsuarioBO {
 
 		return usuario;
 	}
-
+	
+	public String updateToProfessor(Usuario user){
+		
+		try (UsuarioDAO dao = new UsuarioDAO()){
+			dao.updateToProfessor(user);
+		} catch (SQLException | ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "Usuario " + user.getApelido() + " agora é professor";
+	}
+	
 	public int updateSenha(Usuario user, String senhaNova){
 				
 		try (UsuarioDAO dao = new UsuarioDAO()){
