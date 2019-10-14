@@ -1,44 +1,59 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+	pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<c:forEach var="curso" items="${cursos}">
-    <div class="col-md-3 col-sm-6 col-xs-12">
-            <article class="material-card Blue-Grey">
-                <h2>
-                    <span>${curso.nome}</span>
-                    <strong>
-                    <c:forEach var="i" begin="1" end="${curso.dificuldade}">
-         			    <i class="fa fa-star"></i>
-      				</c:forEach>
-                        Dificuldade                        
-                    </strong>
-                </h2>
-                <div class="mc-content">
-                    <div class="img-container">
-                        <img class="img-responsive" src="${curso.urlImg}">
-                    </div>
-                    <div class="mc-description">
-                        ${curso.descricao}
-                    </div>
-                </div>
-                <a class="mc-btn-action">
-                    <i class="fa fa-bars"></i>
-                </a>
-                <div class="mc-footer">
-                    <h4>
-                        aprender
-                    </h4>
-                    <a href="/sherlock/controller?tarefa=CursoController&id_curso=${curso.id_curso}"><i class="fa fa-play" aria-hidden="true"></i></a>
-                </div>
-            </article>
-        </div>
-</c:forEach>
+
+
+
+<ul class="nav nav-tabs">
+	<li class="nav-item">
+		<button class="nav-link active" id="botaoProfessor"
+			onclick="admProfessor()">Professor</button>
+	</li>
+	<li class="nav-item">
+		<button class="nav-link active" id="curso" href="#">Curso</button>
+	</li>
+	<li class="nav-item">
+		<button class="nav-link active" id="materia" href="#">Matéria</button>
+	</li>
+	<li class="nav-item">
+		<button class="nav-link active" id="aluno" href="#">Aluno</button>
+	</li>
+</ul>
+
+<form class="professor" >
+  <div class="form-group">
+    <label for="exampleInputEmail1">Endereço de email</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Seu email">
+    <small id="emailHelp" class="form-text text-muted">Nunca vamos compartilhar seu email, com ninguém.</small>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Senha</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Senha">
+  </div>
+
+  <button type="submit" class="btn btn-primary">Enviar</button>
+</form>
+
+
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 	crossorigin="anonymous"></script>
 
 <script>
+
+
+function admProfessor() {
+    
+    
+};
+var btnProf =$("#botaoProfessor");
+btnProf.on("click", function(e){
+	e.preventDefault()
+	$(".professor").toggleClass("d-none");	
+})
+
+
 $(function() {
     $('.material-card > .mc-btn-action').click(function () {
         var card = $(this).parent('.material-card');
