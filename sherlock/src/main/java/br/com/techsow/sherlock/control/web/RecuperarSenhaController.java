@@ -10,19 +10,19 @@ import br.com.techsow.sherlock.model.interfaces.web.Task;
 
 public class RecuperarSenhaController implements Task{
 
-	
 	public String processTask(HttpServletRequest req, HttpServletResponse resp) {
 	
-		String email = req.getParameter("email");
+		String email = req.getParameter("emailOuApelido");
 		
 		UsuarioBO bo = new UsuarioBO();
 		
 		try {
 			Usuario usuario  = bo.getByEmail(email);
 			req.setAttribute("UsuarioEncontrado", usuario);
-			int code = (int) (1111 * Math.random());
+			int code = (int) (11111 * Math.random());
 			req.setAttribute("code", code);
-			
+			EmailSender es = new EmailSender(code);
+			es.enviarEmail(usuario);
 			
 			
 		} catch (EmailNotFound e) {

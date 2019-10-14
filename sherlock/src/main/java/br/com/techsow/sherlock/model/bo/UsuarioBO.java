@@ -117,32 +117,21 @@ public class UsuarioBO implements IUsuarioBO {
 
 		return usuario;
 	}
-//////////////////////////////////////////////////
-	public Usuario getByEmail(String email) {
-		Usuario usuario = null;
-		
-		try (UsuarioDAO dao = new UsuarioDAO()) {
-			usuario = dao.getByEmail(email);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 
-		return usuario;
-	}
-//////////////////////////////////////////////////
+
 
 	public int kill(int id) {
 
 		return 0;
 	}
 
-//////////////////////////////////////////////////
+
 	public int update(Usuario obj)  {
 
 		return 0;
 	}
 	
-//////////////////////////////////////////////////
+
 
 	public Usuario loginUser(Usuario user)  {
 		Usuario usuario = null;
@@ -156,7 +145,7 @@ public class UsuarioBO implements IUsuarioBO {
 		return usuario;
 	}
 	
-<<<<<<< HEAD
+
 	public Usuario getByEmail(String email) throws EmailNotFound {
 		Usuario usuario = null;
 		
@@ -170,7 +159,8 @@ public class UsuarioBO implements IUsuarioBO {
 		
 		
 		return usuario;
-=======
+	}
+	
 	public String updateToProfessor(Usuario user){
 		
 		try (UsuarioDAO dao = new UsuarioDAO()){
@@ -181,7 +171,7 @@ public class UsuarioBO implements IUsuarioBO {
 			e.printStackTrace();
 		}
 		return "Usuario " + user.getApelido() + " agora é professor";
->>>>>>> develop
+
 	}
 	
 	public int updateSenha(Usuario user, String senhaNova){
