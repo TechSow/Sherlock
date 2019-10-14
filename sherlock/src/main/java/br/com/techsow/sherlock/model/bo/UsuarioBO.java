@@ -2,6 +2,7 @@ package br.com.techsow.sherlock.model.bo;
 
 import br.com.techsow.sherlock.model.dao.UsuarioDAO;
 import br.com.techsow.sherlock.model.entities.Usuario;
+import br.com.techsow.sherlock.model.exception.EmailNotFound;
 import br.com.techsow.sherlock.model.interfaces.bo.IUsuarioBO;
 
 public class UsuarioBO implements IUsuarioBO {
@@ -44,7 +45,22 @@ public class UsuarioBO implements IUsuarioBO {
 
 		return usuario;
 	}
-
+	
+	public Usuario getByEmail(String email) throws EmailNotFound {
+		Usuario usuario = null;
+		
+		try(UsuarioDAO dao = new UsuarioDAO()){
+			usuario = dao.getByEmail(email);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		if(usuario == null) throw new EmailNotFound("O usuário com este e-mail não existe");
+		
+		
+		return usuario;
+	}
+	
 	public int updateSenha(Usuario user, String senhaNova){
 
 		return 0;
