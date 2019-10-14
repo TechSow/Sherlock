@@ -7,6 +7,8 @@ import javax.mail.internet.InternetAddress;
 
 import br.com.techsow.sherlock.model.dao.UsuarioDAO;
 import br.com.techsow.sherlock.model.entities.Usuario;
+import br.com.techsow.sherlock.model.exception.ApelidoException;
+import br.com.techsow.sherlock.model.exception.DuplicatedIdException;
 import br.com.techsow.sherlock.model.exception.EmailNotFound;
 import br.com.techsow.sherlock.model.interfaces.bo.IUsuarioBO;
 
@@ -50,15 +52,16 @@ public class UsuarioBO implements IUsuarioBO {
 		//////////////////////////////////////////////
 
 		UsuarioDAO dao = null;
-		Usuario verificar = null;
+		Usuario usuario = null;
 
 		try {
 			dao= new UsuarioDAO();
-			verificar = dao.getById(user.getIdUsuario());
+			usuario = dao.getById(user.getIdUsuario());
 
-			if(verificar != null) {
-				return "Usuario com ID duplicado";
-			}
+			if(usuario != null) throw new DuplicatedIdException("Usuario com ID duplicado");
+			
+			
+			
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -66,22 +69,19 @@ public class UsuarioBO implements IUsuarioBO {
 		
 		try {
 			dao= new UsuarioDAO();
-			verificar = dao.getByEmail(user.getEmail());
+			usuario = dao.getByEmail(user.getEmail());
 
-			if(verificar != null) {
-				return "Email ja cadastrado";
-			}
+			if(usuario != null) { return "Email já cadastrado"; }
+			
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
 		
 		try {
 			dao= new UsuarioDAO();
-			verificar = dao.getByApelido(user.getApelido());
+			usuario = dao.getByApelido(user.getApelido());
 
-			if(verificar != null) {
-				return "Apelido indisponivel";
-			}
+			if(usuario != null) throw new ApelidoException("Apelido indisponível");
 		}catch(Exception e) {
 			e.printStackTrace();
 		}

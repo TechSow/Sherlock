@@ -151,32 +151,7 @@ public class UsuarioDAO extends BaseDAO implements IUsuarioRepository{
 			return null;
 		}
 	}
-
-<<<<<<< HEAD
-	public Usuario getByEmail(String email) throws Exception{
-		stmt = conn.prepareStatement("SELECT * FROM TS_T_USUARIO WHERE EMAIL = ?");
-		stmt.setString(1,email);
-		rs = stmt.executeQuery();
-		
-		if(rs.next()) {
-			return new Usuario(
-					rs.getInt(1),
-					rs.getString(2),
-					rs.getString(3),
-					rs.getInt(4),
-					rs.getInt(5),
-					rs.getInt(6),
-					rs.getString(7));
-		}
-		return null;
-	}
 	
-	public int updateSenha(Usuario user, String senhaNova) throws Exception {
-		
-		
-		
-		return 0;
-=======
 	public int updateToProfessor(Usuario user) throws Exception {
 		//String senhaAntinga = usuario.getSenha();
 
@@ -198,7 +173,7 @@ public class UsuarioDAO extends BaseDAO implements IUsuarioRepository{
 		stmt.setInt(2, idUsuario);
 
 		return stmt.executeUpdate();
->>>>>>> develop
+
 	}
 
 
