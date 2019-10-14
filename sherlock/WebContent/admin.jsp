@@ -4,15 +4,15 @@
 	<c:when test="${not empty usuario }">
 		<body class="grid-container">
 			<div class="main">
-				<c:import url="sccafolding/mainAdmin.jsp" />
+				<c:import url="sccafolding/main.jsp" />
 			</div>
 			<div class="nav">
 				<ul class="lista">
 					<c:if test="${usuario.adm == 1}">
-						<li class="item"><a href="/sherlock/admin.jsp">햞ea do administrador</a></li>
+						<li class="item"><a href="#">햞ea do administrador</a></li>
 					</c:if>
 					<c:if test="${usuario.professor == 1}">
-						<li class="item"><a href="">햞ea do Professor</a></li>
+						<li class="item"><a href="#">햞ea do Professor</a></li>
 					</c:if>
 					<li class="item"><a href="/sherlock/home.jsp">Lista de Cursos</a></li>
 				</ul>
@@ -22,7 +22,7 @@
 			</div>
 			<div class="header">
 				<div>
-					<h2>Listagem de cursos</h2>
+					<h2>Pagina administrativa</h2>
 					<p>Seja bem-vindo, ${usuario.apelido}!</p>
 				</div>
 				<div>

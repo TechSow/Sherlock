@@ -7,7 +7,6 @@ import javax.mail.internet.InternetAddress;
 
 import br.com.techsow.sherlock.model.dao.UsuarioDAO;
 import br.com.techsow.sherlock.model.entities.Usuario;
-import br.com.techsow.sherlock.model.exception.EmailNotFound;
 import br.com.techsow.sherlock.model.interfaces.bo.IUsuarioBO;
 
 public class UsuarioBO implements IUsuarioBO {
@@ -156,21 +155,6 @@ public class UsuarioBO implements IUsuarioBO {
 		return usuario;
 	}
 	
-<<<<<<< HEAD
-	public Usuario getByEmail(String email) throws EmailNotFound {
-		Usuario usuario = null;
-		
-		try(UsuarioDAO dao = new UsuarioDAO()){
-			usuario = dao.getByEmail(email);
-		}catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		if(usuario == null) throw new EmailNotFound("O usuário com este e-mail não existe");
-		
-		
-		return usuario;
-=======
 	public String updateToProfessor(Usuario user){
 		
 		try (UsuarioDAO dao = new UsuarioDAO()){
@@ -181,7 +165,6 @@ public class UsuarioBO implements IUsuarioBO {
 			e.printStackTrace();
 		}
 		return "Usuario " + user.getApelido() + " agora é professor";
->>>>>>> develop
 	}
 	
 	public int updateSenha(Usuario user, String senhaNova){

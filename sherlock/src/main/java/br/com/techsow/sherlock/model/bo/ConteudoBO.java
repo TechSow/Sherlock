@@ -21,9 +21,9 @@ public class ConteudoBO implements IConteudoBO {
 	}
 
 	
-	public int add(Conteudo obj) {
+	public String add(Conteudo obj) {
 	
-		return 0;
+		return "NOK";
 	}
 
 	

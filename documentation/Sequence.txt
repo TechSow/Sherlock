@@ -1,0 +1,16 @@
+create sequence c_usuario_seq
+increment by 1
+start with 10;
+
+create sequence c_pessoa_seq
+increment by 1
+start with 10;
+
+
+create sequence c_materia_seq
+increment by 1
+start with 10;
+
+create sequence c_curso_seq
+increment by 1
+start with 10;
