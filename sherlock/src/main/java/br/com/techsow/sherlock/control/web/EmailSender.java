@@ -14,7 +14,7 @@ import javax.mail.internet.MimeMessage;
 import br.com.techsow.sherlock.model.entities.Usuario;
 
 public class EmailSender {
-	final String from = "naorespondatechsow@gmail.com";
+	final String from = "technology.sow@gmail.com";
 	final String username = "technology.sow@gmail.com";
 	final String password = "fiap2019";
 	final String host = "smtp.gmail.com";
