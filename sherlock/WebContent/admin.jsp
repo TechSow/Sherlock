@@ -4,7 +4,7 @@
 	<c:when test="${not empty usuario }">
 		<body class="grid-container">
 			<div class="main">
-				<c:import url="sccafolding/main.jsp" />
+				<c:import url="sccafolding/mainAdministrador.jsp" />
 			</div>
 			<div class="nav">
 				<ul class="lista">

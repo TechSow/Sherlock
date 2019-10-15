@@ -3,6 +3,16 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
+<style>
+
+form{
+
+position:absolute;
+margin-top: 10em;
+
+}
+
+</style>
 
 <ul class="nav nav-tabs">
 	<li class="nav-item">
@@ -20,19 +30,57 @@
 	</li>
 </ul>
 
-<form class="professor" >
+
+<form class="professor" action="controller" method="post">
+<input type="hidden" name="tarefa" id="tarefa" value="CadastroProfessor"/>
+
+<h2> Cadastro de Professores </h2>
   <div class="form-group">
     <label for="exampleInputEmail1">Endereço de email</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Seu email">
+    <input type="email" class="form-control" id="exampleInputEmail1" name="email" aria-describedby="emailHelp" placeholder="Email do professor">
     <small id="emailHelp" class="form-text text-muted">Nunca vamos compartilhar seu email, com ninguém.</small>
   </div>
+  
+  <div class="form-group">
+    <label for="exampleInputEmail1">Apelido</label>
+	<input class="form-control" type="text"  name="apelido" placeholder="Apelido do professor" required>   
+    <small id="emailHelp" class="form-text text-muted">O apelido precisa ser unico e pode ser utilizado para login.</small>
+  </div>
+  
   <div class="form-group">
     <label for="exampleInputPassword1">Senha</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Senha">
+    <input type="password" class="form-control" name="senha" id="exampleInputPassword1" placeholder="Senha">
   </div>
 
-  <button type="submit" class="btn btn-primary">Enviar</button>
+  <button type="submit" class="btn btn-primary">Cadastrar professor!</button>
 </form>
+
+
+
+<form class="curso" action="controller" method="post">
+<input type="hidden" name="tarefa" id="tarefa" value="CadastroCurso"/>
+
+<h2> Cadastro de Cursos</h2>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Endereço de email</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" name="email" aria-describedby="emailHelp" placeholder="Email do professor">
+    <small id="emailHelp" class="form-text text-muted">Nunca vamos compartilhar seu email, com ninguém.</small>
+  </div>
+  
+  <div class="form-group">
+    <label for="exampleInputEmail1">Apelido</label>
+	<input class="form-control" type="text"  name="apelido" placeholder="Apelido do professor" required>   
+    <small id="emailHelp" class="form-text text-muted">O apelido precisa ser unico e pode ser utilizado para login.</small>
+  </div>
+  
+  <div class="form-group">
+    <label for="exampleInputPassword1">Senha</label>
+    <input type="password" class="form-control" name="senha" id="exampleInputPassword1" placeholder="Senha">
+  </div>
+
+  <button type="submit" class="btn btn-primary">Cadastrar professor!</button>
+</form>
+
 
 
 
@@ -47,6 +95,7 @@ function admProfessor() {
     
     
 };
+
 var btnProf =$("#botaoProfessor");
 btnProf.on("click", function(e){
 	e.preventDefault()
