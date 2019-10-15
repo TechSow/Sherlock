@@ -10,6 +10,7 @@ import br.com.techsow.sherlock.model.entities.Usuario;
 import br.com.techsow.sherlock.model.exception.ApelidoException;
 import br.com.techsow.sherlock.model.exception.DuplicatedIdException;
 import br.com.techsow.sherlock.model.exception.EmailNotFound;
+import br.com.techsow.sherlock.model.exception.NotEqualsException;
 import br.com.techsow.sherlock.model.interfaces.bo.IUsuarioBO;
 
 public class UsuarioBO implements IUsuarioBO {
@@ -20,7 +21,7 @@ public class UsuarioBO implements IUsuarioBO {
 	 *         Classe criada para efetuar as validacoes da entidade Usuario
 	 *         Essa classe é chamada pela classe CadastroUsuario
 	 */
-	public String add(Usuario user) {
+	public String add(Usuario user) throws DuplicatedIdException,ApelidoException, EmailNotFound {
 
 		/* Não é mais necessário, ja que nome é atributo da entidade PESSOA no banco
 		 * if(user.getNome().length() < 5) { return
@@ -174,8 +175,17 @@ public class UsuarioBO implements IUsuarioBO {
 
 	}
 	
-	public int updateSenha(Usuario user, String senhaNova){
-				
+	public int updateSenha(String email, String senhaNova, String confirmarSenha) throws NotEqualsException, EmailNotFound{
+		
+		if(!(senhaNova.equals(confirmarSenha))) throw new NotEqualsException("Senhas não coincidem");
+		
+		Usuario user;
+		try {
+			user = this.getByEmail(email);
+		} catch (EmailNotFound e1) {
+			throw new EmailNotFound(e1.getMessage());
+		}
+		
 		try (UsuarioDAO dao = new UsuarioDAO()){
 			dao.updateSenha(user, senhaNova);
 		} catch (SQLException | ClassNotFoundException e) {
@@ -195,6 +205,13 @@ public class UsuarioBO implements IUsuarioBO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return 0;
+	}
+
+
+	@Override
+	public int updateSenha(String email, String senhaNova) {
+		// TODO Auto-generated method stub
 		return 0;
 	}
 

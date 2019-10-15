@@ -9,6 +9,7 @@
 	<c:import url="partial/bootstrap.html"/>
 	<link rel="stylesheet" href="css/toast.css">
 	<link rel="stylesheet" href="css/login.css">
+	<link rel="stylesheet" href="css/font-awesome.min.css">
 </head>
 <!--  https://codepen.io/marcobiedermann/pen/Fybpf -->
 <body class="align">
@@ -46,8 +47,8 @@
 <c:if test="${not empty erro}">
 
 	<div id="toast">
-		<i class="fa fa-exclamation text-danger" id="img" aria-hidden="true"></i>
-		<div id="desc" class="bg-danger">${erro}</div>
+		<i class="fa fa-exclamation text-${erro[1]} " id="img" aria-hidden="true"></i>
+		<div id="desc" class="bg-danger">${erro[0]}</div>
 	</div>
 	<script>
 	function launch_toast() {

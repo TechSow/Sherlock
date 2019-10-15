@@ -1,6 +1,6 @@
 package br.com.techsow.sherlock.control.web;
 
-import io.github.cdimascio.dotenv.Dotenv;
+
 import java.util.Properties;
 
 import javax.mail.Message;
@@ -14,16 +14,9 @@ import javax.mail.internet.MimeMessage;
 import br.com.techsow.sherlock.model.entities.Usuario;
 
 public class EmailSender {
-
-	final Dotenv dotenv =  Dotenv
-							.configure()
-							.directory("./resources/")
-							.filename(".env")
-							.load();
-	
-	final String from = dotenv.get("_FROM");
-	final String username = dotenv.get("_USERNAME");
-	final String password = dotenv.get("_PASSWORD");
+	final String from = "naorespondatechsow@gmail.com";
+	final String username = "technology.sow@gmail.com";
+	final String password = "fiap2019";
 	final String host = "smtp.gmail.com";
 
 	private int code;
