@@ -41,8 +41,11 @@
 					</div>
 				</form>
 			</c:when>
-			<c:when test="${BateuCodigo}">
+			<c:when test="${Bateu}">
 				<form action="controller" method="GET" class="form login">
+				
+					<input type="hidden" name="tarefa" id="tarefa"
+						value="RecuperarSenhaController" />
 					<div class="form__field">
 						<label style="margin-bottom: 0 !important" for="login__username"><svg
 								class="icon">
@@ -68,6 +71,9 @@
 			</c:when>
 			<c:otherwise>
 				<form action="controller" method="POST" class="form login">
+				
+					<input type="hidden" name="tarefa" id="tarefa"
+						value="RecuperarSenhaController" />
 					<div class="form__field">
 						<label style="margin-bottom: 0 !important" for="login__username"><svg
 								class="icon">

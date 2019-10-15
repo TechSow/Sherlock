@@ -32,7 +32,7 @@ public class RecuperarSenhaController implements Task {
 		UsuarioBO bo = new UsuarioBO();
 
 		if (code == _code) {
-			req.setAttribute("CodigoBateu", true);
+			req.setAttribute("Bateu", false);
 			req.setAttribute("email", email);
 			req.setAttribute("code", 0);
 			return "recuperarSenha.jsp";
@@ -43,7 +43,9 @@ public class RecuperarSenhaController implements Task {
 			code = (int) (11111 * Math.random());
 			EmailSender es = new EmailSender(code);
 			es.enviarEmail(usuario);
-			
+			req.setAttribute("email", email);
+			req.setAttribute("code", _code);
+			req.setAttribute("Bateu", true);
 		} catch (EmailNotFound e) {
 			System.out.println(e.getMessage());
 			req.setAttribute("erro", e.getMessage());
@@ -55,14 +57,14 @@ public class RecuperarSenhaController implements Task {
 	public String doPost(HttpServletRequest req, HttpServletResponse resp) {
 		String email = req.getParameter("emailOuApelido");
 		String senha = req.getParameter("senha");
-		String confirmarSenha = req.getParameter("confirmar senha");
+		String confirmarSenha = req.getParameter("confirmarSenha");
 		UsuarioBO bo = new UsuarioBO();
 		
 		
 			try {
 				bo.updateSenha(email, senha, confirmarSenha);
 
-				req.setAttribute("erro", new String[] {"Senha alterada com sucesso", "danger"});
+				req.setAttribute("erro", new String[] {"Senha alterada com sucesso", "success"});
 			} catch (NotEqualsException | EmailNotFound e) {
 				req.setAttribute("email", email);
 				req.setAttribute("CodigoBateu", false);

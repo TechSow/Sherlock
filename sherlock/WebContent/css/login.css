@@ -122,7 +122,8 @@ input[type='submit'] {
 
 .form input[type='password'],
 .form input[type='text'],
-.form input[type='submit'] {
+.form input[type='submit'],
+.form input[type='number'] {
   width: 100%;
 }
 
@@ -149,7 +150,8 @@ input[type='submit'] {
 .login label,
 .login input[type='text'],
 .login input[type='password'],
-.login input[type='submit'] {
+.login input[type='submit'],
+.login input[type='number'] {
   border-radius: 0.25rem;
   padding: 16px;
   padding: 1rem;
@@ -166,7 +168,8 @@ input[type='submit'] {
 }
 
 .login input[type='password'],
-.login input[type='text'] {
+.login input[type='text'],
+.login input[type='number'] {
   background-color: #3b4148;
   border-bottom-left-radius: 0;
   border-top-left-radius: 0;
@@ -175,7 +178,9 @@ input[type='submit'] {
 .login input[type='password']:focus,
 .login input[type='password']:hover,
 .login input[type='text']:focus,
-.login input[type='text']:hover {
+.login input[type='text']:hover,
+.login input[type='number']:focus,
+.login input[type='number']:hover {
   background-color: #434a52;
 }
 
