@@ -63,6 +63,14 @@ public class Curso {
 		this.descricao = descricao;
 		this.urlImg = urlImg;
 	}
+	
+	public Curso(String nome, String descricao, int dificuldade, long duracao, String urlImg) {
+		this.nome = nome;
+		this.descricao = descricao;
+		this.duracao = duracao;
+		this.dificuldade = dificuldade;
+	}
+	
 	public String getUrlImg() {
 		return urlImg;
 	}

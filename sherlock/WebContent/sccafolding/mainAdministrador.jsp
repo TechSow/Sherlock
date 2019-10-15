@@ -8,7 +8,7 @@
 form{
 
 position:absolute;
-margin-top: 10em;
+margin-top: 5em;
 
 }
 
@@ -20,7 +20,7 @@ margin-top: 10em;
 			onclick="admProfessor()">Professor</button>
 	</li>
 	<li class="nav-item">
-		<button class="nav-link active" id="curso" href="#">Curso</button>
+		<button class="nav-link active" id="curso" onclick="admCurso()">Curso</button>
 	</li>
 	<li class="nav-item">
 		<button class="nav-link active" id="materia" href="#">Matéria</button>
@@ -57,29 +57,45 @@ margin-top: 10em;
 
 
 
-<form class="curso" action="controller" method="post">
+<form class="curso" action="controller" method="post" style="display:none">
 <input type="hidden" name="tarefa" id="tarefa" value="CadastroCurso"/>
 
 <h2> Cadastro de Cursos</h2>
-  <div class="form-group">
-    <label for="exampleInputEmail1">Endereço de email</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" name="email" aria-describedby="emailHelp" placeholder="Email do professor">
-    <small id="emailHelp" class="form-text text-muted">Nunca vamos compartilhar seu email, com ninguém.</small>
-  </div>
-  
-  <div class="form-group">
-    <label for="exampleInputEmail1">Apelido</label>
-	<input class="form-control" type="text"  name="apelido" placeholder="Apelido do professor" required>   
-    <small id="emailHelp" class="form-text text-muted">O apelido precisa ser unico e pode ser utilizado para login.</small>
-  </div>
-  
-  <div class="form-group">
-    <label for="exampleInputPassword1">Senha</label>
-    <input type="password" class="form-control" name="senha" id="exampleInputPassword1" placeholder="Senha">
+  <div class="row">
+    <div class="col">
+    <label for="exampleFormControlTextarea1">Nome Curso</label>
+      <input type="text" class="form-control" name="nome" placeholder="Algoritimos">
+    </div>
+    <div class="col">
+    <label for="exampleFormControlTextarea1">Dificuldade</label>
+     <select type="text" class="form-control" name="dificuldade" id="exampleFormControlSelect1">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+    </select>
+    </div>
   </div>
 
-  <button type="submit" class="btn btn-primary">Cadastrar professor!</button>
-</form>
+  <div class="form-group">
+    <label for="exampleFormControlTextarea1">Descrição</label>
+    <textarea class="form-control" name="descricao" id="exampleFormControlTextarea1" rows="3"></textarea>
+  </div>
+  
+  <div class="form-group">
+   
+  </div>
+  
+  <div class="form-group">
+    <label for="exampleInputEmail1">Duração</label>
+	<input class="form-control" type="number"  name="duracao" placeholder="Horas previstas" required>   
+  </div>
+  
+  
+  
+  <button type="submit" class="btn btn-primary">Cadastar Curso!</button>
+</form> 
 
 
 
@@ -89,13 +105,27 @@ margin-top: 10em;
 	crossorigin="anonymous"></script>
 
 <script>
+var p = document.querySelector(".professor");
+var c = document.querySelector(".curso");
 
 
 function admProfessor() {
-    
-    
-};
-
+	  
+	  if (p.style.display === "none") {
+	    p.style.display = "block";
+	    c.style.display = "none";
+	}
+}
+	
+	
+function admCurso() {
+	  var x = document.querySelector(".curso");
+	  if (x.style.display === "none") {
+		    x.style.display = "block";
+	  }	  
+}
+	
+	
 var btnProf =$("#botaoProfessor");
 btnProf.on("click", function(e){
 	e.preventDefault()

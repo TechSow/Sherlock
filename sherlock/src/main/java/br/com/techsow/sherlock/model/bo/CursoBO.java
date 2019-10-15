@@ -26,9 +26,10 @@ public class CursoBO implements ICursoBO{
 			return "Tamanho do nome do curso ultrapassa o tamanho limite";
 		}	
 
-		if(curso.getUrlImg().length() <= 0 ||curso.getUrlImg().length() >200 ) {
-			return "URL da imagem maior que o esperado";
-		}
+		/*
+		 * if(curso.getUrlImg().length() <= 0 ||curso.getUrlImg().length() >200 ) {
+		 * return "URL da imagem maior que o esperado"; }
+		 */
 
 		if(curso.getDificuldade() <1 || curso.getDificuldade() > 5 ) {
 			return "Valor da dificuldade invalida.";

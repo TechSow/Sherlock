@@ -4,7 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import br.com.techsow.sherlock.model.bo.UsuarioBO;
-import br.com.techsow.sherlock.model.entities.Curso;
+import br.com.techsow.sherlock.model.entities.Usuario;
 import br.com.techsow.sherlock.model.interfaces.web.Task;
 
 public class CadastroUsuario implements Task {
@@ -19,14 +19,11 @@ public class CadastroUsuario implements Task {
 	@Override
 	public String processTask(HttpServletRequest req, HttpServletResponse resp) {
 
-		String nome = req.getParameter("nome");
-		String descricao = req.getParameter("descricao");
-		String duracao = req.getParameter("duracao");
-		String dificuldade = req.getParameter("dificuldade");
-		String cursoImg = req.getParameter("cursoImg");
-
+		String email = req.getParameter("email");
+		String apelido = req.getParameter("apelido");
+		String senha = req.getParameter("senha");
 		
-		Curso curso = new Curso(nome, descricao, duracao, dificuldade, cursoImg);
+		Usuario usuario = new Usuario(email, apelido, senha,0,0,1);
 		String usuarioBO = new UsuarioBO().add(usuario);
 		
 		req.setAttribute("erro", usuarioBO);

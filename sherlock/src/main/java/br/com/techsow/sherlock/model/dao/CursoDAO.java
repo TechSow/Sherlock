@@ -15,7 +15,7 @@ public class CursoDAO extends BaseDAO implements ICursoRepository {
 
 	public int add(Curso c) throws SQLException {
 
-		stmt = conn.prepareStatement("INSERT INTO TS_T_CURSO(c_curso_seq.nextval,NOME,DESCRICAO,DURACAO, DIFICULDADE, URLIMG)VALUES(?,?,?,?,?)");
+		stmt = conn.prepareStatement("INSERT INTO TS_T_CURSO(ID_CURSO,NOME,DESCRICAO,DURACAO, DIFICULDADE, URLIMG)VALUES(c_curso_seq.nextval,?,?,?,?,?)");
 		stmt.setString(1, c.getNome());
 		stmt.setString(2, c.getDescricao());
 		stmt.setLong(3, c.getDuracao());
