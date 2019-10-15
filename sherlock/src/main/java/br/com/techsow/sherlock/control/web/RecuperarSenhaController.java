@@ -64,7 +64,7 @@ public class RecuperarSenhaController implements Task {
 			try {
 				bo.updateSenha(email, senha, confirmarSenha);
 
-				req.setAttribute("erro", new String[] {"Senha alterada com sucesso", "success"});
+				req.setAttribute("erro", new String[] {"Senha alterada com sucesso", "success", "fa fa-"});
 			} catch (NotEqualsException | EmailNotFound e) {
 				req.setAttribute("email", email);
 				req.setAttribute("CodigoBateu", false);
