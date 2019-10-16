@@ -1,15 +1,17 @@
-<form class="professor col-12 col-sm-6" action="controller" method="post">
-		<input type="hidden" name="tarefa" id="tarefa"
-			value="CadastroProfessor" />
+<form class="aluno" action="controller" method="post"
+		style="display: none" class="col-sm-6 col-12">
+		<input type="hidden" name="tarefa" id="tarefa" value="CadastroUsuario" />
+		<input type="hidden" name="from" id="tarefa" value="CadastroUsuarioAdm" />
+		
 
-		<h2>Cadastro de Professores</h2>
+		<h2>Cadastro de Alunos</h2>
 		<div class="form-group">
 			<label for="exampleInputEmail1">Endereço de email</label> <input
 				type="email" class="form-control" id="exampleInputEmail1"
 				name="email" aria-describedby="emailHelp"
 				placeholder="Email do professor"> <small id="emailHelp"
-				class="form-text text-muted">Nunca vamos compartilhar seu
-				email, com ninguém.</small>
+				class="form-text text-muted">Nunca compartilhar o email com
+				ninguém.</small>
 		</div>
 
 		<div class="form-group">
@@ -27,5 +29,5 @@
 		</div>
 
 		<button type="submit" class="btn btn-primary">Cadastrar
-			professor!</button>
+			Aluno!</button>
 	</form>
