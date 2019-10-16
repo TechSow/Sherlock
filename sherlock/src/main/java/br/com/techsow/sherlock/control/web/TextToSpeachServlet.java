@@ -38,7 +38,7 @@ public class TextToSpeachServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		IamOptions options = new IamOptions.Builder()
-				.apiKey("knp5iE698AHMiak6Rz7nKnFsieZKEzBD6nJDeFizP7jd")
+				.apiKey("E2OSHu3O4cp7Q8wisbvLu3peHrbNgzk-7kKbDqAkz9k7")
 				.build();
 		
 		TextToSpeech service = new TextToSpeech(options);

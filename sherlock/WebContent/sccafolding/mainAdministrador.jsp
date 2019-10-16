@@ -82,7 +82,7 @@
 	var c = document.querySelector(".curso");
 	var m = document.querySelector(".materia");
 	var a = document.querySelector(".aluno");
-	var ms = document.querySelector("#materiaSelect");
+	var ms = document.querySelector(".chosen-select");
 
 
 	function admProfessor() {
