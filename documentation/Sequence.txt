@@ -14,3 +14,7 @@ start with 10;
 create sequence c_curso_seq
 increment by 1
 start with 10;
+
+create sequence c_curso_seq
+increment by 1
+start with 10;

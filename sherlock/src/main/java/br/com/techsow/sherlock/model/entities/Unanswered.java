@@ -1,5 +1,7 @@
 package br.com.techsow.sherlock.model.entities;
 
+import java.io.InputStream;
+
 /**
  * @author Breno
  *
@@ -8,26 +10,36 @@ public class Unanswered {
 	private int id_unanswered;
 	private int id_usuario;
 	private String mensagem;
-	private byte[] audio;
+	private InputStream audio;
 	
-	public Unanswered() {
+	public static class Builder{
+		private int id_usuario;
+		private String mensagem;
+		private InputStream audio;
+		
+		public Builder() {
+			
+		}
+		public Builder usuarioId(int id) {
+			this.id_usuario = id;
+			return this;
+		}
+		
+		public Builder mensagem(String mensagem) {
+			this.mensagem = mensagem;
+			return this;
+		}
+		
+		public Builder audio(InputStream audio) {
+			this.audio = audio;
+			return this;
+		}
+		
+		public Unanswered build() {
+			return new Unanswered(this);
+		}
 	}
-	public Unanswered(int id_unanswered,int id_usuario, String mensagem, byte[] audio) {
-		this(id_unanswered,mensagem,audio);
-		this.id_usuario = id_usuario;
-	}
-	
-	public Unanswered(int id_unanswered, String mensagem, byte[] audio) {
-		this(id_unanswered,mensagem);
-		this.audio = audio;
-	}
-	
-	public Unanswered(int id_unanswered, String mensagem) {
-		this.id_unanswered = id_unanswered;
-		this.mensagem = mensagem;
-	}
-	
-	
+		
 	public int getId_usuario() {
 		return id_usuario;
 	}
@@ -48,10 +60,10 @@ public class Unanswered {
 	public void setMensagem(String mensagem) {
 		this.mensagem = mensagem;
 	}
-	public byte[] getAudio() {
+	public InputStream getAudio() {
 		return audio;
 	}
-	public void setAudio(byte[] audio) {
+	public void setAudio(InputStream audio) {
 		this.audio = audio;
 	}
 	

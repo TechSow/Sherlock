@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import br.com.techsow.sherlock.model.dao.CursoDAO;
 import br.com.techsow.sherlock.model.entities.Curso;
+import br.com.techsow.sherlock.model.exception.LengthException;
 import br.com.techsow.sherlock.model.interfaces.bo.ICursoBO;
 
 public class CursoBO implements ICursoBO{
