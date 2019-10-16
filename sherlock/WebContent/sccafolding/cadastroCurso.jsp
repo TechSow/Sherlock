@@ -6,11 +6,8 @@
 	style="display: none" class="col-sm-6 col-12">
 	<input type="hidden" name="tarefa" id="tarefa" value="CadastroCurso" />
 
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.4.2/chosen.jquery.min.js"></script>
-	<link rel="stylesheet"
-		href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.4.2/chosen.min.css">
-
+	
+	
 	<h2>Cadastro de Cursos</h2>
 	<div class="row">
 		<div class="col">
@@ -30,7 +27,13 @@
 			</select>
 		</div>
 	</div>
-
+	<div class="row">
+		<div class="col">
+			<label for="exampleFormControlTextarea1">Url da imagem do card</label> <input
+				type="text" class="form-control" name="urlimg"
+				placeholder="Algoritimos">
+		</div>
+	</div>
 	<div class="form-group curso">
 		<label for="exampleFormControlTextarea1">Descrição</label>
 		<textarea class="form-control" name="descricao"
@@ -44,31 +47,27 @@
 	</div>
 
 	<div>
-	
-	<select data-placeholder="Escolha as matérias..." class="chosen-select" name="selectedMaterias"multiple style="width:350px;" tabindex="4">
-            <option value=""></option>
-           <c:forEach var="materia" items="${materias}">
-					<option name="selectedMaterias" value="${materia.id_materia}" />${materia.nome}</option>
+		<label for="selectMateria">Escolha as matérias deste curso</label>
+		<select data-placeholder="Escolha as matérias..."
+			class="chosen-select" name="selectedMaterias" id="selectMateria" multiple>
+			<option value=""></option>
+			<c:forEach var="materia" items="${materias}">
+				<option value="${materia.id_materia}" />${materia.nome}</option>
 			</c:forEach>
-          </select>    
-</div>
-		
-		<br><br>
-		<button type="submit" class="btn btn-primary">Cadastar Curso!</button>
+		</select>
+	</div>
+
+	<br>
+	<br>
+	<button type="submit" class="btn btn-primary">Cadastar Curso!</button>
 </form>
 
-</div>
-</form>
 
 <script>
-
-$('.chosen-select').chosen({ width: '100%' });
-
-
-$('.chosen-select').chosen({}).change( function(obj, result) {
-    console.debug("changed: %o", arguments);
-    
-    console.log("selected: " + result.selected);
-});
-
+	$('.chosen-select').chosen({
+		width : '100%'
+	});
+	
+	
+	
 </script>

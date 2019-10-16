@@ -13,6 +13,8 @@ import br.com.techsow.sherlock.model.interfaces.web.Task;
 public class CadastroCurso implements Task {
 
 
+	private String cursoBO;
+
 	/**
 	 * @author Italo e Breno
 	 * 
@@ -27,26 +29,18 @@ public class CadastroCurso implements Task {
 
 		String nome = req.getParameter("nome");
 				
-		
+		String[] materias = req.getParameterValues("selectedMaterias");
+		String urlimg = req.getParameter("urlimg");
 		String descricao = req.getParameter("descricao");
 		int dificuldade = Integer.parseInt(req.getParameter("dificuldade"));
 		long duracao = Long.parseLong(req.getParameter("duracao"));
 			
 		try {
-			Curso curso= new Curso(nome, descricao, dificuldade, duracao,"vazio");
-			String cursoBO = new CursoBO().add(curso);
-			
+			Curso curso= new Curso(nome, descricao, dificuldade, duracao,urlimg);
+			cursoBO = new CursoBO().add(curso, materias);	
 		} catch (Exception e) {
 			req.setAttribute("erro", new String[] {e.getMessage(), "danger", "exclamation"});
 		}
-		
-		
-		String[] materias = req.getParameterValues("selectedMaterias");
-		Curso curso = new CursoDAO().getNoRelationedCurseId();
-		
-		
-			int resultado = new CursoDAO().relateCursoMateria(curso.getId_curso(), Integer.parseInt(materias[0]));
-	
 		
 		return "admin.jsp";
 		

@@ -34,18 +34,6 @@
 	bottom: 0;
 }
 
-#checkboxes {
-	display: none;
-	border: 1px #dadada solid;
-}
-
-#checkboxes label {
-	display: block;
-}
-
-#checkboxes label:hover {
-	background-color: #1e90ff;
-}
 </style>
 <div class="row">
 	<ul class="nav nav-tabs col-12 col-sm-12">
@@ -82,7 +70,7 @@
 	var c = document.querySelector(".curso");
 	var m = document.querySelector(".materia");
 	var a = document.querySelector(".aluno");
-	var ms = document.querySelector(".chosen-select");
+	var ms = document.querySelector("#materiaSelect");
 
 
 	function admProfessor() {
