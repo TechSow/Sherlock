@@ -16,7 +16,7 @@ public class MateriaDAO extends BaseDAO implements IMateriaRepository{
 
 	public int add(Materia m) throws SQLException {
 
-		stmt=conn.prepareStatement("insert into TS_T_MATERIA(c_materia_seq.nextval,NOME_MATERIA,EMENTA_MATERIA, URLIMG_MATERIA)VALUES(?,?,?)");
+		stmt=conn.prepareStatement("insert into TS_T_MATERIA(ID_MATERIA,NOME_MATERIA,EMENTA_MATERIA, URLIMG_MATERIA)VALUES(c_materia_seq.nextval,?,?,?)");
 		stmt.setString(1, m.getNome());
 		stmt.setString(2, m.getEmenta());
 		stmt.setString(3, m.geturlImg());

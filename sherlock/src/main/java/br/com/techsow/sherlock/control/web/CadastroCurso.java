@@ -29,7 +29,7 @@ public class CadastroCurso implements Task {
 		String cursoBO = new CursoBO().add(curso);
 		
 		req.setAttribute("erro", cursoBO);
-		return "cadastro.jsp";
+		return "admin.jsp";
 		
 		
 	}

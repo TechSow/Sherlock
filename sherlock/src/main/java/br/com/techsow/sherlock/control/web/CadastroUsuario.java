@@ -27,9 +27,7 @@ public class CadastroUsuario implements Task {
 		String usuarioBO = new UsuarioBO().add(usuario);
 		
 		req.setAttribute("erro", usuarioBO);
-		return "cadastro.jsp";
-		
-		
+		return "admin.jsp";
 	}
 
 

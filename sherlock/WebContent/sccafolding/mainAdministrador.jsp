@@ -129,11 +129,11 @@ form {
 	<button type="submit" class="btn btn-primary">Cadastar Curso!</button>
 </form>
 
-<form class="aluno" action="controller" method="post">
+<form class="aluno" action="controller" method="post" style="display: none">
 	<input type="hidden" name="tarefa" id="tarefa"
 		value="CadastroUsuario" />
 
-	<h2>Cadastro de Alunoss</h2>
+	<h2>Cadastro de Alunos</h2>
 	<div class="form-group">
 		<label for="exampleInputEmail1">Endereço de email</label> <input
 			type="email" class="form-control" id="exampleInputEmail1"
@@ -156,8 +156,7 @@ form {
 			id="exampleInputPassword1" placeholder="Senha">
 	</div>
 
-	<button type="submit" class="btn btn-primary">Cadastrar
-		professor!</button>
+	<button type="submit" class="btn btn-primary">Cadastrar Aluno!</button>
 </form>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -169,6 +168,7 @@ form {
 var p = document.querySelector(".professor");
 var c = document.querySelector(".curso");
 var m = document.querySelector(".materia");
+var a = document.querySelector(".aluno");
 
 function admProfessor() {
 	  
@@ -176,6 +176,7 @@ function admProfessor() {
 	    p.style.display = "block";
 	    c.style.display = "none";
 	    m.style.display = "none";
+	    a.style.display = "none";
 	}
 }
 	
@@ -185,6 +186,7 @@ function admCurso() {
 	    p.style.display = "none";
 	    c.style.display = "block";
 	    m.style.display = "none";
+	    a.style.display = "none";
 	}  
 }
 
@@ -193,9 +195,20 @@ function admMateria() {
 	    p.style.display = "none";
 	    m.style.display = "block";
 	    c.style.display = "none";
+	    a.style.display = "none";
 	}  
 }
-	
+
+function admAluno() {
+	if (a.style.display === "none") {
+	    p.style.display = "none";
+	    m.style.display = "none";
+	    c.style.display = "none";
+	    a.style.display = "block";
+	}  
+}
+
+
 	/* 
 var btnProf =$("#botaoProfessor");
 btnProf.on("click", function(e){
