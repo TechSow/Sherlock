@@ -1,5 +1,7 @@
 package br.com.techsow.sherlock.control.web;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -24,6 +26,7 @@ public class CadastroMateria implements Task {
 		String nome = req.getParameter("nome");
 		String ementa = req.getParameter("ementa");
 		String urlImg = req.getParameter("urlImg");
+		
 		
 		
 		try {

@@ -1,10 +1,16 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <form class="curso" action="controller" method="post"
 		style="display: none" class="col-sm-6 col-12">
 		<input type="hidden" name="tarefa" id="tarefa" value="CadastroCurso" />
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.4.2/chosen.jquery.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.4.2/chosen.min.css">
-    
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.4.2/chosen.jquery.min.js"></script>
+		<link rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.4.2/chosen.min.css">
+
 		<h2>Cadastro de Cursos</h2>
 		<div class="row">
 			<div class="col">
@@ -25,26 +31,33 @@
 			</div>
 		</div>
 
-		<div class="form-group">
-			<label for="exampleFormControlTextarea1">DescriÁ„o</label>
+		<div class="form-group curso">
+			<label for="exampleFormControlTextarea1">Descri√ß√£o</label>
 			<textarea class="form-control" name="descricao"
 				id="exampleFormControlTextarea1" rows="3"></textarea>
 		</div>
 
 		<div class="form-group">
-			<label for="exampleInputEmail1">DuraÁ„o</label> <input
+			<label for="exampleInputEmail1">Dura√ß√£o</label> <input
 				class="form-control" type="number" name="duracao"
 				placeholder="Horas previstas" required>
 		</div>
 		<button type="submit" class="btn btn-primary">Cadastar Curso!</button>
 	</form>
 	
-	
-	<div>
-	
-<select data-placeholder="Choose a Country..." class="chosen-select" multiple style="width:350px;" tabindex="4">
-      <c:foreach var = "materia" items="$materias">
-            <option value="${materia.id}">${materia.nome}</option>
-	</c:foreach> 
-          </select>    
-</div>
+	<form style="display: none" id="materiaSelect" class="col-sm-6 col-12">
+	<div class="multiselect">
+		<div class="selectBox" onclick="showCheckboxes()">
+			<select>
+				<option>Selecione mat√©rias...</option>
+			</select>
+			<div class="overSelect"></div>
+		</div>
+		<div id="checkboxes">
+			<c:forEach var="materia" items="${materias}">
+				<label for="one"> <input type="checkbox"  name="selectedMaterias" value="${materia.id_materia}" />${materia.nome}</label>
+			</c:forEach>
+
+		</div>
+	</div>
+</form>

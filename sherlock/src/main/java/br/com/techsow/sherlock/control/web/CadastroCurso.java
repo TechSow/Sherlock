@@ -24,6 +24,7 @@ public class CadastroCurso implements Task {
 	public String processTask(HttpServletRequest req, HttpServletResponse resp) throws LengthException, NumberException {
 
 		String nome = req.getParameter("nome");
+		String[] materias = req.getParameterValues("selectedMaterias");
 		String descricao = req.getParameter("descricao");
 		int dificuldade = Integer.parseInt(req.getParameter("dificuldade"));
 		long duracao = Long.parseLong(req.getParameter("duracao"));

@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import br.com.techsow.sherlock.model.dao.MateriaDAO;
+import br.com.techsow.sherlock.model.entities.Conteudo;
 import br.com.techsow.sherlock.model.entities.Materia;
 import br.com.techsow.sherlock.model.exception.LengthException;
 import br.com.techsow.sherlock.model.exception.NumberException;
@@ -69,6 +70,19 @@ public class MateriaBO implements IMateriaBO{
 		}
 
 	}			
+
+	public ArrayList<Materia> getAll(){
+
+		ArrayList<Materia> materias = new ArrayList<Materia>();
+
+		try (MateriaDAO dao = new MateriaDAO()) {
+			materias = dao.getAll();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return materias;
+	}
 
 
 	public Materia getById(int id) {

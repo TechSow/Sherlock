@@ -11,12 +11,13 @@
 			<div class="nav">
 				<ul class="lista">
 					<c:if test="${usuario.adm == 1}">
-						<li class="item"><a href="#">햞ea do administrador</a></li>
+						<li class="item"><a href="/sherlock/controller?tarefa=GetMateriaController">햞ea do administrador</a></li>
 					</c:if>
 					<c:if test="${usuario.professor == 1}">
-						<li class="item"><a href="#">햞ea do Professor</a></li>
+						<li class="item"><a href="">햞ea do Professor</a></li>
 					</c:if>
-					<li class="item"><a href="/sherlock/home.jsp">Lista de Cursos</a></li>
+						<li class="item"><a href="/sherlock/home.jsp">Lista de Cursos</a></li>
+					
 				</ul>
 			</div>
 			<div class="logo">

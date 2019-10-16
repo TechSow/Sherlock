@@ -9,7 +9,7 @@
 			<div class="nav">
 				<ul class="lista">
 					<c:if test="${usuario.adm == 1}">
-						<li class="item"><a href="/sherlock/admin.jsp">Área do administrador</a></li>
+						<li class="item"><a href="/sherlock/controller?tarefa=GetMateriaController">Área do administrador</a></li>
 					</c:if>
 					<c:if test="${usuario.professor == 1}">
 						<li class="item"><a href="">Área do Professor</a></li>

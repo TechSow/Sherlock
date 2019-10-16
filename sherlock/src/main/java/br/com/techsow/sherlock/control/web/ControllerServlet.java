@@ -36,7 +36,7 @@ public class ControllerServlet extends HttpServlet {
 			Task instance = (Task) classe.newInstance();
 			String url = instance.processTask(req, resp);
 			req.getRequestDispatcher(url).forward(req, resp);
-		} catch (ClassNotFoundException | IllegalAccessException | InstantiationException | LengthException | NumberException | ApelidoException | EmailNotFound e) {
+		} catch (Exception  e) {
 			e.printStackTrace();
 		}
 	}
