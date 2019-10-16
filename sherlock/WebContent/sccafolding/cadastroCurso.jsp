@@ -42,11 +42,8 @@
 				class="form-control" type="number" name="duracao"
 				placeholder="Horas previstas" required>
 		</div>
-		<button type="submit" class="btn btn-primary">Cadastar Curso!</button>
-	</form>
-	
-	<form style="display: none" id="materiaSelect" class="col-sm-6 col-12">
-	<div class="multiselect">
+		
+		<div class="multiselect">
 		<div class="selectBox" onclick="showCheckboxes()">
 			<select>
 				<option>Selecione matérias...</option>
@@ -59,5 +56,8 @@
 			</c:forEach>
 
 		</div>
+		<button type="submit" class="btn btn-primary">Cadastar Curso!</button>
+	</form>
+	
 	</div>
 </form>
