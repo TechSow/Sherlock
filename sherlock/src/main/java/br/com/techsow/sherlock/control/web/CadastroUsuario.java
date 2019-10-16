@@ -5,6 +5,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import br.com.techsow.sherlock.model.bo.UsuarioBO;
 import br.com.techsow.sherlock.model.entities.Usuario;
+import br.com.techsow.sherlock.model.exception.ApelidoException;
+import br.com.techsow.sherlock.model.exception.DuplicatedIdException;
+import br.com.techsow.sherlock.model.exception.EmailNotFound;
 import br.com.techsow.sherlock.model.interfaces.web.Task;
 
 public class CadastroUsuario implements Task {
@@ -24,7 +27,19 @@ public class CadastroUsuario implements Task {
 		String senha = req.getParameter("senha");
 		
 		Usuario usuario = new Usuario(email, apelido, senha,0,0,1);
-		String usuarioBO = new UsuarioBO().add(usuario);
+		String usuarioBO = null;
+		try {
+			usuarioBO = new UsuarioBO().add(usuario);
+		} catch (DuplicatedIdException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ApelidoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (EmailNotFound e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		req.setAttribute("erro", usuarioBO);
 		return "admin.jsp";

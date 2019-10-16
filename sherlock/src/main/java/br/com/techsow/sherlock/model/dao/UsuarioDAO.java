@@ -139,12 +139,19 @@ public class UsuarioDAO extends BaseDAO implements IUsuarioRepository{
 		rs = stmt.executeQuery();
 
 		if(rs.next()) {
-			return this.getById(rs.getInt(1));
+			return new Usuario(
+					rs.getInt(1),
+					rs.getString(2),
+					rs.getString(3),
+					rs.getInt(4),
+					rs.getInt(5),
+					rs.getInt(6),
+					rs.getString(7));
 		}else {
 			return null;
 		}
 	}
-
+	
 	public int updateToProfessor(Usuario user) throws Exception {
 		//String senhaAntinga = usuario.getSenha();
 
@@ -166,6 +173,7 @@ public class UsuarioDAO extends BaseDAO implements IUsuarioRepository{
 		stmt.setInt(2, idUsuario);
 
 		return stmt.executeUpdate();
+
 	}
 
 

@@ -7,6 +7,10 @@ import javax.mail.internet.InternetAddress;
 
 import br.com.techsow.sherlock.model.dao.UsuarioDAO;
 import br.com.techsow.sherlock.model.entities.Usuario;
+import br.com.techsow.sherlock.model.exception.ApelidoException;
+import br.com.techsow.sherlock.model.exception.DuplicatedIdException;
+import br.com.techsow.sherlock.model.exception.EmailNotFound;
+import br.com.techsow.sherlock.model.exception.NotEqualsException;
 import br.com.techsow.sherlock.model.interfaces.bo.IUsuarioBO;
 
 public class UsuarioBO implements IUsuarioBO {
@@ -17,7 +21,7 @@ public class UsuarioBO implements IUsuarioBO {
 	 *         Classe criada para efetuar as validacoes da entidade Usuario
 	 *         Essa classe é chamada pela classe CadastroUsuario
 	 */
-	public String add(Usuario user) {
+	public String add(Usuario user) throws DuplicatedIdException,ApelidoException, EmailNotFound {
 
 		/* Não é mais necessário, ja que nome é atributo da entidade PESSOA no banco
 		 * if(user.getNome().length() < 5) { return
@@ -49,15 +53,16 @@ public class UsuarioBO implements IUsuarioBO {
 		//////////////////////////////////////////////
 
 		UsuarioDAO dao = null;
-		Usuario verificar = null;
+		Usuario usuario = null;
 
 		try {
 			dao= new UsuarioDAO();
-			verificar = dao.getById(user.getIdUsuario());
+			usuario = dao.getById(user.getIdUsuario());
 
-			if(verificar != null) {
-				return "Usuario com ID duplicado";
-			}
+			if(usuario != null) throw new DuplicatedIdException("Usuario com ID duplicado");
+			
+			
+			
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -65,22 +70,19 @@ public class UsuarioBO implements IUsuarioBO {
 		
 		try {
 			dao= new UsuarioDAO();
-			verificar = dao.getByEmail(user.getEmail());
+			usuario = dao.getByEmail(user.getEmail());
 
-			if(verificar != null) {
-				return "Email ja cadastrado";
-			}
+			if(usuario != null) { return "Email já cadastrado"; }
+			
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
 		
 		try {
 			dao= new UsuarioDAO();
-			verificar = dao.getByApelido(user.getApelido());
+			usuario = dao.getByApelido(user.getApelido());
 
-			if(verificar != null) {
-				return "Apelido indisponivel";
-			}
+			if(usuario != null) throw new ApelidoException("Apelido indisponível");
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -116,32 +118,21 @@ public class UsuarioBO implements IUsuarioBO {
 
 		return usuario;
 	}
-//////////////////////////////////////////////////
-	public Usuario getByEmail(String email) {
-		Usuario usuario = null;
-		
-		try (UsuarioDAO dao = new UsuarioDAO()) {
-			usuario = dao.getByEmail(email);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 
-		return usuario;
-	}
-//////////////////////////////////////////////////
+
 
 	public int kill(int id) {
 
 		return 0;
 	}
 
-//////////////////////////////////////////////////
+
 	public int update(Usuario obj)  {
 
 		return 0;
 	}
 	
-//////////////////////////////////////////////////
+
 
 	public Usuario loginUser(Usuario user)  {
 		Usuario usuario = null;
@@ -155,6 +146,22 @@ public class UsuarioBO implements IUsuarioBO {
 		return usuario;
 	}
 	
+
+	public Usuario getByEmail(String email) throws EmailNotFound {
+		Usuario usuario = null;
+		
+		try(UsuarioDAO dao = new UsuarioDAO()){
+			usuario = dao.getByEmail(email);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		if(usuario == null) throw new EmailNotFound("O usuário com este e-mail não existe");
+		
+		
+		return usuario;
+	}
+	
 	public String updateToProfessor(Usuario user){
 		
 		try (UsuarioDAO dao = new UsuarioDAO()){
@@ -165,10 +172,20 @@ public class UsuarioBO implements IUsuarioBO {
 			e.printStackTrace();
 		}
 		return "Usuario " + user.getApelido() + " agora é professor";
+
 	}
 	
-	public int updateSenha(Usuario user, String senhaNova){
-				
+	public int updateSenha(String email, String senhaNova, String confirmarSenha) throws NotEqualsException, EmailNotFound{
+		
+		if(!(senhaNova.equals(confirmarSenha))) throw new NotEqualsException("Senhas não coincidem");
+		
+		Usuario user;
+		try {
+			user = this.getByEmail(email);
+		} catch (EmailNotFound e1) {
+			throw new EmailNotFound(e1.getMessage());
+		}
+		
 		try (UsuarioDAO dao = new UsuarioDAO()){
 			dao.updateSenha(user, senhaNova);
 		} catch (SQLException | ClassNotFoundException e) {
@@ -188,6 +205,13 @@ public class UsuarioBO implements IUsuarioBO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return 0;
+	}
+
+
+	@Override
+	public int updateSenha(String email, String senhaNova) {
+		// TODO Auto-generated method stub
 		return 0;
 	}
 

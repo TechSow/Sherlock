@@ -6,7 +6,10 @@
                 
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/test/java"/>
+<<<<<<< HEAD
                 
+=======
+>>>>>>> feature/recuperar-senha
         <property name="context-root" value="sherlock"/>
                 
         <property name="java-output-path" value="/sherlock/target/classes"/>

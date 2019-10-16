@@ -36,7 +36,7 @@ public class LoginController implements Task {
 			return "home.jsp";
 		}
 		
-		req.setAttribute("erro", "Usuário e/ou senha não existem");
+		req.setAttribute("erro", new String[] {"Usuário e/ou senha não existem","danger"});
 		return "login.jsp";
 		
 	}
