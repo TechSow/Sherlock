@@ -1,6 +1,6 @@
 package br.com.techsow.sherlock.model.entities;
 
-import java.io.InputStream;
+
 
 /**
  * @author Breno
@@ -10,12 +10,22 @@ public class Unanswered {
 	private int id_unanswered;
 	private int id_usuario;
 	private String mensagem;
-	private InputStream audio;
+	private byte[] audio;
+	
+	
+	
+	public Unanswered(int id_unanswered, int id_usuario, String mensagem, byte[] audio) {
+		this.id_unanswered = id_unanswered;
+		this.id_usuario = id_usuario;
+		this.mensagem = mensagem;
+		this.audio = audio;
+	}
+	
 	
 	public static class Builder{
 		private int id_usuario;
 		private String mensagem;
-		private InputStream audio;
+		private byte[] audio;
 		
 		public Builder() {
 			
@@ -30,7 +40,7 @@ public class Unanswered {
 			return this;
 		}
 		
-		public Builder audio(InputStream audio) {
+		public Builder audio(byte[] audio) {
 			this.audio = audio;
 			return this;
 		}
@@ -38,8 +48,14 @@ public class Unanswered {
 		public Unanswered build() {
 			return new Unanswered(this);
 		}
-	}
 		
+	}
+	public Unanswered(Builder build) {
+		this.id_usuario = build.id_usuario;
+		this.mensagem = build.mensagem;
+		this.audio = build.audio;
+	}
+	
 	public int getId_usuario() {
 		return id_usuario;
 	}
@@ -60,10 +76,10 @@ public class Unanswered {
 	public void setMensagem(String mensagem) {
 		this.mensagem = mensagem;
 	}
-	public InputStream getAudio() {
+	public byte[] getAudio() {
 		return audio;
 	}
-	public void setAudio(InputStream audio) {
+	public void setAudio(byte[] audio) {
 		this.audio = audio;
 	}
 	

@@ -5,18 +5,22 @@ import java.util.List;
 
 import br.com.techsow.sherlock.model.entities.Unanswered;
 import br.com.techsow.sherlock.model.interfaces.repository.IUnansweredRepository;
+import br.com.techsow.sherlock.model.services.ConnectionFactory;
 
 public class UnansweredDAO extends BaseDAO implements IUnansweredRepository{
 
+	public UnansweredDAO() throws ClassNotFoundException, SQLException {
+		conn = ConnectionFactory.getConnection();
+	}
 	
 	public int add(Unanswered obj) throws SQLException {
 		if(obj.getAudio() != null) {
-			stmt = conn.prepareStatement("INSERT INTO TS_T_UNANSWERED(ID_USUARIO, MENSAGEM, AUDIO) VALUES(?,?,?)");
+			stmt = conn.prepareStatement("INSERT INTO TS_T_UNANSWERED(ID_UNANSWERED,ID_USUARIO, MENSAGEM, AUDIO) VALUES(c_unanswered_seq.nextval,?,?,?)");
 			stmt.setInt(1, obj.getId_usuario());
 			stmt.setString(2, obj.getMensagem());
-			stmt.setBlob(3, obj.getAudio());
+			stmt.setBytes(3, obj.getAudio());
 		}else {
-			stmt = conn.prepareStatement("INSERT INTO TS_T_UNANSWERED(ID_USUARIO, MENSAGEM) VALUES(?,?)");
+			stmt = conn.prepareStatement("INSERT INTO TS_T_UNANSWERED(ID_UNANSWERED,ID_USUARIO, MENSAGEM) VALUES(c_unanswered_seq.nextval,?,?)");
 			stmt.setInt(1, obj.getId_usuario());
 			stmt.setString(2, obj.getMensagem());
 		}

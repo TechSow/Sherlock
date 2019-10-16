@@ -19,6 +19,9 @@ import com.ibm.watson.assistant.v2.model.MessageOptions;
 import com.ibm.watson.assistant.v2.model.MessageResponse;
 import com.ibm.watson.assistant.v2.model.SessionResponse;
 
+import br.com.techsow.sherlock.model.bo.UnansweredBO;
+import br.com.techsow.sherlock.model.entities.Usuario;
+
 @WebServlet(urlPatterns = "/assistant")
 public class AssistantServlet extends HttpServlet {
 
@@ -31,6 +34,10 @@ public class AssistantServlet extends HttpServlet {
 		System.out.println(msg);
 		
 		MessageResponse response = this.assistantApi(msg);
+		String responseText =response.getOutput().getGeneric().get(0).getText();
+		if(responseText.equals("Eu não entendi, poderia repetir?")) {
+			responseTreatment(msg, req);
+		}
 		
 		resp.setContentType("application/json");
 		resp.getWriter().write(new Gson().toJson(response.getOutput().getGeneric()));
@@ -76,13 +83,16 @@ public class AssistantServlet extends HttpServlet {
 						.execute()
 						.getResult();
 				
-				String responseText =response.getOutput().getGeneric().get(0).getText();
-				if(responseText.equals("Eu não entendi, poderia repetir?")) {
-					 
-				}
 				
 				return response;
 
+	}
+	
+	private void responseTreatment(String mensagem, HttpServletRequest req) {
+		UnansweredBO bo = new UnansweredBO();
+		Usuario usuario = (Usuario) req.getSession().getAttribute("usuario");
+		bo.add(usuario.getIdUsuario(), mensagem, null);
+		
 	}
 	
 }

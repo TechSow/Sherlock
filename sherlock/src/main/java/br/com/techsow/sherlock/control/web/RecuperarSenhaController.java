@@ -69,7 +69,7 @@ public class RecuperarSenhaController implements Task {
 				req.setAttribute("email", email);
 				req.setAttribute("CodigoBateu", false);
 				req.setAttribute("code", 0);
-				req.setAttribute("erro", new String[] {e.getMessage(), "danger"});
+				req.setAttribute("erro", new String[] {e.getMessage(), "danger", ""});
 				return "recuperarSenha.jsp";
 			}
 		

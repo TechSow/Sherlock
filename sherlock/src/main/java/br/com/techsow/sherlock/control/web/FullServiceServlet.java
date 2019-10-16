@@ -4,12 +4,17 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.Blob;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import br.com.techsow.sherlock.model.bo.UnansweredBO;
+import br.com.techsow.sherlock.model.entities.Usuario;
 
 @WebServlet("/responseAudio")
 public class FullServiceServlet extends HttpServlet {
@@ -40,8 +45,19 @@ public class FullServiceServlet extends HttpServlet {
 		AssistantServlet assistant = new AssistantServlet();
 		String response = assistant.assistantApi(msg).getOutput().getGeneric().get(0).getText();
 		System.out.println(response);
+		if(response.equals("Eu não entendi, poderia repetir?")) {
+			
+				responseTreatment(msg, buffer, req);
+			
+		}
 		TextToSpeachServlet ttss = new TextToSpeachServlet(response);
 		ttss.doPost(req, resp);
 	}
 	
+	private void responseTreatment(String mensagem, byte[] audio, HttpServletRequest req) {
+		UnansweredBO bo = new UnansweredBO();
+		Usuario usuario = (Usuario) req.getSession().getAttribute("usuario");
+		bo.add(usuario.getIdUsuario(), mensagem, audio);
+		
+	}
 }
