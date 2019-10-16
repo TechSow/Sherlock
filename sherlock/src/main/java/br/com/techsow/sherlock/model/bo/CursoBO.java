@@ -16,11 +16,8 @@ public class CursoBO implements ICursoBO{
 	public String add(Curso curso) throws LengthException, NumberException {
 
 		if(curso.getDescricao().length() > 255) throw new  LengthException("Descrição excedeu quantidade de caracteres");
-
-
 		if(curso.getDuracao() <= 0) throw new NumberException("Numero de duração de curso inválido");
 		if(curso.getDuracao() > 100) throw new NumberException("Numero de duração de curso inválido");
-
 		if(curso.getNome().length() > 100) throw new  LengthException("Nome excedeu quantidade de caracteres");
 
 		/*
@@ -29,18 +26,17 @@ public class CursoBO implements ICursoBO{
 
 		if(curso.getDificuldade() <1 || curso.getDificuldade() > 5 ) throw new NumberException("Numero da dificuldade inválido");
 
-		CursoDAO dao = null;
+		
 		int retorno=0;
 
-		try {
+		try (CursoDAO dao = new CursoDAO()){
 
-			dao = new CursoDAO();
 			retorno = dao.add(curso);
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
-			try {
+			try (CursoDAO dao = new CursoDAO()){
 				dao.close();
 			}catch(Exception e) {
 				e.printStackTrace();

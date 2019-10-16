@@ -38,7 +38,6 @@ public class UsuarioBO implements IUsuarioBO {
 		}
 
 		if(user.getSenha().length()  < 6) throw new  LengthException("Senha não corresponde as exigências de tamanho");
-
 		if(user.getEmail().length()>80) throw new  LengthException("Email excedeu quantidade de caracteres");
 		if(user.getSenha().length()>150) throw new  LengthException("Senha excedeu quantidade de caracteres");
 
@@ -48,61 +47,61 @@ public class UsuarioBO implements IUsuarioBO {
 
 		//////////////////////////////////////////////
 
-		UsuarioDAO dao = null;
+		 
 		Usuario usuario = null;
 
-		try {
-			dao= new UsuarioDAO();
+		try (UsuarioDAO dao= new UsuarioDAO()){
+			
 			usuario = dao.getById(user.getIdUsuario());
-
-			if(usuario != null) throw new DuplicatedException("Usuario com ID duplicado");			
 						
 		}catch(Exception e) {
 			e.printStackTrace();
-			return "cadastro.jsp";
+			
 		}
+		if(usuario != null) throw new DuplicatedException("Usuario com ID duplicado");
 		
 		
-		try {
-			dao= new UsuarioDAO();
+		try (UsuarioDAO dao= new UsuarioDAO()){
+			
 			usuario = dao.getByEmail(user.getEmail());
-
-			if(usuario != null) throw new DuplicatedException("Email ja cadastrado.");
 			
 		}catch(Exception e) {
 			e.printStackTrace();
-			return "cadastro.jsp";
+			
+		}
+		if(usuario != null) throw new DuplicatedException("Email ja cadastrado.");
+		
+		
+		try (UsuarioDAO dao= new UsuarioDAO()){
+			
+			usuario = dao.getByApelido(user.getApelido());		
+			
+		}catch(Exception e) {
+			e.printStackTrace();
 		}
 		
-		try {
-			dao= new UsuarioDAO();
-			usuario = dao.getByApelido(user.getApelido());
-
-			if(usuario != null) throw new ApelidoException("Apelido indisponível");
-			
-		}catch(Exception e) {
-			e.printStackTrace();
-			return "cadastro.jsp";
-		}
+		if(usuario != null) throw new ApelidoException("Apelido indisponível");
 				
 
-		int ret = 0;
-		try {
+		int ret =0;
+		try (UsuarioDAO dao= new UsuarioDAO()) {
 			ret = dao.add(user);
 		}catch(Exception e){
 			e.printStackTrace();
-			return "cadastro.jsp";
+			
 		}finally {
-			try {
+			try (UsuarioDAO dao= new UsuarioDAO()){
 				dao.close();
 			}catch(Exception e) {
 				e.printStackTrace();
-				return "cadastro.jsp";
 			}
 		}
 
+		if(ret == 1) {
 		return "Usuario criado";
-
+		}else {
+			return "Não foi possivel cadastrar o usuario";
+		}
 	}
 
 
@@ -130,8 +129,6 @@ public class UsuarioBO implements IUsuarioBO {
 		return 0;
 	}
 	
-
-
 	public Usuario loginUser(Usuario user)  {
 		Usuario usuario = null;
 

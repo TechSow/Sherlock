@@ -16,8 +16,8 @@ public class MateriaBO implements IMateriaBO{
 
 		if(materia.getEmenta().length() > 100) throw new  LengthException("Ementa excedeu quantidade de caracteres");
 
-		if(materia.getNome().length() > 100) {
-			return "Nome da matéria maior do que o esperado.";
+		if(materia.getNome().length() > 100) throw new  LengthException("\"Nome da matéria maior do que o esperado.\""); {
+			
 		}
 
 		if(materia.geturlImg().length() > 300) throw new  LengthException("URL da imagem excedeu quantidade de caracteres");
@@ -44,18 +44,18 @@ public class MateriaBO implements IMateriaBO{
 		/////////////////////////////////////////
 
 
-		MateriaDAO materiaDao = null;
+		
 		int retorno = 0;
 
-		try {
-			materiaDao = new MateriaDAO();
+		try (MateriaDAO materiaDao = new MateriaDAO()){
+			
 			retorno = materiaDao.add(materia);
 
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
-			try {
+			try (MateriaDAO materiaDao = new MateriaDAO()){
 				materiaDao.close();
 			}catch(Exception e){
 				e.printStackTrace();

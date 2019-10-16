@@ -131,7 +131,7 @@
 				placeholder="URL IMAGEM">
 		</div>
 
-		<button type="submit" class="btn btn-primary">Cadastar Curso!</button>
+		<button type="submit" class="btn btn-primary">Cadastar Matéria!</button>
 	</form>
 
 	<form class="aluno" action="controller" method="post"

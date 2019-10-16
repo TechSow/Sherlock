@@ -12,11 +12,11 @@ public class PessoaBO {
 		if(pessoa.getNome().length()>20)throw new  LengthException("Nomeexcedeu quantidade de caracteres");
 		if(pessoa.getSobrenome().length()>30) throw new  LengthException("Sobrenome excedeu quantidade de caracteres");
 		
-		PessoaDAO dao = null;
+		
 		Pessoa verificarId = null;
-		try {
+		try (PessoaDAO dao = new PessoaDAO()) {
 
-			dao = new PessoaDAO();
+			
 			verificarId = dao.getById(pessoa.getId());
 
 		} catch (Exception e) {
@@ -28,14 +28,14 @@ public class PessoaBO {
 		
 		int ret = 0;
 
-		try {
+		try (PessoaDAO dao = new PessoaDAO()){
 
 			ret = dao.add(pessoa);
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
-			try {
+			try (PessoaDAO dao = new PessoaDAO()){
 				dao.close();
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -55,20 +55,16 @@ public class PessoaBO {
 	
 	public String deleteUser(int id) throws Exception{
 
-		PessoaDAO dao = null;
+		
 		int retorno =0;
-		try {
-			dao = new PessoaDAO();	
-			try {
+		try (PessoaDAO dao = new PessoaDAO()){
+
 				retorno = dao.killPessoa(id);
-			}catch(Exception e) {
-				e.printStackTrace();
-			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally{
-			try {
+			try(PessoaDAO dao = new PessoaDAO()) {
 				dao.close();
 			}catch(Exception e) {
 				e.printStackTrace();
