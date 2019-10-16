@@ -8,8 +8,6 @@ import javax.servlet.http.HttpServletResponse;
 import br.com.techsow.sherlock.model.bo.CursoBO;
 import br.com.techsow.sherlock.model.dao.CursoDAO;
 import br.com.techsow.sherlock.model.entities.Curso;
-import br.com.techsow.sherlock.model.exception.LengthException;
-import br.com.techsow.sherlock.model.exception.NumberException;
 import br.com.techsow.sherlock.model.interfaces.web.Task;
 
 public class CadastroCurso implements Task {
