@@ -84,6 +84,7 @@ public class MateriaBO implements IMateriaBO{
 
 		return materia;
 	}
+	
 
 
 	public int kill(int id) {
