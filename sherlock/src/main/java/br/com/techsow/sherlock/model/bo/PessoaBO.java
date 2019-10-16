@@ -9,9 +9,8 @@ public class PessoaBO {
 
 	public String addPessoa(Pessoa pessoa) throws LengthException, DuplicatedIdException {
 
-		if(pessoa.getNome().length() < 3) throw new  LengthException("Descrição excedeu quantidade de caracteres");
-		if(pessoa.getNome().length()>20)throw new  LengthException("Descrição excedeu quantidade de caracteres");
-		if(pessoa.getSobrenome().length()>30) throw new  LengthException("Descrição excedeu quantidade de caracteres");
+		if(pessoa.getNome().length()>20)throw new  LengthException("Nomeexcedeu quantidade de caracteres");
+		if(pessoa.getSobrenome().length()>30) throw new  LengthException("Sobrenome excedeu quantidade de caracteres");
 		
 		PessoaDAO dao = null;
 		Pessoa verificarId = null;

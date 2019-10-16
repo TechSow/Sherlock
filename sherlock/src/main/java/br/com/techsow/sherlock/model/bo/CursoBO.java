@@ -20,7 +20,7 @@ public class CursoBO implements ICursoBO{
 
 		if(curso.getDuracao() <= 0) throw new NumberException("Numero de duração de curso inválido");
 
-		if(curso.getNome().length() > 100) throw new  LengthException("Descrição excedeu quantidade de caracteres");
+		if(curso.getNome().length() > 100) throw new  LengthException("Nome excedeu quantidade de caracteres");
 
 		/*
 		 * if(curso.getUrlImg().length() >200 ) throw new  NumberException("Descrição excedeu quantidade de caracteres");
@@ -82,7 +82,7 @@ public class CursoBO implements ICursoBO{
 
 
 	public String updateNome(Curso c, String nome) throws LengthException {
-		if(nome.length() > 100) throw new  LengthException("Descrição excedeu quantidade de caracteres");
+		if(nome.length() > 100) throw new  LengthException("Nome excedeu quantidade de caracteres");
 
 		try (CursoDAO dao = new CursoDAO()){
 			dao.updateNome(c, nome);
@@ -115,7 +115,7 @@ public class CursoBO implements ICursoBO{
 
 	public String updateDuracao(Curso c, int duracao) throws NumberException {
 
-		if(c.getDuracao() <= 0 ) throw new  NumberException("Descrição excedeu quantidade de caracteres");
+		if(c.getDuracao() <= 0 ) throw new  NumberException("Valor invalido para Duracao");
 
 		try (CursoDAO dao = new CursoDAO()){
 			dao.updateDuracao(c, duracao);
@@ -131,7 +131,7 @@ public class CursoBO implements ICursoBO{
 
 	public String updateURL(Curso c, String url) throws LengthException {
 
-		if(c.getUrlImg().length() >200 ) throw new  LengthException("Descrição excedeu quantidade de caracteres");
+		if(c.getUrlImg().length() >200 ) throw new  LengthException("URL da Imagem excedeu quantidade de caracteres");
 
 		try (CursoDAO dao = new CursoDAO()){
 			dao.updateUrl(c, url);
@@ -147,7 +147,7 @@ public class CursoBO implements ICursoBO{
 
 	public String updateDificuldade(Curso c, int dificuldade) throws NumberException {
 
-		if(c.getDificuldade() >200 ) throw new  NumberException("Descrição excedeu quantidade de caracteres");
+		if(c.getDificuldade() >200 ) throw new  NumberException("Dificuldade excedeu quantidade de caracteres");
 
 		try (CursoDAO dao = new CursoDAO()){
 			dao.updateDificuldade(c, dificuldade);

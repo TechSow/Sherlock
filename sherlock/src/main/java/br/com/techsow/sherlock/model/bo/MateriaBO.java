@@ -14,13 +14,13 @@ public class MateriaBO implements IMateriaBO{
 
 	public String add(Materia materia) throws LengthException {
 
-		if(materia.getEmenta().length() > 100) throw new  LengthException("Descrição excedeu quantidade de caracteres");
+		if(materia.getEmenta().length() > 100) throw new  LengthException("Ementa excedeu quantidade de caracteres");
 
 		if(materia.getNome().length() > 100) {
 			return "Nome da matéria maior do que o esperado.";
 		}
 
-		if(materia.geturlImg().length() > 300) throw new  LengthException("Descrição excedeu quantidade de caracteres");
+		if(materia.geturlImg().length() > 300) throw new  LengthException("URL da imagem excedeu quantidade de caracteres");
 		
 		/* Curso foi retirado da entidade materia
 		 * if(materia.getId_curso().getId() == 0) { return
@@ -94,7 +94,7 @@ public class MateriaBO implements IMateriaBO{
 
 	public String updateNome(Materia m, String nomeNovo) throws LengthException {
 
-		if(nomeNovo.length() > 100) throw new  LengthException("Descrição excedeu quantidade de caracteres");
+		if(nomeNovo.length() > 100) throw new  LengthException("Nome excedeu quantidade de caracteres");
 
 		try (MateriaDAO dao = new MateriaDAO()){
 			dao.updateNome(m, nomeNovo);
@@ -109,7 +109,7 @@ public class MateriaBO implements IMateriaBO{
 
 	public String updateEmenta(Materia m, String novaEmenta) throws NumberException {
 
-		if(novaEmenta.length() > 100) throw new  NumberException("Descrição excedeu quantidade de caracteres");
+		if(novaEmenta.length() > 100) throw new  NumberException("Ementa excedeu quantidade de caracteres");
 
 		try (MateriaDAO dao = new MateriaDAO()){
 			dao.updateEmenta(m, novaEmenta);
