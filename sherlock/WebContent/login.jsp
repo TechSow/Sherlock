@@ -46,25 +46,26 @@
 <!-- references code pen https://codepen.io/kipp0/pen/pPNrrj -->
 <c:if test="${not empty erro}">
 
-	<div id="toast">
-		<i class="fa fa-exclamation text-${erro[1]} " id="img" aria-hidden="true"></i>
-		<div id="desc" class="bg-danger">${erro[0]}</div>
-	</div>
-	<script>
-	function launch_toast() {
-		var toast = document.querySelector("#toast");
-		if (!(toast === undefined)) {
-			toast.classList.add("show");
-			setTimeout(function() {
-				toast.className = toast.classList.remove("show");
-			}, 5000);
-		}
-	}
-	window.onload = function() {
-		launch_toast();
-	}
-</script>
-	
+    <div id="toast">
+        <i class="fa fa-${erro[3]} text-${erro[1] }" id="img" aria-hidden="true"></i>
+
+        <div id="desc" class="bg-${erro[1] }">${erro[0]}</div>
+    </div>
+    <script>
+        function launch_toast() {
+            var toast = document.querySelector("#toast");
+            if (!(toast === undefined)) {
+                toast.classList.add("show");
+                setTimeout(function() {
+                    toast.className = toast.classList.remove("show");
+                }, 5000);
+            }
+        }
+        window.onload = function() {
+            launch_toast();
+        }
+    </script>
+
 </c:if>
 
 

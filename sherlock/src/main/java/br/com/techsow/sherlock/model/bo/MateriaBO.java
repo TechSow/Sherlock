@@ -4,25 +4,25 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import br.com.techsow.sherlock.model.dao.MateriaDAO;
+import br.com.techsow.sherlock.model.entities.Conteudo;
 import br.com.techsow.sherlock.model.entities.Materia;
+import br.com.techsow.sherlock.model.exception.LengthException;
+import br.com.techsow.sherlock.model.exception.NumberException;
 import br.com.techsow.sherlock.model.interfaces.bo.IMateriaBO;
 
 public class MateriaBO implements IMateriaBO{
 
 
-	public String add(Materia materia) {
+	public String add(Materia materia) throws LengthException {
 
-		if(materia.getEmenta().length() > 100) {
-			return "Tamanho da descricao excedeu o limite de caracteres.";
+		if(materia.getEmenta().length() > 100) throw new  LengthException("Ementa excedeu quantidade de caracteres");
+
+		if(materia.getNome().length() > 100) throw new  LengthException("\"Nome da matéria maior do que o esperado.\""); {
+			
 		}
 
-		if(materia.getNome().length() > 100) {
-			return "Nome da matéria maior do que o esperado.";
-		}
-
-		if(materia.geturlImg().length() > 300) {
-			return "URL ultrapassa tamanho de 300 caracteres.";
-		}
+		if(materia.geturlImg().length() > 300) throw new  LengthException("URL da imagem excedeu quantidade de caracteres");
+		
 		/* Curso foi retirado da entidade materia
 		 * if(materia.getId_curso().getId() == 0) { return
 		 * "ID do curso nao encontrado. Curso não existe"; }
@@ -45,18 +45,18 @@ public class MateriaBO implements IMateriaBO{
 		/////////////////////////////////////////
 
 
-		MateriaDAO materiaDao = null;
+		
 		int retorno = 0;
 
-		try {
-			materiaDao = new MateriaDAO();
+		try (MateriaDAO materiaDao = new MateriaDAO()){
+			
 			retorno = materiaDao.add(materia);
 
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
-			try {
+			try (MateriaDAO materiaDao = new MateriaDAO()){
 				materiaDao.close();
 			}catch(Exception e){
 				e.printStackTrace();
@@ -70,6 +70,19 @@ public class MateriaBO implements IMateriaBO{
 		}
 
 	}			
+
+	public ArrayList<Materia> getAll(){
+
+		ArrayList<Materia> materias = new ArrayList<Materia>();
+
+		try (MateriaDAO dao = new MateriaDAO()) {
+			materias = dao.getAll();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return materias;
+	}
 
 
 	public Materia getById(int id) {
@@ -93,11 +106,9 @@ public class MateriaBO implements IMateriaBO{
 	}
 
 
-	public String updateNome(Materia m, String nomeNovo) {
+	public String updateNome(Materia m, String nomeNovo) throws LengthException {
 
-		if(nomeNovo.length() > 100) {
-			return "Nome da matéria maior do que o esperado";
-		}
+		if(nomeNovo.length() > 100) throw new  LengthException("Nome excedeu quantidade de caracteres");
 
 		try (MateriaDAO dao = new MateriaDAO()){
 			dao.updateNome(m, nomeNovo);
@@ -110,11 +121,9 @@ public class MateriaBO implements IMateriaBO{
 		return "Materia Adicionada";
 	}
 
-	public String updateEmenta(Materia m, String novaEmenta) {
+	public String updateEmenta(Materia m, String novaEmenta) throws NumberException {
 
-		if(novaEmenta.length() > 100) {
-			return "Ementa excede quantidade de caracteres.";
-		}
+		if(novaEmenta.length() > 100) throw new  NumberException("Ementa excedeu quantidade de caracteres");
 
 		try (MateriaDAO dao = new MateriaDAO()){
 			dao.updateEmenta(m, novaEmenta);

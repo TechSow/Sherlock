@@ -2,15 +2,49 @@
 	pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.4.2/chosen.jquery.min.js"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.4.2/chosen.min.css">
+
 
 <style>
-/*form {
-	position: absolute;
-	margin-top: 5em;
-}*/
-
 .container {
 	max-width: 100% !important;
+}
+
+.multiselect {
+	width: 200px;
+}
+
+.selectBox {
+	position: relative;
+}
+
+.selectBox select {
+	width: 100%;
+	font-weight: bold;
+}
+
+.overSelect {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+}
+
+#checkboxes {
+	display: none;
+	border: 1px #dadada solid;
+}
+
+#checkboxes label {
+	display: block;
+}
+
+#checkboxes label:hover {
+	background-color: #1e90ff;
 }
 </style>
 <div class="row">
@@ -31,141 +65,14 @@
 	</ul>
 </div>
 <div class="row">
-	
-	<form class="professor col-12 col-sm-6" action="controller" method="post">
-		<input type="hidden" name="tarefa" id="tarefa"
-			value="CadastroProfessor" />
 
-		<h2>Cadastro de Professores</h2>
-		<div class="form-group">
-			<label for="exampleInputEmail1">Endereço de email</label> <input
-				type="email" class="form-control" id="exampleInputEmail1"
-				name="email" aria-describedby="emailHelp"
-				placeholder="Email do professor"> <small id="emailHelp"
-				class="form-text text-muted">Nunca vamos compartilhar seu
-				email, com ninguém.</small>
-		</div>
+	<c:import url="sccafolding/cadastroProfessor.html" />
+	<c:import url="sccafolding/cadastroCurso.jsp" />
+	<c:import url="sccafolding/cadastroMateria.html" />
+	<c:import url="sccafolding/cadastroAluno.html" />
 
-		<div class="form-group">
-			<label for="exampleInputEmail1">Apelido</label> <input
-				class="form-control" type="text" name="apelido"
-				placeholder="Apelido do professor" required> <small
-				id="emailHelp" class="form-text text-muted">O apelido
-				precisa ser unico e pode ser utilizado para login.</small>
-		</div>
-
-		<div class="form-group">
-			<label for="exampleInputPassword1">Senha</label> <input
-				type="password" class="form-control" name="senha"
-				id="exampleInputPassword1" placeholder="Senha">
-		</div>
-
-		<button type="submit" class="btn btn-primary">Cadastrar
-			professor!</button>
-	</form>
-	
-
-
-	<form class="curso" action="controller" method="post"
-		style="display: none" class="col-sm-6 col-12">
-		<input type="hidden" name="tarefa" id="tarefa" value="CadastroCurso" />
-
-		<h2>Cadastro de Cursos</h2>
-		<div class="row">
-			<div class="col">
-				<label for="exampleFormControlTextarea1">Nome Curso</label> <input
-					type="text" class="form-control" name="nome"
-					placeholder="Algoritimos">
-			</div>
-			<div class="col">
-				<label for="exampleFormControlTextarea1">Dificuldade</label> <select
-					type="text" class="form-control" name="dificuldade"
-					id="exampleFormControlSelect1">
-					<option>1</option>
-					<option>2</option>
-					<option>3</option>
-					<option>4</option>
-					<option>5</option>
-				</select>
-			</div>
-		</div>
-
-		<div class="form-group">
-			<label for="exampleFormControlTextarea1">Descrição</label>
-			<textarea class="form-control" name="descricao"
-				id="exampleFormControlTextarea1" rows="3"></textarea>
-		</div>
-
-		<div class="form-group">
-			<label for="exampleInputEmail1">Duração</label> <input
-				class="form-control" type="number" name="duracao"
-				placeholder="Horas previstas" required>
-		</div>
-		<button type="submit" class="btn btn-primary">Cadastar Curso!</button>
-	</form>
-
-
-	<form class="materia" action="controller" method="post"
-		style="display: none" class="col-sm-6 col-12">
-		<input type="hidden" name="tarefa" id="tarefa" value="CadastroMateria" />
-
-		<h2>Cadastro de Matérias</h2>
-		<div class="row">
-			<div class="col">
-				<label for="exampleFormControlTextarea1">Nome matéria</label> <input
-					type="text" class="form-control" name="nome"
-					placeholder="Laço de repetição">
-			</div>
-		</div>
-
-
-		<div class="form-group">
-			<label for="exampleFormControlTextarea1">Ementa</label>
-			<textarea class="form-control" name="ementa"
-				id="exampleFormControlTextarea1" rows="3"></textarea>
-		</div>
-
-		<div class="form-group">
-			<label for="exampleFormControlTextarea1">URL da imagem da
-				matéria</label> <input type="text" class="form-control" name="urlImg"
-				placeholder="URL IMAGEM">
-		</div>
-
-		<button type="submit" class="btn btn-primary">Cadastar Curso!</button>
-	</form>
-
-	<form class="aluno" action="controller" method="post"
-		style="display: none" class="col-sm-6 col-12">
-		<input type="hidden" name="tarefa" id="tarefa" value="CadastroUsuario" />
-
-		<h2>Cadastro de Alunos</h2>
-		<div class="form-group">
-			<label for="exampleInputEmail1">Endereço de email</label> <input
-				type="email" class="form-control" id="exampleInputEmail1"
-				name="email" aria-describedby="emailHelp"
-				placeholder="Email do professor"> <small id="emailHelp"
-				class="form-text text-muted">Nunca compartilhar o email com
-				ninguém.</small>
-		</div>
-
-		<div class="form-group">
-			<label for="exampleInputEmail1">Apelido</label> <input
-				class="form-control" type="text" name="apelido"
-				placeholder="Apelido do professor" required> <small
-				id="emailHelp" class="form-text text-muted">O apelido
-				precisa ser unico e pode ser utilizado para login.</small>
-		</div>
-
-		<div class="form-group">
-			<label for="exampleInputPassword1">Senha</label> <input
-				type="password" class="form-control" name="senha"
-				id="exampleInputPassword1" placeholder="Senha">
-		</div>
-
-		<button type="submit" class="btn btn-primary">Cadastrar
-			Aluno!</button>
-	</form>
 </div>
+
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 	crossorigin="anonymous"></script>
@@ -175,6 +82,8 @@
 	var c = document.querySelector(".curso");
 	var m = document.querySelector(".materia");
 	var a = document.querySelector(".aluno");
+	var ms = document.querySelector("#materiaSelect");
+
 
 	function admProfessor() {
 
@@ -183,6 +92,7 @@
 			c.style.display = "none";
 			m.style.display = "none";
 			a.style.display = "none";
+			ms.style.display="none";
 		}
 	}
 
@@ -192,6 +102,8 @@
 			c.style.display = "block";
 			m.style.display = "none";
 			a.style.display = "none";
+			ms.style.display= "block";
+
 		}
 	}
 
@@ -201,7 +113,9 @@
 			m.style.display = "block";
 			c.style.display = "none";
 			a.style.display = "none";
+			ms.style.display= "none";
 		}
+		
 	}
 
 	function admAluno() {
@@ -210,6 +124,21 @@
 			m.style.display = "none";
 			c.style.display = "none";
 			a.style.display = "block";
+			ms.style.display="none";
+
+		}
+	}
+
+	var expanded = false;
+
+	function showCheckboxes() {
+		var checkboxes = document.getElementById("checkboxes");
+		if (!expanded) {
+			checkboxes.style.display = "block";
+			expanded = true;
+		} else {
+			checkboxes.style.display = "none";
+			expanded = false;
 		}
 	}
 

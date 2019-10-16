@@ -5,17 +5,18 @@ import java.util.List;
 
 import br.com.techsow.sherlock.model.entities.Conteudo;
 import br.com.techsow.sherlock.model.entities.Pessoa;
-import br.com.techsow.sherlock.model.interfaces.repository.IConteudoRepository;
+import br.com.techsow.sherlock.model.entities.Usuario;
+import br.com.techsow.sherlock.model.interfaces.repository.IPessoaRepository;
 import br.com.techsow.sherlock.model.services.ConnectionFactory;
 
-public class PessoaDAO extends BaseDAO{
+public class PessoaDAO extends BaseDAO implements IPessoaRepository{
 
 
 	public PessoaDAO() throws Exception {
 
 			conn = ConnectionFactory.getConnection();
 	}
-
+	
 	public Pessoa getById(int id) throws Exception{
 		UsuarioDAO userDao = null;
 		stmt = conn.prepareStatement("SELECT * FROM  TS_T_PESSOA WHERE ID_PESSOA=?");
@@ -92,5 +93,48 @@ public class PessoaDAO extends BaseDAO{
 	
 	public void close() throws SQLException{
 		conn.close();
+	}
+
+	public int add(Conteudo obj) throws SQLException {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	@Override
+	public int kill(int id) throws Exception {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	
+	@Override
+	public int add(Usuario obj) throws SQLException {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int update(Usuario obj) throws Exception {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public Pessoa loginUser(Usuario user) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int updateNome(Usuario user, String nomeNovo) throws Exception {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int updateSobrenome(Usuario user, String SobrenomeNovo) throws Exception {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }

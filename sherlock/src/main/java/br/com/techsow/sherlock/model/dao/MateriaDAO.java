@@ -3,6 +3,7 @@ package br.com.techsow.sherlock.model.dao;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import br.com.techsow.sherlock.model.entities.Conteudo;
 import br.com.techsow.sherlock.model.entities.Materia;
 import br.com.techsow.sherlock.model.interfaces.repository.IMateriaRepository;
 import br.com.techsow.sherlock.model.services.ConnectionFactory;
@@ -43,6 +44,23 @@ public class MateriaDAO extends BaseDAO implements IMateriaRepository{
 		}
 	}
 
+	
+	public ArrayList<Materia> getAll() throws Exception {
+		ArrayList<Materia> materias = new ArrayList<Materia>();
+		stmt=conn.prepareStatement("SELECT * FROM TS_T_MATERIA");
+		rs=stmt.executeQuery();
+		while(rs.next()) {
+			
+			materias.add(new Materia(
+					rs.getInt("ID_MATERIA"),
+					rs.getString("NOME_MATERIA"),
+					rs.getString("EMENTA_MATERIA"),
+					rs.getString("URLIMG_MATERIA")));
+			
+		}
+
+			return  materias;
+	}
 
 	public int kill(int id) throws Exception {
 

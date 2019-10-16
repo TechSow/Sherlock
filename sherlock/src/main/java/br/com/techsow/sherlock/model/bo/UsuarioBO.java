@@ -8,8 +8,9 @@ import javax.mail.internet.InternetAddress;
 import br.com.techsow.sherlock.model.dao.UsuarioDAO;
 import br.com.techsow.sherlock.model.entities.Usuario;
 import br.com.techsow.sherlock.model.exception.ApelidoException;
-import br.com.techsow.sherlock.model.exception.DuplicatedIdException;
+import br.com.techsow.sherlock.model.exception.DuplicatedException;
 import br.com.techsow.sherlock.model.exception.EmailNotFound;
+import br.com.techsow.sherlock.model.exception.LengthException;
 import br.com.techsow.sherlock.model.exception.NotEqualsException;
 import br.com.techsow.sherlock.model.interfaces.bo.IUsuarioBO;
 
@@ -20,8 +21,9 @@ public class UsuarioBO implements IUsuarioBO {
 	 * 
 	 *         Classe criada para efetuar as validacoes da entidade Usuario
 	 *         Essa classe é chamada pela classe CadastroUsuario
+	 * @throws LengthException 
 	 */
-	public String add(Usuario user) throws DuplicatedIdException,ApelidoException, EmailNotFound {
+	public String add(Usuario user) throws DuplicatedException,ApelidoException, EmailNotFound, LengthException {
 
 		/* Não é mais necessário, ja que nome é atributo da entidade PESSOA no banco
 		 * if(user.getNome().length() < 5) { return
@@ -35,16 +37,9 @@ public class UsuarioBO implements IUsuarioBO {
 			return "E-mail inválido";
 		}
 
-		if(user.getSenha().length()  < 6) {
-			return "Senha muito pequena.";
-		}
-
-		if(user.getEmail().length()>80) {
-			return "Email excedeu a quantidade de caracteres";
-		}
-		if(user.getSenha().length()>150) {
-			return "Senha excedeu a quantidade de caracteres";
-		}
+		if(user.getSenha().length()  < 6) throw new  LengthException("Senha não corresponde as exigências de tamanho");
+		if(user.getEmail().length()>80) throw new  LengthException("Email excedeu quantidade de caracteres");
+		if(user.getSenha().length()>150) throw new  LengthException("Senha excedeu quantidade de caracteres");
 
 		///////////////////////////////////////////////
 
@@ -52,57 +47,61 @@ public class UsuarioBO implements IUsuarioBO {
 
 		//////////////////////////////////////////////
 
-		UsuarioDAO dao = null;
+		 
 		Usuario usuario = null;
 
-		try {
-			dao= new UsuarioDAO();
+		try (UsuarioDAO dao= new UsuarioDAO()){
+			
 			usuario = dao.getById(user.getIdUsuario());
-
-			if(usuario != null) throw new DuplicatedIdException("Usuario com ID duplicado");
-			
-			
-			
+						
 		}catch(Exception e) {
 			e.printStackTrace();
+			
 		}
+		if(usuario != null) throw new DuplicatedException("Usuario com ID duplicado");
 		
 		
-		try {
-			dao= new UsuarioDAO();
+		try (UsuarioDAO dao= new UsuarioDAO()){
+			
 			usuario = dao.getByEmail(user.getEmail());
-
-			if(usuario != null) { return "Email já cadastrado"; }
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+			
+		}
+		if(usuario != null) throw new DuplicatedException("Email ja cadastrado.");
+		
+		
+		try (UsuarioDAO dao= new UsuarioDAO()){
+			
+			usuario = dao.getByApelido(user.getApelido());		
 			
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
 		
-		try {
-			dao= new UsuarioDAO();
-			usuario = dao.getByApelido(user.getApelido());
-
-			if(usuario != null) throw new ApelidoException("Apelido indisponível");
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
+		if(usuario != null) throw new ApelidoException("Apelido indisponível");
 				
 
-		int ret = 0;
-		try {
+		int ret =0;
+		try (UsuarioDAO dao= new UsuarioDAO()) {
 			ret = dao.add(user);
 		}catch(Exception e){
 			e.printStackTrace();
+			
 		}finally {
-			try {
+			try (UsuarioDAO dao= new UsuarioDAO()){
 				dao.close();
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
 		}
 
+		if(ret == 1) {
 		return "Usuario criado";
-
+		}else {
+			return "Não foi possivel cadastrar o usuario";
+		}
 	}
 
 
@@ -113,12 +112,10 @@ public class UsuarioBO implements IUsuarioBO {
 		try (UsuarioDAO dao = new UsuarioDAO()) {
 			usuario = dao.getById(id);
 		} catch (Exception e) {
-			e.printStackTrace();
+			e.printStackTrace();	
 		}
-
 		return usuario;
 	}
-
 
 
 	public int kill(int id) {
@@ -132,8 +129,6 @@ public class UsuarioBO implements IUsuarioBO {
 		return 0;
 	}
 	
-
-
 	public Usuario loginUser(Usuario user)  {
 		Usuario usuario = null;
 
@@ -216,4 +211,3 @@ public class UsuarioBO implements IUsuarioBO {
 	}
 
 }
-
