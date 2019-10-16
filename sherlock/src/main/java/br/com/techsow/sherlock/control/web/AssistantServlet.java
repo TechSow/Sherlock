@@ -76,7 +76,10 @@ public class AssistantServlet extends HttpServlet {
 						.execute()
 						.getResult();
 				
-				this.context = response.getContext();
+				String responseText =response.getOutput().getGeneric().get(0).getText();
+				if(responseText.equals("Eu não entendi, poderia repetir?")) {
+					 
+				}
 				
 				return response;
 

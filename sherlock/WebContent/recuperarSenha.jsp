@@ -139,9 +139,9 @@
 <c:if test="${not empty erro}">
 
 	<div id="toast">
-		<i class="fa fa-exclamation text-danger" id="img" aria-hidden="true"></i>
+		<i class="fa fa-${erro[3]} text-danger" id="img" aria-hidden="true"></i>
 
-		<div id="desc" class="bg-danger">${erro}</div>
+		<div id="desc" class="bg-${erro[1] }">${erro[0]}</div>
 	</div>
 	<script>
 		function launch_toast() {
