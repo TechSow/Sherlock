@@ -13,9 +13,7 @@ public class CursoBO implements ICursoBO{
 
 	public String add(Curso curso) {
 
-		if(curso.getDescricao().length() > 255) {
-			return "Campo descricao ultrapassou quantidade de caracteres(100)";
-		}
+		if(curso.getDescricao().length() > 255) throw new  LengthException("Descrição escedeu quantidade de caracteres");
 
 
 		if(curso.getDuracao() <= 0) {
