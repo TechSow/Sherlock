@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 import com.ibm.cloud.sdk.core.service.security.IamOptions;
 import com.ibm.watson.assistant.v2.Assistant;
-import com.ibm.watson.assistant.v2.Assistant.*;
 import com.ibm.watson.assistant.v2.model.CreateSessionOptions;
 import com.ibm.watson.assistant.v2.model.MessageContext;
 import com.ibm.watson.assistant.v2.model.MessageInput;
