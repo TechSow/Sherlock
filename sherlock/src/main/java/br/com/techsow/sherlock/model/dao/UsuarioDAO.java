@@ -79,7 +79,8 @@ public class UsuarioDAO extends BaseDAO implements IUsuarioRepository{
 		rs=stmt.executeQuery();
 
 		if(rs.next()) {
-			return new Usuario(
+			
+			Usuario usuario = new Usuario(
 					rs.getInt(1),
 					rs.getString(2),
 					rs.getString(3),
@@ -88,6 +89,7 @@ public class UsuarioDAO extends BaseDAO implements IUsuarioRepository{
 					rs.getInt(6),
 					rs.getString(7));
 
+			return usuario; 
 		}
 
 		return null;

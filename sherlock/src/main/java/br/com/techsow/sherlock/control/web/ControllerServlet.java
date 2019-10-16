@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import br.com.techsow.sherlock.model.exception.ApelidoException;
+import br.com.techsow.sherlock.model.exception.EmailNotFound;
 import br.com.techsow.sherlock.model.exception.LengthException;
 import br.com.techsow.sherlock.model.exception.NumberException;
 import br.com.techsow.sherlock.model.interfaces.web.Task;
@@ -34,7 +36,7 @@ public class ControllerServlet extends HttpServlet {
 			Task instance = (Task) classe.newInstance();
 			String url = instance.processTask(req, resp);
 			req.getRequestDispatcher(url).forward(req, resp);
-		} catch (ClassNotFoundException | IllegalAccessException | InstantiationException | LengthException | NumberException e) {
+		} catch (ClassNotFoundException | IllegalAccessException | InstantiationException | LengthException | NumberException | ApelidoException | EmailNotFound e) {
 			e.printStackTrace();
 		}
 	}

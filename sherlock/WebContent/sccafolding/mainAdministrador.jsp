@@ -137,6 +137,8 @@
 	<form class="aluno" action="controller" method="post"
 		style="display: none" class="col-sm-6 col-12">
 		<input type="hidden" name="tarefa" id="tarefa" value="CadastroUsuario" />
+		<input type="hidden" name="from" id="tarefa" value="CadastroUsuarioAdm" />
+		
 
 		<h2>Cadastro de Alunos</h2>
 		<div class="form-group">

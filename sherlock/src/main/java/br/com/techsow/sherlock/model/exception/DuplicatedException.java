@@ -1,10 +1,10 @@
 package br.com.techsow.sherlock.model.exception;
 
-public class DuplicatedIdException extends Exception{
+public class DuplicatedException extends Exception{
 
 	private static final long serialVersionUID = 1L;
 
-	public DuplicatedIdException(String message) {
+	public DuplicatedException(String message) {
 		super(message);
 	}
 

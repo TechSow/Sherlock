@@ -28,13 +28,14 @@ public class CadastroCurso implements Task {
 		int dificuldade = Integer.parseInt(req.getParameter("dificuldade"));
 		long duracao = Long.parseLong(req.getParameter("duracao"));
 		
-		
-		Curso curso= new Curso(nome, descricao, dificuldade, duracao,"vazio");
-		String cursoBO = new CursoBO().add(curso);
-		
-		req.setAttribute("erro", cursoBO);
+		try {
+			Curso curso= new Curso(nome, descricao, dificuldade, duracao,"vazio");
+			String cursoBO = new CursoBO().add(curso);
+			
+		} catch (Exception e) {
+			req.setAttribute("erro", new String[] {e.getMessage(), "danger", "exclamation"});
+		}
 		return "admin.jsp";
-		
 		
 	}
 

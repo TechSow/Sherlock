@@ -26,11 +26,14 @@ public class CadastroMateria implements Task {
 		String urlImg = req.getParameter("urlImg");
 		
 		
-		
-		Materia materia= new Materia(nome, ementa, urlImg);
-		String materiaBO = new MateriaBO().add(materia);
-		
-		req.setAttribute("erro", materiaBO);
+		try {
+			Materia materia= new Materia(nome, ementa, urlImg);
+			String materiaBO = new MateriaBO().add(materia);
+			
+		} catch (Exception e) {
+            req.setAttribute("erro", new String[] {e.getMessage(), "danger", "exclamation"});
+
+		}
 		return "admin.jsp";
 		
 		

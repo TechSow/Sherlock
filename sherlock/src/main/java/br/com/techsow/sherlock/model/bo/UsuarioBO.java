@@ -8,7 +8,7 @@ import javax.mail.internet.InternetAddress;
 import br.com.techsow.sherlock.model.dao.UsuarioDAO;
 import br.com.techsow.sherlock.model.entities.Usuario;
 import br.com.techsow.sherlock.model.exception.ApelidoException;
-import br.com.techsow.sherlock.model.exception.DuplicatedIdException;
+import br.com.techsow.sherlock.model.exception.DuplicatedException;
 import br.com.techsow.sherlock.model.exception.EmailNotFound;
 import br.com.techsow.sherlock.model.exception.LengthException;
 import br.com.techsow.sherlock.model.exception.NotEqualsException;
@@ -23,7 +23,7 @@ public class UsuarioBO implements IUsuarioBO {
 	 *         Essa classe é chamada pela classe CadastroUsuario
 	 * @throws LengthException 
 	 */
-	public String add(Usuario user) throws DuplicatedIdException,ApelidoException, EmailNotFound, LengthException {
+	public String add(Usuario user) throws DuplicatedException,ApelidoException, EmailNotFound, LengthException {
 
 		/* Não é mais necessário, ja que nome é atributo da entidade PESSOA no banco
 		 * if(user.getNome().length() < 5) { return
@@ -55,10 +55,11 @@ public class UsuarioBO implements IUsuarioBO {
 			dao= new UsuarioDAO();
 			usuario = dao.getById(user.getIdUsuario());
 
-			if(usuario != null) throw new DuplicatedIdException("Usuario com ID duplicado");			
+			if(usuario != null) throw new DuplicatedException("Usuario com ID duplicado");			
 						
 		}catch(Exception e) {
 			e.printStackTrace();
+			return "cadastro.jsp";
 		}
 		
 		
@@ -66,10 +67,11 @@ public class UsuarioBO implements IUsuarioBO {
 			dao= new UsuarioDAO();
 			usuario = dao.getByEmail(user.getEmail());
 
-			if(usuario != null) { return "Email já cadastrado"; }
+			if(usuario != null) throw new DuplicatedException("Email ja cadastrado.");
 			
 		}catch(Exception e) {
 			e.printStackTrace();
+			return "cadastro.jsp";
 		}
 		
 		try {
@@ -80,6 +82,7 @@ public class UsuarioBO implements IUsuarioBO {
 			
 		}catch(Exception e) {
 			e.printStackTrace();
+			return "cadastro.jsp";
 		}
 				
 
@@ -88,11 +91,13 @@ public class UsuarioBO implements IUsuarioBO {
 			ret = dao.add(user);
 		}catch(Exception e){
 			e.printStackTrace();
+			return "cadastro.jsp";
 		}finally {
 			try {
 				dao.close();
 			}catch(Exception e) {
 				e.printStackTrace();
+				return "cadastro.jsp";
 			}
 		}
 
@@ -108,12 +113,10 @@ public class UsuarioBO implements IUsuarioBO {
 		try (UsuarioDAO dao = new UsuarioDAO()) {
 			usuario = dao.getById(id);
 		} catch (Exception e) {
-			e.printStackTrace();
+			e.printStackTrace();	
 		}
-
 		return usuario;
 	}
-
 
 
 	public int kill(int id) {
