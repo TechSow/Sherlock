@@ -5,6 +5,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import br.com.techsow.sherlock.model.bo.CursoBO;
 import br.com.techsow.sherlock.model.entities.Curso;
+import br.com.techsow.sherlock.model.exception.LengthException;
+import br.com.techsow.sherlock.model.exception.NumberException;
 import br.com.techsow.sherlock.model.interfaces.web.Task;
 
 public class CadastroCurso implements Task {
@@ -15,9 +17,11 @@ public class CadastroCurso implements Task {
 	 * 
 	 *         Classe criada para lidar com as requisicoes de criacao de novos cursos
 	 *         A requisicao vem da Servlet Controller
+	 * @throws NumberException 
+	 * @throws LengthException 
 	 */
 	@Override
-	public String processTask(HttpServletRequest req, HttpServletResponse resp) {
+	public String processTask(HttpServletRequest req, HttpServletResponse resp) throws LengthException, NumberException {
 
 		String nome = req.getParameter("nome");
 		String descricao = req.getParameter("descricao");

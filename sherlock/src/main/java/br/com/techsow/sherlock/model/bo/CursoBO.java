@@ -5,33 +5,28 @@ import java.util.ArrayList;
 
 import br.com.techsow.sherlock.model.dao.CursoDAO;
 import br.com.techsow.sherlock.model.entities.Curso;
+import br.com.techsow.sherlock.model.exception.LengthException;
+import br.com.techsow.sherlock.model.exception.NumberException;
 import br.com.techsow.sherlock.model.interfaces.bo.ICursoBO;
 
 public class CursoBO implements ICursoBO{
 
 
 
-	public String add(Curso curso) {
+	public String add(Curso curso) throws LengthException, NumberException {
 
-		if(curso.getDescricao().length() > 255) throw new  LengthException("Descrição escedeu quantidade de caracteres");
+		if(curso.getDescricao().length() > 255) throw new  LengthException("Descrição excedeu quantidade de caracteres");
 
 
-		if(curso.getDuracao() <= 0) {
-			return "Duracao do curso invalida. Insira um valor valido";
-		}
+		if(curso.getDuracao() <= 0) throw new NumberException("Numero de duração de curso inválido");
 
-		if(curso.getNome().length() > 100) {
-			return "Tamanho do nome do curso ultrapassa o tamanho limite";
-		}	
+		if(curso.getNome().length() > 100) throw new  LengthException("Descrição excedeu quantidade de caracteres");
 
 		/*
-		 * if(curso.getUrlImg().length() <= 0 ||curso.getUrlImg().length() >200 ) {
-		 * return "URL da imagem maior que o esperado"; }
+		 * if(curso.getUrlImg().length() >200 ) throw new  NumberException("Descrição excedeu quantidade de caracteres");
 		 */
 
-		if(curso.getDificuldade() <1 || curso.getDificuldade() > 5 ) {
-			return "Valor da dificuldade invalida.";
-		}
+		if(curso.getDificuldade() <1 || curso.getDificuldade() > 5 ) throw new NumberException("Numero da dificuldade inválido");
 
 		CursoDAO dao = null;
 		int retorno=0;
@@ -56,9 +51,6 @@ public class CursoBO implements ICursoBO{
 		}else {
 			return "Sem sucesso";
 		}
-
-
-
 	}
 
 	public Curso getById(int id) {
@@ -89,10 +81,8 @@ public class CursoBO implements ICursoBO{
 	}
 
 
-	public String updateNome(Curso c, String nome) {
-		if(nome.length() > 100) {
-			return "Nome do curso maior que o esperado";
-		}
+	public String updateNome(Curso c, String nome) throws LengthException {
+		if(nome.length() > 100) throw new  LengthException("Descrição excedeu quantidade de caracteres");
 
 		try (CursoDAO dao = new CursoDAO()){
 			dao.updateNome(c, nome);
@@ -106,11 +96,9 @@ public class CursoBO implements ICursoBO{
 	}
 
 
-	public String updateDescricao(Curso c, String descricao) {
+	public String updateDescricao(Curso c, String descricao) throws LengthException {
 
-		if(descricao.length() > 255) {
-			return "Ementa excede quantidade de caracteres.";
-		}
+		if(descricao.length() > 255) throw new  LengthException("Descrição excedeu quantidade de caracteres");
 
 		try (CursoDAO dao = new CursoDAO()){
 			dao.updateDescricao(c, descricao);
@@ -125,11 +113,9 @@ public class CursoBO implements ICursoBO{
 
 
 
-	public String updateDuracao(Curso c, int duracao) {
+	public String updateDuracao(Curso c, int duracao) throws NumberException {
 
-		if(c.getDuracao() <= 0 ) {
-			return "duração excede quantidade de caracteres.";
-		}
+		if(c.getDuracao() <= 0 ) throw new  NumberException("Descrição excedeu quantidade de caracteres");
 
 		try (CursoDAO dao = new CursoDAO()){
 			dao.updateDuracao(c, duracao);
@@ -143,11 +129,9 @@ public class CursoBO implements ICursoBO{
 	}
 
 
-	public String updateURL(Curso c, String url) {
+	public String updateURL(Curso c, String url) throws LengthException {
 
-		if(c.getUrlImg().length() <= 0 ||c.getUrlImg().length() >200 ) {
-			return "URL da imagem excede quantidade de caracteres.";
-		}
+		if(c.getUrlImg().length() >200 ) throw new  LengthException("Descrição excedeu quantidade de caracteres");
 
 		try (CursoDAO dao = new CursoDAO()){
 			dao.updateUrl(c, url);
@@ -161,11 +145,9 @@ public class CursoBO implements ICursoBO{
 	}
 
 
-	public String updateDificuldade(Curso c, int dificuldade) {
+	public String updateDificuldade(Curso c, int dificuldade) throws NumberException {
 
-		if(c.getUrlImg().length() <= 0 ||c.getUrlImg().length() >200 ) {
-			return "URL da imagem excede quantidade de caracteres.";
-		}
+		if(c.getDificuldade() >200 ) throw new  NumberException("Descrição excedeu quantidade de caracteres");
 
 		try (CursoDAO dao = new CursoDAO()){
 			dao.updateDificuldade(c, dificuldade);

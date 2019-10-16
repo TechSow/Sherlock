@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import br.com.techsow.sherlock.model.bo.MateriaBO;
 import br.com.techsow.sherlock.model.entities.Materia;
+import br.com.techsow.sherlock.model.exception.LengthException;
 import br.com.techsow.sherlock.model.interfaces.web.Task;
 
 public class CadastroMateria implements Task {
@@ -15,9 +16,10 @@ public class CadastroMateria implements Task {
 	 * 
 	 *         Classe criada para lidar com as requisicoes de criacao de novos materias
 	 *         A requisicao vem da Servlet Controller
+	 * @throws LengthException 
 	 */
 	@Override
-	public String processTask(HttpServletRequest req, HttpServletResponse resp) {
+	public String processTask(HttpServletRequest req, HttpServletResponse resp) throws LengthException {
 
 		String nome = req.getParameter("nome");
 		String ementa = req.getParameter("ementa");
