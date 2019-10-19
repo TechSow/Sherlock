@@ -6,8 +6,8 @@
 	style="display: none" class="col-sm-6 col-12">
 	<input type="hidden" name="tarefa" id="tarefa" value="CadastroCurso" />
 
-	
-	
+
+
 	<h2>Cadastro de Cursos</h2>
 	<div class="row">
 		<div class="col">
@@ -29,8 +29,8 @@
 	</div>
 	<div class="row">
 		<div class="col">
-			<label for="exampleFormControlTextarea1">Url da imagem do card</label> <input
-				type="text" class="form-control" name="urlimg"
+			<label for="exampleFormControlTextarea1">Url da imagem do
+				card</label> <input type="text" class="form-control" name="urlimg"
 				placeholder="http://exemplo.url.imagem/imagem">
 		</div>
 	</div>
@@ -47,27 +47,96 @@
 	</div>
 
 	<div>
-		<label for="selectMateria">Escolha as matérias deste curso</label>
-		<select data-placeholder="Escolha as matérias..."
-			class="chosen-select" name="selectedMaterias" id="selectMateria" multiple>
+		<label for="selectMateria">Escolha as matérias deste curso</label> <select
+			data-placeholder="Escolha as matérias..." class="chosen-select"
+			name="selectedMaterias" id="selectMateria" multiple>
 			<option value=""></option>
 			<c:forEach var="materia" items="${materias}">
 				<option value="${materia.id_materia}" />${materia.nome}</option>
 			</c:forEach>
 		</select>
-		
-	</div>
-	
 
-	<br>
-	<br>
+	</div>
+
+
+	<br> <br>
 	<button type="submit" class="btn btn-primary">Cadastar Curso!</button>
-	
-	<c:if test="${not empty curso }">
-	
-	</c:if>
+
+
 </form>
 
+
+
+
+
+
+
+
+<form class="updateCurso" action="controller" method="post"
+	style="display: none" class="col-sm-6 col-12">
+	<input type="hidden" name="tarefa" id="tarefa" value="UpdateCurso" />
+
+
+
+	<h2>Atualizar Cursos</h2>
+	<div class="col">
+		<label for="selectMateria">Escolha o curso p/ atualizar</label> <select
+			data-placeholder="Escolha o curso" class="chosen-select"
+			name="selectedCurso" id="selectCurso" single>
+			<option value=""></option>
+			<c:forEach var="curso" items="${cursos}">
+				<option value="${curso.id_curso}" />${curso.nome}</option>
+			</c:forEach>
+		</select>
+
+	</div>
+	
+	
+	<div class="col">
+			<label for="exampleFormControlTextarea1">Nome Curso</label> <input
+				type="text" class="form-control" name="nome"
+				placeholder="Algoritimos">
+	</div>
+
+	<div class="col">
+		<label for="exampleFormControlTextarea1">Dificuldade</label> <select
+			type="text" class="form-control" name="dificuldade"
+			id="exampleFormControlSelect1">
+			<option>0</option>
+			<option>1</option>
+			<option>2</option>
+			<option>3</option>
+			<option>4</option>
+			<option>5</option>
+		</select>
+	</div>
+	<div class="row">
+		<div class="col">
+			<label for="exampleFormControlTextarea1">Url da imagem do
+				card</label> <input type="text" class="form-control" name="urlimg"
+				placeholder="http://exemplo.url.imagem/imagem">
+		</div>
+	</div>
+	<div class="form-group curso">
+		<label for="exampleFormControlTextarea1">Descrição</label>
+		<textarea class="form-control" name="descricao"
+			id="exampleFormControlTextarea1" rows="3"></textarea>
+	</div>
+
+	<div class="form-group">
+		<label for="exampleInputEmail1">Duração</label> <input
+			class="form-control" type="number" name="duracao"
+			placeholder="Horas previstas" required>
+	</div>
+
+
+
+
+	<br> <br>
+	<button type="submit" class="btn btn-primary">Atualizar Curso!</button>
+
+
+</form>
 
 <script>
 	$('.chosen-select').chosen({

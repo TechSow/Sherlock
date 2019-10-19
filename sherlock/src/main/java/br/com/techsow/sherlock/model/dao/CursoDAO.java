@@ -73,7 +73,7 @@ public class CursoDAO extends BaseDAO implements ICursoRepository {
 	
 	@Override
 	public int updateNome(Curso c, String nomeNovo) throws Exception {
-		stmt = conn.prepareStatement("UPDATE TS_T_CURSO SET NOME=? WHERE ID_MATERIA=?");
+		stmt = conn.prepareStatement("UPDATE TS_T_CURSO SET NOME=? WHERE ID_CURSO=?");
 		stmt.setString(1, nomeNovo);
 		stmt.setInt(2, c.getId_curso());
 		return stmt.executeUpdate();
@@ -88,9 +88,9 @@ public class CursoDAO extends BaseDAO implements ICursoRepository {
 		return stmt.executeUpdate();
 	}
 	
-	public int updateDuracao(Curso c, int novaDuracao) throws Exception {
+	public int updateDuracao(Curso c, Long novaDuracao) throws Exception {
 		stmt = conn.prepareStatement("UPDATE TS_T_CURSO SET DURACAO=? WHERE ID_CURSO=?");
-		stmt.setInt(1, novaDuracao);
+		stmt.setLong(1, novaDuracao);
 		stmt.setInt(2, c.getId_curso());
 		return stmt.executeUpdate();
 	}

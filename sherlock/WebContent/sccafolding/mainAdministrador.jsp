@@ -70,7 +70,7 @@
 	var c = document.querySelector(".curso");
 	var m = document.querySelector(".materia");
 	var a = document.querySelector(".aluno");
-	var ms = document.querySelector("#materiaSelect");
+	var uc = document.querySelector(".updateCurso");
 
 
 	function admProfessor() {
@@ -80,7 +80,7 @@
 			c.style.display = "none";
 			m.style.display = "none";
 			a.style.display = "none";
-			ms.style.display="none";
+			uc.style.display = "none";
 		}
 	}
 
@@ -90,7 +90,7 @@
 			c.style.display = "block";
 			m.style.display = "none";
 			a.style.display = "none";
-			ms.style.display= "block";
+			uc.style.display = "block"; 
 
 		}
 	}
@@ -101,7 +101,7 @@
 			m.style.display = "block";
 			c.style.display = "none";
 			a.style.display = "none";
-			ms.style.display= "none";
+			uc.style.display = "none";
 		}
 		
 	}
@@ -112,7 +112,7 @@
 			m.style.display = "none";
 			c.style.display = "none";
 			a.style.display = "block";
-			ms.style.display="none";
+			uc.style.display = "none";
 
 		}
 	}

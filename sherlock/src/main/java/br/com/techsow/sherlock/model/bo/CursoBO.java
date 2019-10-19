@@ -133,11 +133,9 @@ public class CursoBO implements ICursoBO {
 		return "Descrição alterada";
 	}
 
-	public String updateDuracao(Curso c, int duracao) throws NumberException {
+	public String updateDuracao(Curso c, Long duracao) throws NumberException {
 
-		if (c.getDuracao() <= 0)
-			throw new NumberException("Valor invalido para Duracao");
-
+		
 		try (CursoDAO dao = new CursoDAO()) {
 			dao.updateDuracao(c, duracao);
 		} catch (SQLException | ClassNotFoundException e) {

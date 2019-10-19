@@ -3,7 +3,7 @@ package br.com.techsow.sherlock.model.entities;
 public class Curso {
 
 	private String nome, descricao, urlImg;
-	private long duracao;
+	private Long duracao;
 	private int id_curso, dificuldade;
 
 	public int getDificuldade() {
@@ -38,11 +38,11 @@ public class Curso {
 		this.descricao = descricao;
 	}
 
-	public long getDuracao() {
+	public Long getDuracao() {
 		return duracao;
 	}
 
-	public void setDuracao(long duracao) {
+	public void setDuracao(Long duracao) {
 		this.duracao = duracao;
 	}
 
@@ -53,7 +53,7 @@ public class Curso {
 	 * @param descricao
 	 * @param duracao
 	 */
-	public Curso(String nome, String descricao, long duracao) {
+	public Curso(String nome, String descricao, Long duracao) {
 		this.nome = nome;
 		this.descricao = descricao;
 		this.duracao = duracao;
@@ -64,7 +64,7 @@ public class Curso {
 		this.urlImg = urlImg;
 	}
 	
-	public Curso(String nome, String descricao, int dificuldade, long duracao, String urlImg) {
+	public Curso(String nome, String descricao, int dificuldade, Long duracao, String urlImg) {
 		this.nome = nome;
 		this.descricao = descricao;
 		this.duracao = duracao;
@@ -88,7 +88,7 @@ public class Curso {
 	 * @param descricao
 	 * @param duracao
 	 */
-	public Curso(int id, String nome, String descricao, long duracao, String urlImg, int dificuldade) {
+	public Curso(int id, String nome, String descricao, Long duracao, String urlImg, int dificuldade) {
 		this.id_curso = id;
 		this.nome = nome;
 		this.descricao = descricao;
