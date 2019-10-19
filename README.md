@@ -1,4 +1,4 @@
-# Scherlock
+# Sherlock
 
 <h2>Repositório do projeto da AM da FIAP feito por:</h2>
 <ul>
