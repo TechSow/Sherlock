@@ -21,8 +21,8 @@ public class CursoBO implements ICursoBO {
 			throw new LengthException("Descrição excedeu quantidade de caracteres");
 		if (curso.getDuracao() <= 0)
 			throw new NumberException("Numero de duração de curso inválido");
-		if (curso.getDuracao() > 100)
-			throw new NumberException("Numero de duração maior que 100 horas");
+		if (curso.getUrlImg() == null)
+			throw new LengthException("Imagem nao existe");
 		if (curso.getNome().length() > 100)
 			throw new LengthException("Nome excedeu quantidade de caracteres");
 

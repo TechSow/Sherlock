@@ -31,7 +31,7 @@
 		<div class="col">
 			<label for="exampleFormControlTextarea1">Url da imagem do card</label> <input
 				type="text" class="form-control" name="urlimg"
-				placeholder="Algoritimos">
+				placeholder="http://exemplo.url.imagem/imagem">
 		</div>
 	</div>
 	<div class="form-group curso">
@@ -55,11 +55,17 @@
 				<option value="${materia.id_materia}" />${materia.nome}</option>
 			</c:forEach>
 		</select>
+		
 	</div>
+	
 
 	<br>
 	<br>
 	<button type="submit" class="btn btn-primary">Cadastar Curso!</button>
+	
+	<c:if test="${not empty curso }">
+	
+	</c:if>
 </form>
 
 

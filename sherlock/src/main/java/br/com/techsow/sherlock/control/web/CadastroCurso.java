@@ -42,6 +42,7 @@ public class CadastroCurso implements Task {
 			req.setAttribute("erro", new String[] {e.getMessage(), "danger", "exclamation"});
 		}
 		
+		req.setAttribute("curso", "Curso adicionado com sucesso");
 		return "admin.jsp";
 		
 	}

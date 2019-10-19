@@ -69,6 +69,7 @@ public class Curso {
 		this.descricao = descricao;
 		this.duracao = duracao;
 		this.dificuldade = dificuldade;
+		this.urlImg = urlImg;
 	}
 	
 	public String getUrlImg() {
