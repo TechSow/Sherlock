@@ -110,6 +110,20 @@
 			<option>5</option>
 		</select>
 	</div>
+	
+	
+	<div>
+		<label for="selectMateria">Escolha novas matérias p/ o curso</label> <select
+			data-placeholder="Escolha as matérias..." class="chosen-select"
+			name="selectedMaterias" id="selectMateria" multiple>
+			<option value=""></option>
+			<c:forEach var="materia" items="${materias}">
+				<option value="${materia.id_materia}" />${materia.nome}</option>
+			</c:forEach>
+		</select>
+
+	</div>
+	
 	<div class="row">
 		<div class="col">
 			<label for="exampleFormControlTextarea1">Url da imagem do
@@ -126,7 +140,7 @@
 	<div class="form-group">
 		<label for="exampleInputEmail1">Duração</label> <input
 			class="form-control" type="number" name="duracao"
-			placeholder="Horas previstas" required>
+			placeholder="Horas previstas" >
 	</div>
 
 

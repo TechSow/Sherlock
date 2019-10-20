@@ -5,12 +5,12 @@ import java.util.ArrayList;
 
 import br.com.techsow.sherlock.model.dao.CursoDAO;
 import br.com.techsow.sherlock.model.entities.Curso;
+import br.com.techsow.sherlock.model.entities.Materia;
 import br.com.techsow.sherlock.model.exception.ApelidoException;
 import br.com.techsow.sherlock.model.exception.DuplicatedException;
 import br.com.techsow.sherlock.model.exception.EmailNotFound;
 import br.com.techsow.sherlock.model.exception.LengthException;
 import br.com.techsow.sherlock.model.exception.NumberException;
-
 import br.com.techsow.sherlock.model.interfaces.bo.ICursoBO;
 
 public class CursoBO implements ICursoBO {
@@ -43,10 +43,10 @@ public class CursoBO implements ICursoBO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		Curso curso2 = this.getNoRelationedCurseId();
 		this.relateCursoMateria(curso2.getId_curso(), materias);
-		
+
 		if (retorno == 1) {
 			return "Sucesso ao adicionar curso";
 		} else {
@@ -54,7 +54,7 @@ public class CursoBO implements ICursoBO {
 		}
 	}
 
-	private Curso getNoRelationedCurseId() {
+	public Curso getNoRelationedCurseId() {
 		Curso curso = null;
 		try (CursoDAO dao = new CursoDAO()) {
 			curso = dao.getNoRelationedCurseId();
@@ -64,19 +64,19 @@ public class CursoBO implements ICursoBO {
 		return curso;
 	}
 
-	private int relateCursoMateria(int id,String[] materias ) {
+	public int relateCursoMateria(int cursoId,String[] materias ) {
 		for(int i = 0; i < materias.length; i++) {
-			
+
 			try(CursoDAO dao = new CursoDAO()){
-				dao.relateCursoMateria(id, Integer.parseInt(materias[i]));
+				dao.relateCursoMateria(cursoId, Integer.parseInt(materias[i]));
 			}catch(Exception e) {
 				e.printStackTrace();			
 			}
-			
+
 		}
-		
-		
-		
+
+
+
 		return 0;
 	}
 
@@ -133,9 +133,9 @@ public class CursoBO implements ICursoBO {
 		return "Descrição alterada";
 	}
 
-	public String updateDuracao(Curso c, Long duracao) throws NumberException {
+	public String updateDuracao(Curso c, long duracao) throws NumberException {
 
-		
+
 		try (CursoDAO dao = new CursoDAO()) {
 			dao.updateDuracao(c, duracao);
 		} catch (SQLException | ClassNotFoundException e) {
@@ -178,6 +178,7 @@ public class CursoBO implements ICursoBO {
 
 		return "Dificuldade alterada";
 	}
+
 
 	public ArrayList<Curso> getAll() {
 		ArrayList<Curso> cursos = null;

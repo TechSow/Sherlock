@@ -31,49 +31,59 @@ public class UpdateCurso implements Task {
 		String[] materias = req.getParameterValues("selectedMaterias");
 		String urlimg = req.getParameter("urlimg");
 		String descricao = req.getParameter("descricao");
-		
+
 		int idCurso = Integer.parseInt(req.getParameter("selectedCurso"));
 		int dificuldade = Integer.parseInt(req.getParameter("dificuldade"));
 		long duracao = Long.parseLong(req.getParameter("duracao"));
-		
-		
+
+
 		try {
 			Curso curso = new CursoBO().getById(idCurso);
-			
-			
+
+
 			if(nome.length() > 1) {
 				new CursoBO().updateNome(curso, nome);
 			}
-			
+
 			if(descricao.length() > 1) {
 				new CursoBO().updateDescricao(curso, descricao);
 			}
-			
+
 			if(dificuldade != 0) {
 				new CursoBO().updateDificuldade(curso, dificuldade);
 			}
-			
+
 			if(duracao > 0) {
 				new CursoBO().updateDuracao(curso, duracao);
 			}
-			
-			
+
+
 			if(urlimg != null) {
 				new CursoBO().updateURL(curso, urlimg);
 			}
-			
-			/* PRECISA SER IMPLEMENTADO
-			 * if(materias != null) { new CursoBO().updateMateria(curso, materias); }
-			 */
-			
-			
+
+			if(materias != null) { 
+
+				try {
+					
+					new CursoBO().relateCursoMateria(curso.getId_curso(), materias);
+					
+				} catch (Exception e) {
+					req.setAttribute("erro", new String[] {e.getMessage(), "danger", "exclamation"});
+				}	
+
+			}
+
+
+
+
 		} catch (Exception e) {
 			req.setAttribute("erro", new String[] {e.getMessage(), "danger", "exclamation"});
 		}				
-		
+
 		req.setAttribute("curso", "Curso adicionado com sucesso");
 		return "admin.jsp";
-		
+
 	}
 
 

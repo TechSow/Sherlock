@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import br.com.techsow.sherlock.model.entities.Curso;
+import br.com.techsow.sherlock.model.entities.Materia;
 import br.com.techsow.sherlock.model.interfaces.repository.ICursoRepository;
 import br.com.techsow.sherlock.model.services.ConnectionFactory;
 
@@ -88,7 +89,7 @@ public class CursoDAO extends BaseDAO implements ICursoRepository {
 		return stmt.executeUpdate();
 	}
 	
-	public int updateDuracao(Curso c, Long novaDuracao) throws Exception {
+	public int updateDuracao(Curso c, long novaDuracao) throws Exception {
 		stmt = conn.prepareStatement("UPDATE TS_T_CURSO SET DURACAO=? WHERE ID_CURSO=?");
 		stmt.setLong(1, novaDuracao);
 		stmt.setInt(2, c.getId_curso());
@@ -110,6 +111,14 @@ public class CursoDAO extends BaseDAO implements ICursoRepository {
 		stmt.setInt(2, c.getId_curso());
 		return stmt.executeUpdate();
 	}
+	
+	public int updateMaterias(Curso c, Materia novaMateria) throws Exception {
+		stmt = conn.prepareStatement("INSERT INTO TS_T_CURSO_MATERIA(ID_CURSO_MATERIA,FK_ID_MATERIA,FK_ID_CURSO) VALUES(c_curso_materia_seq.nextval,?,?)");
+		stmt.setInt(1, novaMateria.getId_materia());
+		stmt.setInt(2, c.getId_curso());
+		return stmt.executeUpdate();
+	}
+	
 	
 	@Override
 	public int kill(int id) throws Exception {
@@ -139,7 +148,7 @@ public class CursoDAO extends BaseDAO implements ICursoRepository {
 		ArrayList<Curso> cursos = new ArrayList<Curso>();
 		
 		while(rs.next()) {
-			Long duracao = rs.getLong(4); 
+			long duracao = rs.getLong(4); 
 			String nome = rs.getString(3);
 			String descricao = rs.getString(2);
 			String urlImg = rs.getString(5);
