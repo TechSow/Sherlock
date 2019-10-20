@@ -22,7 +22,7 @@
 			<div class="header">
 				<div>
 					<h2>Listagem de conteúdo</h2>
-					<p>seja bem vindo ${usuario.apelido} !</p>
+					<p>Seja bem-vindo, ${usuario.apelido}!</p>
 				</div>
 				<div>
 					<i class="fa fa-user" aria-hidden="true"></i> <a

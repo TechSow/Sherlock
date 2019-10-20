@@ -67,11 +67,6 @@
 
 
 
-
-
-
-
-
 <form class="updateCurso" action="controller" method="post"
 	style="display: none" class="col-sm-6 col-12">
 	<input type="hidden" name="tarefa" id="tarefa" value="UpdateCurso" />
@@ -121,7 +116,6 @@
 				<option value="${materia.id_materia}" />${materia.nome}</option>
 			</c:forEach>
 		</select>
-
 	</div>
 	
 	<div class="row">

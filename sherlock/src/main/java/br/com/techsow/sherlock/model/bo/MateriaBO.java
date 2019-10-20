@@ -135,6 +135,21 @@ public class MateriaBO implements IMateriaBO{
 
 		return "Materia Adicionada";
 	}
+	
+	public String updateUrlImg(Materia materia, String urlImg) {
+		
+		try (MateriaDAO dao = new MateriaDAO()){
+			dao.updateUrlImg(materia, urlImg);
+		} catch (SQLException | ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return "Imagem da materia atualizada";
+	}
+
+	
 
 
 	// Nao esta sendo utilizado, mas a interface obriga a implementacao
@@ -153,5 +168,6 @@ public class MateriaBO implements IMateriaBO{
 
 		return materias;
 	}
+
 
 }

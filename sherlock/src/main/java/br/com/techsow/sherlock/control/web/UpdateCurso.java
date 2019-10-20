@@ -34,7 +34,7 @@ public class UpdateCurso implements Task {
 
 		int idCurso = Integer.parseInt(req.getParameter("selectedCurso"));
 		int dificuldade = Integer.parseInt(req.getParameter("dificuldade"));
-		long duracao = Long.parseLong(req.getParameter("duracao"));
+		Long duracao = Long.parseLong(req.getParameter("duracao"));
 
 
 		try {
@@ -63,14 +63,8 @@ public class UpdateCurso implements Task {
 			}
 
 			if(materias != null) { 
-
-				try {
-					
-					new CursoBO().relateCursoMateria(curso.getId_curso(), materias);
-					
-				} catch (Exception e) {
-					req.setAttribute("erro", new String[] {e.getMessage(), "danger", "exclamation"});
-				}	
+				
+				new CursoBO().relateCursoMateria(curso.getId_curso(), materias);			
 
 			}
 

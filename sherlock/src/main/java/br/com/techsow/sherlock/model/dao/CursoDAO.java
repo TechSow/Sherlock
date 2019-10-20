@@ -98,7 +98,7 @@ public class CursoDAO extends BaseDAO implements ICursoRepository {
 	
 	
 	public int updateUrl(Curso c, String novaUrl) throws Exception {
-		stmt = conn.prepareStatement("UPDATE TS_T_CURSO SET DURACAO=? WHERE ID_CURSO=?");
+		stmt = conn.prepareStatement("UPDATE TS_T_CURSO SET URLIMG=? WHERE ID_CURSO=?");
 		stmt.setString(1, novaUrl);
 		stmt.setInt(2, c.getId_curso());
 		return stmt.executeUpdate();

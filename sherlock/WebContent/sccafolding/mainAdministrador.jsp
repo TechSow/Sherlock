@@ -33,31 +33,41 @@
 	top: 0;
 	bottom: 0;
 }
-
 </style>
 <div class="row">
 	<ul class="nav nav-tabs col-12 col-sm-12">
-		<li class="nav-item">
-			<button class="nav-link active" id="botaoProfessor"
-				onclick="admProfessor()">Professor</button>
-		</li>
+		<c:if test="${usuario.adm == 1 }">
+
+			<li class="nav-item">
+				<button class="nav-link active" id="botaoProfessor"
+					onclick="admProfessor()">Professor</button>
+			</li>
+
+			<li class="nav-item">
+				<button class="nav-link active" id="aluno" onclick="admAluno()">Aluno</button>
+			</li>
+		</c:if>
+
 		<li class="nav-item">
 			<button class="nav-link active" id="curso" onclick="admCurso()">Curso</button>
 		</li>
 		<li class="nav-item">
 			<button class="nav-link active" id="materia" onclick="admMateria()">Matéria</button>
 		</li>
-		<li class="nav-item">
-			<button class="nav-link active" id="aluno" onclick="admAluno()">Aluno</button>
-		</li>
 	</ul>
 </div>
 <div class="row">
 
-	<c:import url="sccafolding/cadastroProfessor.html" />
+
+
+
 	<c:import url="sccafolding/cadastroCurso.jsp" />
-	<c:import url="sccafolding/cadastroMateria.html" />
+	<c:import url="sccafolding/cadastroMateria.jsp" />
+	<c:import url="sccafolding/cadastroProfessor.html" />
 	<c:import url="sccafolding/cadastroAluno.html" />
+
+
+
 
 </div>
 
@@ -71,7 +81,7 @@
 	var m = document.querySelector(".materia");
 	var a = document.querySelector(".aluno");
 	var uc = document.querySelector(".updateCurso");
-
+	var um = document.querySelector(".updateMateria");
 
 	function admProfessor() {
 
@@ -81,6 +91,7 @@
 			m.style.display = "none";
 			a.style.display = "none";
 			uc.style.display = "none";
+			um.style.display = "none";
 		}
 	}
 
@@ -90,7 +101,8 @@
 			c.style.display = "block";
 			m.style.display = "none";
 			a.style.display = "none";
-			uc.style.display = "block"; 
+			uc.style.display = "block";
+			um.style.display = "none";
 
 		}
 	}
@@ -102,8 +114,10 @@
 			c.style.display = "none";
 			a.style.display = "none";
 			uc.style.display = "none";
+			um.style.display = "block";
+
 		}
-		
+
 	}
 
 	function admAluno() {
@@ -113,6 +127,7 @@
 			c.style.display = "none";
 			a.style.display = "block";
 			uc.style.display = "none";
+			um.style.display = "none";
 
 		}
 	}
