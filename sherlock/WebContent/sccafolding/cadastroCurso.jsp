@@ -134,7 +134,7 @@
 	<div class="form-group">
 		<label for="exampleInputEmail1">Duração</label> <input
 			class="form-control" type="number" name="duracao"
-			placeholder="Horas previstas" >
+			placeholder="Horas previstas" value="0" >
 	</div>
 
 

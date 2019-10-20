@@ -58,9 +58,8 @@ public class UpdateCurso implements Task {
 			}
 
 
-			if(urlimg != null) {
 				new CursoBO().updateURL(curso, urlimg);
-			}
+			
 
 			if(materias != null) { 
 				
@@ -72,7 +71,7 @@ public class UpdateCurso implements Task {
 
 
 		} catch (Exception e) {
-			req.setAttribute("erro", new String[] {e.getMessage(), "danger", "exclamation"});
+			req.setAttribute("curso", new String[] {e.getMessage(), "danger", "exclamation"});
 		}				
 
 		req.setAttribute("curso", "Curso adicionado com sucesso");
