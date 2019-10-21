@@ -139,12 +139,17 @@ public class CursoDAO extends BaseDAO implements ICursoRepository {
 		ArrayList<Curso> cursos = new ArrayList<Curso>();
 		
 		while(rs.next()) {
-			Long duracao = rs.getLong(4); 
-			String nome = rs.getString(3);
-			String descricao = rs.getString(2);
-			String urlImg = rs.getString(5);
-			int dificuldade = rs.getInt(6);
+			
 			int id = rs.getInt(1);
+			String nome = rs.getString(2);
+			String descricao = rs.getString(3);
+			
+			Long duracao = rs.getLong(4); 
+			int dificuldade = rs.getInt(5);
+			
+			String urlImg = rs.getString(6);
+		
+			
 			if(duracao == 0 && urlImg.isEmpty() && dificuldade == 0) 
 				cursos.add(new Curso(id, nome, descricao));
 			else
