@@ -57,9 +57,11 @@ public class UpdateCurso implements Task {
 				new CursoBO().updateDuracao(curso, duracao);
 			}
 
-
+			if(urlimg != null && !urlimg.isEmpty()) { 
+				
 				new CursoBO().updateURL(curso, urlimg);
-			
+				
+			}		
 
 			if(materias != null) { 
 				
