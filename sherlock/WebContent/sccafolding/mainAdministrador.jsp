@@ -56,19 +56,11 @@
 		</li>
 	</ul>
 </div>
-<div class="row">
-
-
-
-
+<div class="row d-flex justify-content-center align-items-center">
 	<c:import url="sccafolding/cadastroCurso.jsp" />
 	<c:import url="sccafolding/cadastroMateria.jsp" />
 	<c:import url="sccafolding/cadastroProfessor.html" />
 	<c:import url="sccafolding/cadastroAluno.html" />
-
-
-
-
 </div>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -90,7 +82,7 @@
 			c.style.display = "none";
 			m.style.display = "none";
 			a.style.display = "none";
-			uc.style.display = "none";
+			//uc.style.display = "none";
 			um.style.display = "none";
 		}
 	}
@@ -101,7 +93,7 @@
 			c.style.display = "block";
 			m.style.display = "none";
 			a.style.display = "none";
-			uc.style.display = "block";
+			//uc.style.display = "block";
 			um.style.display = "none";
 
 		}
@@ -113,7 +105,7 @@
 			m.style.display = "block";
 			c.style.display = "none";
 			a.style.display = "none";
-			uc.style.display = "none";
+			//uc.style.display = "none";
 			um.style.display = "block";
 
 		}
@@ -126,7 +118,7 @@
 			m.style.display = "none";
 			c.style.display = "none";
 			a.style.display = "block";
-			uc.style.display = "none";
+			//uc.style.display = "none";
 			um.style.display = "none";
 
 		}
@@ -144,13 +136,6 @@
 			expanded = false;
 		}
 	}
-
-	/* 
-	var btnProf =$("#botaoProfessor");
-	btnProf.on("click", function(e){
-	e.preventDefault()
-	$(".professor").toggleClass("d-none");	
-	}) */
 
 	$(function() {
 		$('.material-card > .mc-btn-action').click(

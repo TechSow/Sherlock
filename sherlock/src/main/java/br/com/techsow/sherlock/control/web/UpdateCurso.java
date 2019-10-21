@@ -76,6 +76,7 @@ public class UpdateCurso implements Task {
 		}				
 
 		req.setAttribute("curso", "Curso adicionado com sucesso");
+		
 		return "admin.jsp";
 
 	}
