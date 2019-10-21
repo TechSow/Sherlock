@@ -23,7 +23,7 @@ public class ControllerServlet extends HttpServlet {
 	 * @author Breno
 	 * 
 	 *         Controller master que irá receber todas requisiões e re-encaminhará
-	 *         para o devido tratamento.
+	 *         para o devido tratamento (classes).
 	 */
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

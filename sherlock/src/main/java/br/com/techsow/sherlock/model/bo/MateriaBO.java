@@ -6,14 +6,21 @@ import java.util.ArrayList;
 import br.com.techsow.sherlock.model.dao.MateriaDAO;
 import br.com.techsow.sherlock.model.entities.Conteudo;
 import br.com.techsow.sherlock.model.entities.Materia;
+import br.com.techsow.sherlock.model.exception.DuplicatedException;
 import br.com.techsow.sherlock.model.exception.LengthException;
 import br.com.techsow.sherlock.model.exception.NumberException;
 import br.com.techsow.sherlock.model.interfaces.bo.IMateriaBO;
 
 public class MateriaBO implements IMateriaBO{
 
-
-	public String add(Materia materia) throws LengthException {
+/**
+ * @author italo
+ * 
+ * Classe BO utilizada para tratar requisições para matérias e validao de inputs. 
+ * 
+ * @throws LengthException, DuplicatedException
+ */
+	public String add(Materia materia) throws LengthException, DuplicatedException {
 
 		if(materia.getEmenta().length() > 100) throw new  LengthException("Ementa excedeu quantidade de caracteres");
 
@@ -22,30 +29,7 @@ public class MateriaBO implements IMateriaBO{
 		}
 
 		if(materia.geturlImg().length() > 300) throw new  LengthException("URL da imagem excedeu quantidade de caracteres");
-		
-		/* Curso foi retirado da entidade materia
-		 * if(materia.getId_curso().getId() == 0) { return
-		 * "ID do curso nao encontrado. Curso não existe"; }
-		 */
-
-
-		/*Necessário avaliar como validar se uma materia ja pertence a um curso
-		 * 
-		 * CursoDAO cursoDao = null; try {
-		 * 
-		 * cursoDao = new CursoDAO();
-		 * if(cursoDao.getCursoId(materia.getId_curso().getId()) == 1) { return
-		 * "O curso informado ja contem essa máteria"; } } catch (Exception e1) {
-		 * e1.printStackTrace(); }
-		 */
-
-
-		/////////////////////////////////////////
-		//Espaco para os requisitos funcioinais//
-		/////////////////////////////////////////
-
-
-		
+				
 		int retorno = 0;
 
 		try (MateriaDAO materiaDao = new MateriaDAO()){

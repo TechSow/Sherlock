@@ -8,6 +8,13 @@ import br.com.techsow.sherlock.model.entities.Materia;
 import br.com.techsow.sherlock.model.interfaces.repository.IMateriaRepository;
 import br.com.techsow.sherlock.model.services.ConnectionFactory;
 
+/**
+ * 
+ * @author Italo 
+ * 
+ * Classe DAO para lidar com os CRUDs de Matéria vindos da BO. 
+ *
+ */
 public class MateriaDAO extends BaseDAO implements IMateriaRepository{
 
 	public MateriaDAO() throws Exception{

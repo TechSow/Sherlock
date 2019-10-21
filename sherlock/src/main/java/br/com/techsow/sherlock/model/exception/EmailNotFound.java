@@ -1,5 +1,11 @@
 package br.com.techsow.sherlock.model.exception;
 
+/**
+ * 
+ * @author Breno
+ * Exception para lidar com erro ao procurar se o Email existe no banco de dados
+ *
+ */
 public class EmailNotFound  extends Exception{
 
 	private static final long serialVersionUID = 1L;

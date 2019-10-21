@@ -1,7 +1,7 @@
 package br.com.techsow.sherlock.model.entities;
 /**
  * beans do usuário
- * @author Breno
+ * @author Breno e italo
  *
  */
 public class Usuario {

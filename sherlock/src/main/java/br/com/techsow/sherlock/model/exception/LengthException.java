@@ -1,5 +1,13 @@
 package br.com.techsow.sherlock.model.exception;
 
+/**
+ * 
+ * @author italo
+ * 
+ * Exception customizada para lidar com problemas de tamanhos de campos (Int e String)
+ *
+ */
+
 public class LengthException extends Exception {
 
 

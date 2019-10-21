@@ -9,6 +9,13 @@ import br.com.techsow.sherlock.model.entities.Usuario;
 import br.com.techsow.sherlock.model.interfaces.repository.IPessoaRepository;
 import br.com.techsow.sherlock.model.services.ConnectionFactory;
 
+/**
+ * 
+ * @author Italo 
+ * 
+ * Classe DAO para lidar com os CRUDs de Pessoa vindos da BO. 
+ *
+ */
 public class PessoaDAO extends BaseDAO implements IPessoaRepository{
 
 

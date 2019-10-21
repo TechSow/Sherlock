@@ -17,7 +17,7 @@ public class CadastroMateria implements Task {
 	 * @author Italo
 	 * 
 	 *         Classe criada para lidar com as requisicoes de criacao de novos materias
-	 *         A requisicao vem da Servlet Controller
+	 *         A requisicao vem da Servlet Controller e através da JSP cadastroMatéria
 	 * @throws LengthException 
 	 */
 	@Override

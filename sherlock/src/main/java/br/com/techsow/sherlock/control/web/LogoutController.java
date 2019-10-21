@@ -9,7 +9,12 @@ import br.com.techsow.sherlock.model.interfaces.web.Task;
 public class LogoutController implements Task {
 	
 
-
+	/**
+	 * @author Breno
+	 * 
+	 * Classe responsável pelo logout do usuário. 
+	 * 
+	 */
 	@Override
 	public String processTask(HttpServletRequest req, HttpServletResponse resp) {
 		HttpSession session = req.getSession();

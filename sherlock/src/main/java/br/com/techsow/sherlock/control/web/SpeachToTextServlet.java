@@ -23,7 +23,9 @@ import com.ibm.watson.speech_to_text.v1.model.SpeechRecognitionResults;
 public class SpeachToTextServlet extends HttpServlet{
 
 	private static final long serialVersionUID = -3899702731176357527L;
-
+	/**
+	 * Servlet implementation class SpeachToTextServlet
+	 */
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		

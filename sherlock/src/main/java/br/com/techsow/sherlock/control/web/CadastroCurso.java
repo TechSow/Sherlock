@@ -19,7 +19,7 @@ public class CadastroCurso implements Task {
 	 * @author Italo e Breno
 	 * 
 	 *         Classe criada para lidar com as requisicoes de criacao de novos cursos
-	 *         A requisicao vem da Servlet Controller
+	 *         A requisicao vem da Servlet Controller e através da JSP cadastroCurso
 	 * @throws Exception 
 	 * @throws SQLException 
 	 * @throws ClassNotFoundException 

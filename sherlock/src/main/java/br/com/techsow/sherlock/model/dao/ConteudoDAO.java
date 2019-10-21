@@ -9,6 +9,14 @@ import br.com.techsow.sherlock.model.services.ConnectionFactory;
 
 public class ConteudoDAO extends BaseDAO implements IConteudoRepository {
 
+	/**
+	 * @author Breno 
+	 * 
+	 * Classe DAO para lidar com CRUDs de conteudo. 
+	 * Não finalizada por ser low priority
+	 * 
+	 * @throws Exception
+	 */
 	public ConteudoDAO() throws Exception {
 		conn = ConnectionFactory.getConnection();
 	}

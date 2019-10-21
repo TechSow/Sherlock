@@ -7,9 +7,19 @@ import br.com.techsow.sherlock.model.exception.LengthException;
 
 public class PessoaBO {
 
+	/**
+	 * 
+	 * 
+	 * @author Italo 
+	 * Classe para lidar com criação e update de Pessoa, assim como erros de input
+	 * @param pessoa
+	 * @return
+	 * @throws LengthException
+	 * @throws DuplicatedException
+	 */
 	public String addPessoa(Pessoa pessoa) throws LengthException, DuplicatedException {
 
-		if(pessoa.getNome().length()>20)throw new  LengthException("Nomeexcedeu quantidade de caracteres");
+		if(pessoa.getNome().length()>20)throw new  LengthException("Nome excedeu quantidade de caracteres");
 		if(pessoa.getSobrenome().length()>30) throw new  LengthException("Sobrenome excedeu quantidade de caracteres");
 		
 		

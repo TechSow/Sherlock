@@ -13,6 +13,14 @@ public class RecuperarSenhaController implements Task {
 
 	private static int code;
 
+	/**
+	 * @author breno 
+	 * 
+	 * Classe responsável pelas ações necessárias para o usuario recuperar sua senha
+	 * Geração de ódigo de segurança e validação do código de segurança
+	 * Ação de update de Senha no banco de dados
+	 * 
+	 */
 	public String processTask(HttpServletRequest req, HttpServletResponse resp) {
 		if(req.getMethod().toUpperCase().equals("GET"))
 			return doGet(req,resp);

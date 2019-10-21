@@ -15,6 +15,10 @@ import br.com.techsow.sherlock.model.interfaces.bo.ICursoBO;
 
 public class CursoBO implements ICursoBO {
 
+	/**
+	 * @author italo
+	 * BO para lidar com requisições de Curso e tratavivas de input
+	 */
 	public String add(Curso curso, String[] materias) throws LengthException, NumberException {
 
 		if (curso.getDescricao().length() > 255)

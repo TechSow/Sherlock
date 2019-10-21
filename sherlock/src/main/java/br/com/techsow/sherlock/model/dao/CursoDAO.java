@@ -6,7 +6,13 @@ import java.util.ArrayList;
 import br.com.techsow.sherlock.model.entities.Curso;
 import br.com.techsow.sherlock.model.interfaces.repository.ICursoRepository;
 import br.com.techsow.sherlock.model.services.ConnectionFactory;
-
+/**
+ * 
+ * @author Italo 
+ * 
+ * Classe DAO para lidar com os CRUDs de Curso vindos da BO. 
+ *
+ */
 public class CursoDAO extends BaseDAO implements ICursoRepository {
 
 	public CursoDAO() throws ClassNotFoundException, SQLException {

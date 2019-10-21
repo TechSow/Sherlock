@@ -12,7 +12,13 @@ import br.com.techsow.sherlock.model.interfaces.web.Task;
 
 public class GetMateriaController implements Task {
 
-	
+	/**
+	 * 
+	 * @author italo
+	 * Classe que trará todas as matérias cadastradas no banco. 
+	 * Utilizada na hora de cadastrar ou alterar cursos e matérias na área administrativa e áre do professor. 
+	 * 
+	 */
 	public String processTask(HttpServletRequest req, HttpServletResponse resp)  {
 		
 		

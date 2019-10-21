@@ -7,6 +7,13 @@ import br.com.techsow.sherlock.model.entities.Unanswered;
 import br.com.techsow.sherlock.model.interfaces.repository.IUnansweredRepository;
 import br.com.techsow.sherlock.model.services.ConnectionFactory;
 
+/**
+ * 
+ * @author Italo 
+ * 
+ * Classe DAO para lidar com os CRUDs de Mensagens nao respondidas pelo bot vindos da BO. 
+ *
+ */
 public class UnansweredDAO extends BaseDAO implements IUnansweredRepository{
 
 	public UnansweredDAO() throws ClassNotFoundException, SQLException {

@@ -2,6 +2,10 @@ package br.com.techsow.sherlock.model.bo;
 
 
 
+/**
+  @author Breno 
+ * BO para armazenamento das perguntas não respondidas pelo BOT
+ */
 
 import br.com.techsow.sherlock.model.dao.UnansweredDAO;
 import br.com.techsow.sherlock.model.entities.Unanswered;

@@ -25,9 +25,19 @@ import br.com.techsow.sherlock.model.entities.Usuario;
 @WebServlet(urlPatterns = "/assistant")
 public class AssistantServlet extends HttpServlet {
 
+	/**
+	 * Servlet para receber mensagem através do chatbox, processar a mensagem e então responder mandando a
+	 * mensagem para o chatbox novamente. 
+	 * 
+	 */
+	
 	private static final long serialVersionUID = 1L;
 	private MessageContext context = new MessageContext();
 	
+	/**
+	 * Recebe a pergunta e encaminha ela para o watson, watson responde, e fazemos uma tratativa dependendo de qual
+	 * resposta ele retornar para o método.
+	 */
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String msg = req.getParameter("question");

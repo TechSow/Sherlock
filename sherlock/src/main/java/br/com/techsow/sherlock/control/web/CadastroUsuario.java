@@ -18,7 +18,7 @@ public class CadastroUsuario implements Task {
 	 * @author Italo
 	 * 
 	 *         Classe criada para lidar com as requisicoes de criacao de novos usuarios
-	 *         A requisicao vem da Servlet Controller
+	 *         A requisicao vem da Servlet Controller e da JSP cadastroUsuario
 	 * @throws LengthException 
 	 */
 	@Override

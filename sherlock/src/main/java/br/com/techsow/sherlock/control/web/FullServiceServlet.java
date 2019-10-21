@@ -21,6 +21,13 @@ public class FullServiceServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 8243165626402208738L;
 
+	/**
+	 * @author Andrey
+	 * @implNote Breno
+	 * 	 
+	 * Classe para criar um arquivo de audio e enviar para a tratativa de STT E TTS 
+	 * 
+	 */
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	
@@ -53,6 +60,17 @@ public class FullServiceServlet extends HttpServlet {
 		TextToSpeachServlet ttss = new TextToSpeachServlet(response);
 		ttss.doPost(req, resp);
 	}
+	
+	/**
+	 * 
+	 * @author Breno 
+	 * 
+	 * Método para guardar toda mensagem que não tenha uma intenção configurada pra ele. 
+	 * 
+	 * @param mensagem
+	 * @param audio
+	 * @param req
+	 */
 	
 	private void responseTreatment(String mensagem, byte[] audio, HttpServletRequest req) {
 		UnansweredBO bo = new UnansweredBO();

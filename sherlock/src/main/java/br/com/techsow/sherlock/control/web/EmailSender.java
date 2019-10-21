@@ -13,6 +13,14 @@ import javax.mail.internet.MimeMessage;
 
 import br.com.techsow.sherlock.model.entities.Usuario;
 
+/**
+ * 
+ * @author Breno
+ *@
+ * Classe que cuida dos atributos necessários para realizar o envio de email para o usuario quando ele quiser recuperar 
+ * senha  
+ *
+ */
 public class EmailSender {
 	final String from = "technology.sow@gmail.com";
 	final String username = "technology.sow@gmail.com";
@@ -26,6 +34,16 @@ public class EmailSender {
 
 	}
 
+	/**
+	 * @author Breno
+	 * Setando informações de servidor smtp
+	 * Setando código de segurança para usuario
+	 * Logando no servidor de smtp
+	 * montando a mensagem de Email
+	 * Enviando Email
+	 * 
+	 * @param usuario
+	 */
 	public void enviarEmail(Usuario usuario) {
 		Properties props = new Properties();
 		props.put("mail.smtp.auth", "true");

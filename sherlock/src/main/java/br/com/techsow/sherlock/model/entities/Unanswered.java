@@ -4,6 +4,9 @@ package br.com.techsow.sherlock.model.entities;
 
 /**
  * @author Breno
+ * Entidade paa as perguntas que não foram respondidas pelo bot. 
+ * Essa mensagens serão analisadas e tratadas posteriormente. 
+ * 
  *
  */
 public class Unanswered {
@@ -13,7 +16,15 @@ public class Unanswered {
 	private byte[] audio;
 	
 	
-	
+	/**
+	 * 
+	 * Métodos para guardar a pergunta feita e que n teve responsta 
+	 * 
+	 * @param id_unanswered
+	 * @param id_usuario
+	 * @param mensagem
+	 * @param audio
+	 */
 	public Unanswered(int id_unanswered, int id_usuario, String mensagem, byte[] audio) {
 		this.id_unanswered = id_unanswered;
 		this.id_usuario = id_usuario;

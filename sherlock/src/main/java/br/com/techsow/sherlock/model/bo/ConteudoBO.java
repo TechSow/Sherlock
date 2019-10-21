@@ -8,6 +8,13 @@ import br.com.techsow.sherlock.model.interfaces.bo.IConteudoBO;
 
 public class ConteudoBO implements IConteudoBO {
 
+	/**
+	 * @author Italo
+	 * 
+	 * BO para lidar com requisições do Usuario
+	 * Regras de negócio e tratativas de input.
+	 * 
+	 */
 	public ArrayList<Conteudo> getConteudoFromMateriaId(int id_materia) {
 		ArrayList<Conteudo> conteudos = new ArrayList<Conteudo>();
 

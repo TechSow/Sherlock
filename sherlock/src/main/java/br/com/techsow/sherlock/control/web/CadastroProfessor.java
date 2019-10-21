@@ -17,7 +17,7 @@ public class CadastroProfessor implements Task {
 	/**
 	 * @author Italo
 	 * 
-	 *         Classe criada para lidar com as requisicoes de tornar um Usuario comum em professor na plataforma
+	 *         Classe criada para lidar com as requisicoes de criar um professor na plataforma
 	 *         A requisicao vem da Servlet Controller pela jsp cadastroProfessor
 	 * @throws LengthException 
 	 * @throws EmailNotFound 
