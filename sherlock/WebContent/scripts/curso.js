@@ -1,4 +1,8 @@
-$("#cursoOptionAtt").on("click", function(e) {
+document.querySelector("#cursoOptionAtt").addEventListener("change", function(e){
+	this.options[this.selectedIndex].value;
+})
+
+$("#cursoOptionAtt").on("change", function(e) {
 	var xhr = new XMLHttpRequest();
 	xhr.open("GET", "cursos", true);
 	xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -12,11 +16,7 @@ $("#cursoOptionAtt").on("click", function(e) {
 			console.log(xhr.responseText);
 		}
 	});
-	var data = "id_curso=" + 47; 
+	var data = "id_curso=" + this.options[this.selectedIndex].value; 
 	xhr.send(data);
 })
 
-$('#cursoOptionAtt').change(function() {
-    var val = $("#cursoOptionAtt option:selected").text();
-    alert(val);
-});

@@ -31,7 +31,9 @@ public class CursoController extends HttpServlet implements Task{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		int id_curso = Integer.parseInt(req.getParameter("id_curso"));
+		System.out.println(req.getParameter("id_curso"));
+		int id_curso = 47;
+		
 		String json = new Gson().toJson(new CursoBO().getById(id_curso));
 	    resp.setContentType("application/json");
 	    resp.setCharacterEncoding("UTF-8");

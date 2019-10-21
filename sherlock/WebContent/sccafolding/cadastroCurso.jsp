@@ -65,7 +65,7 @@
 
 <div class=" col-12 col-lg-6 d-flex mt-3 justify-content-center align-items-center flex-column">
 			<select id="cursoOptionAtt" class="form-control">
-				<option value="">Selecione para alterar</option>
+				<option>Selecione para alterar</option>
 				<c:forEach var="curso" items="${cursos}">
 					<option  value="${curso.id_curso}">
 						${curso.nome}
