@@ -39,7 +39,7 @@ public class UsuarioDAO extends BaseDAO implements IUsuarioRepository{
 	public int generateId() throws SQLException {
 		int id=0;
 
-		PreparedStatement stmt = conn.prepareStatement("SELECT * FROM USUARIOTS");
+		PreparedStatement stmt = conn.prepareStatement("SELECT * FROM USUARIOS");
 		ResultSet rs = stmt.executeQuery();
 
 		while(rs.next()) {

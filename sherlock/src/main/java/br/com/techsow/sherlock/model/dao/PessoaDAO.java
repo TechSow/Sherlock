@@ -26,8 +26,8 @@ public class PessoaDAO extends BaseDAO implements IPessoaRepository{
 		if(rs.next()) {
 			return new Pessoa(
 					rs.getInt("ID_PESSOA"),
-					rs.getString("NOME"),
-					rs.getString("SOBRENOME"),
+					rs.getString("NOME_PESSOA"),
+					rs.getString("SOBRENOME_PESSOA"),
 					userDao.getById(rs.getInt("ID_USUARIO")));
 					
 		}else {
@@ -37,7 +37,7 @@ public class PessoaDAO extends BaseDAO implements IPessoaRepository{
 	
 	
 	public int add(Pessoa p)throws Exception{
-		stmt=conn.prepareStatement("insert into TS_T_PESSOA (ID_PESSOA,NOME,SOBRENOME,ID_USUARIO) values(c_pessoa_seq.nextval,?,?,?)");
+		stmt=conn.prepareStatement("insert into TS_T_PESSOA (ID_PESSOA,NOME_PESSOA,SOBRENOME_PESSOA,ID_USUARIO) values(c_pessoa_seq.nextval,?,?,?)");
 		stmt.setString(1, p.getNome());
 		stmt.setString(2, p.getSobrenome());
 		stmt.setInt(3, p.getUsuarioId().getIdUsuario());
