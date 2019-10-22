@@ -2,7 +2,7 @@
 	pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<form class="curso col-lg-6 col-12" action="controller" method="post"
+<form class="curso col-lg-6 col-12" id="formCadastroCurso" action="controller" method="post"
 	style="display: none" >
 	
 	<input type="hidden" name="tarefa" id="tarefa" value="CadastroCurso" />

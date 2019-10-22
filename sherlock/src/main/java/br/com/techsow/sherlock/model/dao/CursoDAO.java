@@ -54,7 +54,7 @@ public class CursoDAO extends BaseDAO implements ICursoRepository {
 		rs = stmt.executeQuery();
 
 		if (rs.next()) 
-			return new Curso(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getLong(4),rs.getString(5), rs.getInt(6));
+			return new Curso(rs.getInt(1), rs.getString(3), rs.getString(2), rs.getLong(4),rs.getString(5), rs.getInt(6));
 
 		return null;
 	}

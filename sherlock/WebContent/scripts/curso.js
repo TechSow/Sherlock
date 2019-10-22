@@ -1,5 +1,17 @@
-var form = document.querySelector()
+var form = document.querySelector("#formCadastroCurso");
+var nome = form.nome;
+var dificuldade = form.dificuldade;
+var urlimg = form.urlimg;
+var descricao = form.descricao;
+var duracao = form.duracao;
+var materias = form.selectedMaterias;
 
+console.log(nome);
+console.log(dificuldade);
+console.log(urlimg);
+console.log(descricao);
+console.log(duracao);
+console.log(materias);
 
 document.querySelector("#cursoOptionAtt").addEventListener("change", function(e){
 	this.options[this.selectedIndex].value;
