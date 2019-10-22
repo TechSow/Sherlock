@@ -78,4 +78,18 @@ public class PessoaBO {
 		}
 
 	}
+
+	public Pessoa getByUserId(int id) throws Exception{
+		Pessoa pessoa = null;
+		try (PessoaDAO dao = new PessoaDAO()){
+			
+			pessoa = dao.getByUserId(id);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return pessoa;
+	}
+	
 }
