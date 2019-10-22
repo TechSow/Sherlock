@@ -22,4 +22,6 @@ $("#cursoOptionAtt").on("change", function(e) {
 	var data = "id=" + this.options[this.selectedIndex].value; 
 	xhr.send(data);
 })
-function configureView()
+function configureView(){
+	
+}
