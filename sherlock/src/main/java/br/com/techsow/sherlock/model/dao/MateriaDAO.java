@@ -103,7 +103,7 @@ public class MateriaDAO extends BaseDAO implements IMateriaRepository{
 
 	public ArrayList<Materia> getMateriasFromCursoId(int id_curso) throws Exception {
 		ArrayList<Materia> materias = new ArrayList<Materia>();
-		stmt = conn.prepareStatement("SELECT ID_MATERIA, NOME_MATERIA, EMENTA_MATERIA, URLIMG_MATERIA FROM TS_T_CURSO_MATERIA INNER JOIN TS_T_CURSO ON TS_T_CURSO_MATERIA.ID_CURSO = TS_T_CURSO.ID_CURSO INNER JOIN TS_T_MATERIA ON TS_T_MATERIA.ID_MATERIA = TS_T_CURSO_MATERIA.ID_MATERIA WHERE ID_CURSO = ?");
+		stmt = conn.prepareStatement("SELECT ID_MATERIA, NOME_MATERIA, EMENTA_MATERIA, URLIMG_MATERIA FROM TS_T_CURSO_MATERIA INNER JOIN TS_T_CURSO ON TS_T_CURSO_MATERIA.FK_ID_CURSO = TS_T_CURSO.ID_CURSO INNER JOIN TS_T_MATERIA ON TS_T_MATERIA.ID_MATERIA = TS_T_CURSO_MATERIA.FK_ID_MATERIA WHERE ID_CURSO = ?");
 		stmt.setInt(1, id_curso);
 		rs = stmt.executeQuery();
 
