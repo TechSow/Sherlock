@@ -148,14 +148,8 @@ public class CursoDAO extends BaseDAO implements ICursoRepository {
 		ArrayList<Curso> cursos = new ArrayList<Curso>();
 		
 		while(rs.next()) {
-<<<<<<< HEAD
-
-			int id = rs.getInt(1);
-			String nome = rs.getString(2);
-			String descricao = rs.getString(3);
 			
-=======
->>>>>>> parent of 82b1f4f... Mudanca do banco de dados
+
 			Long duracao = rs.getLong(4); 
 			String nome = rs.getString(3);
 			String descricao = rs.getString(2);

@@ -27,6 +27,45 @@ public class CadastroCurso implements Task {
 	@Override
 	public String processTask(HttpServletRequest req, HttpServletResponse resp) throws ClassNotFoundException, SQLException, Exception {
 
+		String id = req.getParameter("id_curso");
+		
+		if(id.isEmpty() || id == null) {
+			return doPost(req,resp);
+		}else {
+			return doPut(req,resp);
+		}
+
+		
+		
+		
+		
+	}
+
+	public String doPut(HttpServletRequest req,HttpServletResponse resp) {
+		String id = req.getParameter("id_curso");
+		String nome = req.getParameter("nome");
+		String[] materias = req.getParameterValues("selectedMaterias");
+		String urlimg = req.getParameter("urlimg");
+		String descricao = req.getParameter("descricao");
+		int dificuldade = Integer.parseInt(req.getParameter("dificuldade"));
+		long duracao = Long.parseLong(req.getParameter("duracao"));
+			
+		try {
+			Curso curso= new Curso(nome, descricao, dificuldade, duracao,urlimg);
+			curso.setId_curso(Integer.parseInt(id));
+			cursoBO = new CursoBO().add(curso, materias);	
+			
+		} catch (Exception e) {
+			req.setAttribute("erro", new String[] {e.getMessage(), "danger", "exclamation"});
+		}
+		
+		req.setAttribute("erro", new String[] {"curso cadastrado com sucesso", "success", "check"});
+		return "admin.jsp";
+	}
+	
+	public String doPost(HttpServletRequest req,HttpServletResponse resp) {
+	
+
 		String nome = req.getParameter("nome");
 				
 		String[] materias = req.getParameterValues("selectedMaterias");
@@ -37,17 +76,15 @@ public class CadastroCurso implements Task {
 			
 		try {
 			Curso curso= new Curso(nome, descricao, dificuldade, duracao,urlimg);
+			
 			cursoBO = new CursoBO().add(curso, materias);	
 			
 		} catch (Exception e) {
 			req.setAttribute("erro", new String[] {e.getMessage(), "danger", "exclamation"});
 		}
 		
-		req.setAttribute("curso", "Curso adicionado com sucesso");
+		req.setAttribute("erro", new String[] {"curso cadastrado com sucesso", "success", "check"});
 		return "admin.jsp";
-		
 	}
-
-
 
 }
