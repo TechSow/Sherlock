@@ -41,22 +41,20 @@ public class Usuario {
 	 * @param professor
 	 */
 	
-	public Usuario(int idUsuario, String email, String apelido, String senha, int adm, int professor,int aluno) {
+	public Usuario(int idUsuario, String email, String senha, int adm, int professor,int aluno, String apelido) {
 		this.idUsuario = idUsuario;
 		this.email = email;
-		this.apelido = apelido;
 		this.senha = senha;
-		this.adm = adm;
-		this.professor = professor;
 		this.aluno = aluno;
-		
-	
+		this.adm = adm; 
+		this.professor = professor;
+		this.apelido = apelido;
 	}
 	
 	
 	
 	public Usuario(String email, String apelido, String senha, int adm, int professor,int aluno) {
-		
+		this.idUsuario = idUsuario;
 		this.email = email;
 		this.senha = senha;
 		this.aluno = aluno;
@@ -76,8 +74,6 @@ public class Usuario {
 		this.senha = senha;
 		this.apelido = apelido;
 	}
-
-	
 
 	public int getAluno() {
 		return aluno;

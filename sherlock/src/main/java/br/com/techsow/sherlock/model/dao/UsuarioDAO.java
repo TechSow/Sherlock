@@ -39,7 +39,7 @@ public class UsuarioDAO extends BaseDAO implements IUsuarioRepository{
 	public int generateId() throws SQLException {
 		int id=0;
 
-		PreparedStatement stmt = conn.prepareStatement("SELECT * FROM USUARIOS");
+		PreparedStatement stmt = conn.prepareStatement("SELECT * FROM USUARIOTS");
 		ResultSet rs = stmt.executeQuery();
 
 		while(rs.next()) {
@@ -61,10 +61,10 @@ public class UsuarioDAO extends BaseDAO implements IUsuarioRepository{
 					rs.getInt(1),
 					rs.getString(2),
 					rs.getString(3),
-					rs.getString(4),
+					rs.getInt(4),
 					rs.getInt(5),
 					rs.getInt(6),
-					rs.getInt(7));
+					rs.getString(7));
 
 		}
 
@@ -84,10 +84,10 @@ public class UsuarioDAO extends BaseDAO implements IUsuarioRepository{
 					rs.getInt(1),
 					rs.getString(2),
 					rs.getString(3),
-					rs.getString(4),
+					rs.getInt(4),
 					rs.getInt(5),
 					rs.getInt(6),
-					rs.getInt(7));
+					rs.getString(7));
 
 			return usuario; 
 		}
@@ -106,13 +106,10 @@ public class UsuarioDAO extends BaseDAO implements IUsuarioRepository{
 					rs.getInt(1),
 					rs.getString(2),
 					rs.getString(3),
-					rs.getString(4),
+					rs.getInt(4),
 					rs.getInt(5),
 					rs.getInt(6),
-					rs.getInt(7));
-				
-
-		
+					rs.getString(7));
 
 		}
 
@@ -148,10 +145,10 @@ public class UsuarioDAO extends BaseDAO implements IUsuarioRepository{
 					rs.getInt(1),
 					rs.getString(2),
 					rs.getString(3),
-					rs.getString(4),
+					rs.getInt(4),
 					rs.getInt(5),
 					rs.getInt(6),
-					rs.getInt(7));
+					rs.getString(7));
 		}else {
 			return null;
 		}

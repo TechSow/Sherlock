@@ -27,7 +27,7 @@ public class CursoDAO extends BaseDAO implements ICursoRepository {
 	}
 
 	public Curso getNoRelationedCurseId() throws Exception {
-		stmt = conn.prepareStatement("select * from ts_t_curso where not exists( select * from ts_t_curso_materia  where ts_t_curso_materia.id_curso = ts_t_curso.id_curso)");
+		stmt = conn.prepareStatement("select * from ts_t_curso where not exists( select * from ts_t_curso_materia  where ts_t_curso_materia.fk_id_curso = ts_t_curso.id_curso)");
 		rs = stmt.executeQuery();
 		if (rs.next()) {
 			return new Curso(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getLong(4),rs.getString(5), rs.getInt(6));
@@ -40,7 +40,7 @@ public class CursoDAO extends BaseDAO implements ICursoRepository {
 	
 	public int relateCursoMateria(int cursoId, int materiaId) throws SQLException {
 
-		stmt = conn.prepareStatement("insert into ts_t_curso_materia(id_curso_materia,id_curso,id_materia) values(c_curso_materia_seq.nextval,?,?)");
+		stmt = conn.prepareStatement("insert into ts_t_curso_materia(id_curso_materia,fk_id_curso,fk_id_materia) values(c_curso_materia_seq.nextval,?,?)");
 		stmt.setInt(1, cursoId);
 		stmt.setInt(2, materiaId);
 		return stmt.executeUpdate();
@@ -148,17 +148,20 @@ public class CursoDAO extends BaseDAO implements ICursoRepository {
 		ArrayList<Curso> cursos = new ArrayList<Curso>();
 		
 		while(rs.next()) {
+<<<<<<< HEAD
 
 			int id = rs.getInt(1);
 			String nome = rs.getString(2);
 			String descricao = rs.getString(3);
 			
+=======
+>>>>>>> parent of 82b1f4f... Mudanca do banco de dados
 			Long duracao = rs.getLong(4); 
-			int dificuldade = rs.getInt(5);
-			
-			String urlImg = rs.getString(6);
-		
-			
+			String nome = rs.getString(3);
+			String descricao = rs.getString(2);
+			String urlImg = rs.getString(5);
+			int dificuldade = rs.getInt(6);
+			int id = rs.getInt(1);
 			if(duracao == 0 && urlImg.isEmpty() && dificuldade == 0) 
 				cursos.add(new Curso(id, nome, descricao));
 			else
