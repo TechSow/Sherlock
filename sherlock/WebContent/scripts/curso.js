@@ -9,7 +9,11 @@ var materias = form.selectedMaterias;
 var id_curso = form.id_curso;
 
 $("#cursoOptionAtt").on("change", function(e) {
-	var idCurso = this.options[this.selectedIndex].value || 0;
+	var idCurso = this.options[this.selectedIndex].value;
+	if(idCurso == ""){
+		resetForm();
+		return
+	}
 	var xhr = new XMLHttpRequest();
 	xhr.open("post", "curso", true);
 	xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -17,7 +21,7 @@ $("#cursoOptionAtt").on("change", function(e) {
 		if (xhr.status == 200) {
 			// Codigo de sucesso
 			curso = JSON.parse(xhr.response);
-			configureForm(curso);
+			setForm(curso);
 			configureCard(curso);
 		} else {
 			// Codigo de deu ruim!
@@ -29,7 +33,7 @@ $("#cursoOptionAtt").on("change", function(e) {
 	xhr.send(data);
 })
 
-function configureForm(curso) {
+function setForm(curso) {
 	nome.value = curso.nome;
 	dificuldade.value = curso.dificuldade;
 	urlimg.value = curso.urlImg;
@@ -37,6 +41,15 @@ function configureForm(curso) {
 	duracao.value = curso.duracao;
 	id_curso.value = curso.id_curso;
 	setSelectedMaterias(curso);
+}
+function resetForm() {
+	id_curso.value= null;
+	nome.value="";
+	dificuldade.value = null;
+	urlimg.value="";
+	descricao.value="";
+	duracao.value=null;
+	resetSelectedMaterias();
 }
 
 function setSelectedMaterias(curso){
@@ -53,9 +66,14 @@ function setSelectedMaterias(curso){
 	}
 }
 
+function resetSelectedMaterias(){
+	for (var i = 0; i < materias.options.length; i++) {
+			materias.options[i].selected = false;
+	}
+}
 
 
-function configureCard(curso) {
+function setCard(curso) {
 	var card = document.querySelector(".material-card");
 	card.querySelector("#nomeCurso").textContent = curso.nome;
 	limparElemento(card.querySelector("#dificuldadeCurso"));
