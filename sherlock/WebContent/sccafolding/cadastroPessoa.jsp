@@ -5,7 +5,8 @@
 <form class="aluno" action="controller" method="post"
 	style="display: block" class="col-sm-6 col-12">
 	<input type="hidden" name="tarefa" id="tarefa" value="CadastroUsuario" />
-	<input type="hidden" name="from" id="tarefa" value="CadastroUsuarioAdm" />
+	<input type="hidden" name="from" value="2" />
+	<input type="hidden" name="idUsuario" value="${usuarioId} }" />
 
 
 	<h2>Cadastro do Usuario</h2>
@@ -14,36 +15,34 @@
 			type="email" class="form-control" id="exampleInputEmail1"
 			name="email" aria-describedby="emailHelp"
 			placeholder="Digitar novo Email"> <small id="emailHelp"
-			class="form-text text-muted">Nunca compartilhar o email com
-			ninguém.</small>
+			class="form-text text-muted">Campo único e obrigatório, pode ser usado como login.</small>
 	</div>
 
 	<div class="form-group">
 		<label for="exampleInputEmail1">Apelido: ${usuario.apelido}</label> <input
 			class="form-control" type="text" name="apelido"
-			placeholder="Digitar Novo apelido" required> <small
-			id="emailHelp" class="form-text text-muted">O apelido precisa
-			ser unico e pode ser utilizado para login.</small>
+			placeholder="Digitar Novo apelido" > <small
+			id="emailHelp" class="form-text text-muted">Campo único e obrigatório, pode ser usado como login.</small>
 	</div>
 	
 	<div class="form-group">
 		<label for="exampleInputEmail1">Nome: ${pessoa.nome}</label> <input
-			class="form-control" type="text" name="nome"
-			placeholder="Digitar novo nome" required> 
+			class="form-control" type="text" name="nome" minlength=3
+			placeholder="Digitar novo nome" > 
 			<small id="emailHelp" class="form-text text-muted">Nome apenas para identificação do Usuario</small>
 	</div>
 	
 	<div class="form-group">
 		<label for="exampleInputEmail1">Sobrenome: ${pessoa.sobrenome}</label> <input
-			class="form-control" type="text" name="nome"
-			placeholder="Digitar Novo sobrenome" required> 
+			class="form-control" type="text" name="sobrenome"
+			placeholder="Digitar Novo sobrenome" > 
 			<small id="emailHelp" class="form-text text-muted">Apenas para identificação do Usuario</small>
 	</div>
 
 
 	<div class="form-group">
 		<label for="exampleInputPassword1">Senha: ${usuario.senha}</label> <input
-			type="password" class="form-control" name="senha"
+			type="password" class="form-control" name="senha" minlength=6
 			id="exampleInputPassword1" placeholder="Digitar nova senha">
 	</div>
 

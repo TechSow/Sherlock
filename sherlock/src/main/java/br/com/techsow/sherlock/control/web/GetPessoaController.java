@@ -1,7 +1,9 @@
 package br.com.techsow.sherlock.control.web;
 
+import javax.mail.Session;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import br.com.techsow.sherlock.model.exception.ApelidoException;
 import br.com.techsow.sherlock.model.exception.EmailNotFound;
@@ -17,8 +19,10 @@ public class GetPessoaController implements Task {
 
 		
 		int id = Integer.parseInt(req.getParameter("usuarioId"));
-		System.out.println(id);
 		
+		HttpSession session = req.getSession();
+		session.setAttribute("usuarioId", id);
+
 		return "pessoa.jsp";
 	}
 

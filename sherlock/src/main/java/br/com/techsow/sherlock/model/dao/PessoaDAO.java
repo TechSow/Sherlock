@@ -72,18 +72,7 @@ public class PessoaDAO extends BaseDAO implements IPessoaRepository{
 	}
 	
 	
-	public int updateNome(Pessoa pessoa, String nomeNovo) throws Exception{
 
-		int idPessoa = pessoa.getId(); 
-		stmt = conn.prepareStatement("UPDATE TS_T_PESSOA SET NOME =? WHERE ID_PESSOA=?");
-
-		stmt.setString(1, nomeNovo);
-		stmt.setInt(2, idPessoa);
-
-		return stmt.executeUpdate();
-
-	}
-	
 	
 	public int updateSobrenome(Pessoa pessoa, String sobrenomeNovo) throws Exception{
 
@@ -145,15 +134,23 @@ public class PessoaDAO extends BaseDAO implements IPessoaRepository{
 		return null;
 	}
 
+
 	@Override
-	public int updateNome(Usuario user, String nomeNovo) throws Exception {
+	public int updateSobrenome(Usuario user, String SobrenomeNovo) throws Exception {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int updateSobrenome(Usuario user, String SobrenomeNovo) throws Exception {
-		// TODO Auto-generated method stub
+	public int updateNome(Usuario user, String nomeNovo) throws Exception {
+
+		int idPessoa = pessoa.getId(); 
+		stmt = conn.prepareStatement("UPDATE TS_T_PESSOA SET NOME =? WHERE ID_PESSOA=?");
+
+		stmt.setString(1, nomeNovo);
+		stmt.setInt(2, idPessoa);
+
+		return stmt.executeUpdate();
 		return 0;
 	}
 }
