@@ -2,12 +2,11 @@
 	pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<form class="curso" action="controller" method="post"
-	style="display: none" class="col-sm-6 col-12">
+<form class="curso col-lg-6 col-12" id="formCadastroCurso" action="controller" method="post"
+	style="display: none" >
+	
 	<input type="hidden" name="tarefa" id="tarefa" value="CadastroCurso" />
-
-	
-	
+	<input type="hidden" name="id_curso" id="id_curso" value/>
 	<h2>Cadastro de Cursos</h2>
 	<div class="row">
 		<div class="col">
@@ -29,9 +28,9 @@
 	</div>
 	<div class="row">
 		<div class="col">
-			<label for="exampleFormControlTextarea1">Url da imagem do card</label> <input
-				type="text" class="form-control" name="urlimg"
-				placeholder="Algoritimos">
+			<label for="exampleFormControlTextarea1">Url da imagem do
+				card</label> <input type="text" class="form-control" name="urlimg"
+				placeholder="http://exemplo.url.imagem/imagem">
 		</div>
 	</div>
 	<div class="form-group curso">
@@ -47,27 +46,62 @@
 	</div>
 
 	<div>
-		<label for="selectMateria">Escolha as matérias deste curso</label>
-		<select data-placeholder="Escolha as matérias..."
-			class="chosen-select" name="selectedMaterias" id="selectMateria" multiple>
-			<option value=""></option>
+		<label for="selectMateria">Escolha as matérias deste curso</label> <select
+			data-placeholder="Escolha as matérias..." class="form-control"
+			name="selectedMaterias" id="selectMateria" multiple required>
 			<c:forEach var="materia" items="${materias}">
 				<option value="${materia.id_materia}" />${materia.nome}</option>
 			</c:forEach>
 		</select>
+
 	</div>
 
-	<br>
-	<br>
-	<button type="submit" class="btn btn-primary">Cadastar Curso!</button>
+
+	 <br>
+	<button type="submit" class="btn btn-primary"> salvar</button>
+
+
 </form>
 
-
-<script>
-	$('.chosen-select').chosen({
-		width : '100%'
-	});
+<div class=" col-12 col-lg-6 d-flex mt-3 justify-content-center align-items-center flex-column">
+			<select id="cursoOptionAtt" class="form-control">
+				<option>Selecione para alterar</option>
+				<c:forEach var="curso" items="${cursos}">
+					<option  value="${curso.id_curso}">
+						${curso.nome}
+					</option>
+				</c:forEach>
+			</select>
+			<br/>
+            <article class="material-card Blue-Grey" style="width: 100%;">
+                <h2>
+                    <span id="nomeCurso">${curso.nome}</span>
+                    <strong>
+						<span id="dificuldadeCurso">
+         			    <i class="fa fa-star"></i>
+         			    </span>
+                        Dificuldade                        
+                    </strong>
+                </h2>
+                <div class="mc-content">
+                    <div class="img-container">
+                        <img class="img-responsive" src="#">
+                    </div>
+                    <div class="mc-description">
+                    </div>
+                </div>
+                <a class="mc-btn-action">
+                    <i class="fa fa-bars"></i>
+                </a>
+                <div class="mc-footer">
+                    <h4>
+                        aprender
+                    </h4>
+                    <a href="#"><i class="fa fa-play" aria-hidden="true"></i></a>
+                </div>
+            </article>
+</div>
+<style>
 	
-	
-	
-</script>
+</style>
+<script src="scripts/curso.js"></script>

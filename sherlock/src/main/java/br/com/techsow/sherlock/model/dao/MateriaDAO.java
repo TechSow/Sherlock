@@ -26,7 +26,7 @@ public class MateriaDAO extends BaseDAO implements IMateriaRepository{
 	}
 
 
-	public Materia getById(int id) throws Exception {
+	public Materia getById(int id) throws SQLException {
 
 		stmt=conn.prepareStatement("SELECT * FROM TS_T_MATERIA WHERE ID_MATERIA=?");
 		stmt.setInt(1, id);
@@ -44,22 +44,22 @@ public class MateriaDAO extends BaseDAO implements IMateriaRepository{
 		}
 	}
 
-	
-	public ArrayList<Materia> getAll() throws Exception {
+
+	public ArrayList<Materia> getAll() throws SQLException {
 		ArrayList<Materia> materias = new ArrayList<Materia>();
 		stmt=conn.prepareStatement("SELECT * FROM TS_T_MATERIA");
 		rs=stmt.executeQuery();
 		while(rs.next()) {
-			
+
 			materias.add(new Materia(
 					rs.getInt("ID_MATERIA"),
 					rs.getString("NOME_MATERIA"),
 					rs.getString("EMENTA_MATERIA"),
 					rs.getString("URLIMG_MATERIA")));
-			
+
 		}
 
-			return  materias;
+		return  materias;
 	}
 
 	public int kill(int id) throws Exception {
@@ -75,31 +75,34 @@ public class MateriaDAO extends BaseDAO implements IMateriaRepository{
 		return 0;
 	}
 
-	public int updateNome(Materia m,String nomeNovo)throws Exception{
+	public int updateNome(Materia m,String nomeNovo)throws SQLException{
 		stmt=conn.prepareStatement("UPDATE TS_T_MATERIA SET NOME_MATERIA=? WHERE ID_MATERIA=?" );
 		stmt.setString(1, nomeNovo);
 		stmt.setInt(2, m.getId_materia());
 		return stmt.executeUpdate();
 	}
 
-	
-	
-	public int updateEmenta(Materia m,String novaEmenta)throws Exception{
+	public int updateUrlImg(Materia materia, String urlImg) throws SQLException{
+
+		stmt=conn.prepareStatement("UPDATE TS_T_MATERIA SET URLIMG_MATERIA=? WHERE ID_MATERIA=?" );
+		stmt.setString(1, urlImg);
+		stmt.setInt(2, materia.getId_materia());
+		return stmt.executeUpdate();
+
+	}
+
+	public int updateEmenta(Materia m,String novaEmenta)throws SQLException{
 		stmt=conn.prepareStatement("UPDATE TS_T_MATERIA set EMENTA_MATERIA=? WHERE ID_MATERIA=?");
 		stmt.setString(1, novaEmenta);
 		stmt.setInt(2, m.getId_materia());
 		return stmt.executeUpdate();
 	}
-	
-	
+
+
 	public void close() throws SQLException {
 		conn.close();
 
 	}
-	
-	
-	
-
 
 	public ArrayList<Materia> getMateriasFromCursoId(int id_curso) throws Exception {
 		ArrayList<Materia> materias = new ArrayList<Materia>();
@@ -118,5 +121,8 @@ public class MateriaDAO extends BaseDAO implements IMateriaRepository{
 
 		return materias;
 	}
+
+
+
 
 }

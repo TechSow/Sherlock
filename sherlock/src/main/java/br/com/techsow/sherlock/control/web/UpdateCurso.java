@@ -1,24 +1,24 @@
 package br.com.techsow.sherlock.control.web;
 
+import java.io.Writer;
 import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import br.com.techsow.sherlock.model.bo.CursoBO;
-import br.com.techsow.sherlock.model.dao.CursoDAO;
 import br.com.techsow.sherlock.model.entities.Curso;
 import br.com.techsow.sherlock.model.interfaces.web.Task;
 
-public class CadastroCurso implements Task {
+public class UpdateCurso implements Task {
 
 
 	private String cursoBO;
 
 	/**
-	 * @author Italo e Breno
+	 * @author Italo
 	 * 
-	 *         Classe criada para lidar com as requisicoes de criacao de novos cursos
+	 *         Classe criada para lidar com as requisicoes de alteração de cursos ja cadastrados
 	 *         A requisicao vem da Servlet Controller
 	 * @throws Exception 
 	 * @throws SQLException 
@@ -28,24 +28,57 @@ public class CadastroCurso implements Task {
 	public String processTask(HttpServletRequest req, HttpServletResponse resp) throws ClassNotFoundException, SQLException, Exception {
 
 		String nome = req.getParameter("nome");
-		
 		String[] materias = req.getParameterValues("selectedMaterias");
 		String urlimg = req.getParameter("urlimg");
 		String descricao = req.getParameter("descricao");
+
+		int idCurso = Integer.parseInt(req.getParameter("selectedCurso"));
 		int dificuldade = Integer.parseInt(req.getParameter("dificuldade"));
-		long duracao = Long.parseLong(req.getParameter("duracao"));
-			
+		Long duracao = Long.parseLong(req.getParameter("duracao"));
+
+
 		try {
-			Curso curso= new Curso(nome, descricao, dificuldade, duracao,urlimg);
-			cursoBO = new CursoBO().add(curso, materias);	
-			
+			Curso curso = new CursoBO().getById(idCurso);
+
+
+			if(nome.length() > 1) {
+				new CursoBO().updateNome(curso, nome);
+			}
+
+			if(descricao.length() > 1) {
+				new CursoBO().updateDescricao(curso, descricao);
+			}
+
+			if(dificuldade != 0) {
+				new CursoBO().updateDificuldade(curso, dificuldade);
+			}
+
+			if(duracao > 0) {
+				new CursoBO().updateDuracao(curso, duracao);
+			}
+
+			if(urlimg != null && !urlimg.isEmpty()) { 
+				
+				new CursoBO().updateURL(curso, urlimg);
+				
+			}		
+
+			if(materias != null) { 
+				
+				new CursoBO().relateCursoMateria(curso.getId_curso(), materias);			
+
+			}
+
+
+
 		} catch (Exception e) {
-			req.setAttribute("erro", new String[] {e.getMessage(), "danger", "exclamation"});
-		}
-		
+			req.setAttribute("curso", new String[] {e.getMessage(), "danger", "exclamation"});
+		}				
+
 		req.setAttribute("curso", "Curso adicionado com sucesso");
-		return "admin.jsp";
 		
+		return "admin.jsp";
+
 	}
 
 

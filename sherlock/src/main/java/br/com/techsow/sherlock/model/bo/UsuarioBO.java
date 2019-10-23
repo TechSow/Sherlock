@@ -139,6 +139,7 @@ public class UsuarioBO implements IUsuarioBO {
 		}
 
 		return usuario;
+		
 	}
 	
 

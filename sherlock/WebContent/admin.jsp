@@ -6,6 +6,7 @@
 			<div class="main">
 				<div class="container">
 					<c:import url="sccafolding/mainAdministrador.jsp" />
+					
 				</div>
 			</div>
 			<div class="nav">
