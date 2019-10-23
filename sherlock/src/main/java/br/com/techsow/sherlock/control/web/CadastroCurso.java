@@ -28,7 +28,7 @@ public class CadastroCurso implements Task {
 	public String processTask(HttpServletRequest req, HttpServletResponse resp) throws ClassNotFoundException, SQLException, Exception {
 
 		String nome = req.getParameter("nome");
-				
+		
 		String[] materias = req.getParameterValues("selectedMaterias");
 		String urlimg = req.getParameter("urlimg");
 		String descricao = req.getParameter("descricao");

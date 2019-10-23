@@ -6,6 +6,7 @@
 	style="display: none" >
 	
 	<input type="hidden" name="tarefa" id="tarefa" value="CadastroCurso" />
+	<input type="hidden" name="id_curso" id="id_curso" value/>
 	<h2>Cadastro de Cursos</h2>
 	<div class="row">
 		<div class="col">
@@ -46,9 +47,8 @@
 
 	<div>
 		<label for="selectMateria">Escolha as matérias deste curso</label> <select
-			data-placeholder="Escolha as matérias..." class="chosen-select"
-			name="selectedMaterias" id="selectMateria" multiple>
-			<option value=""></option>
+			data-placeholder="Escolha as matérias..." class="form-control"
+			name="selectedMaterias" id="selectMateria" multiple required>
 			<c:forEach var="materia" items="${materias}">
 				<option value="${materia.id_materia}" />${materia.nome}</option>
 			</c:forEach>
@@ -58,7 +58,7 @@
 
 
 	 <br>
-	<button type="submit" class="btn btn-primary">Cadastar Curso!</button>
+	<button type="submit" class="btn btn-primary"> salvar</button>
 
 
 </form>
@@ -105,8 +105,3 @@
 	
 </style>
 <script src="scripts/curso.js"></script>
-<script>
-	$('.chosen-select').chosen({
-		width : '100%'
-	});
-</script>
