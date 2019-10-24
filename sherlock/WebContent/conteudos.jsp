@@ -25,7 +25,8 @@
 					<p>Seja bem-vindo, ${usuario.apelido}!</p>
 				</div>
 				<div>
-					<i class="fa fa-user" aria-hidden="true"></i> <a
+					<a href="/sherlock/controller?tarefa=GetPessoaController&usuarioId=${usuario.idUsuario}">
+					<i class="fa fa-user" aria-hidden="true"></i> </a><a
 						href="/sherlock/controller?tarefa=LogoutController"><i
 						class="fa fa-power-off" aria-hidden="true"></i></a>
 				</div>
