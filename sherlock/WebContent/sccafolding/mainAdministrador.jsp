@@ -33,32 +33,34 @@
 	top: 0;
 	bottom: 0;
 }
-
 </style>
 <div class="row">
 	<ul class="nav nav-tabs col-12 col-sm-12">
-		<li class="nav-item">
-			<button class="nav-link active" id="botaoProfessor"
-				onclick="admProfessor()">Professor</button>
-		</li>
+		<c:if test="${usuario.adm == 1 }">
+
+			<li class="nav-item">
+				<button class="nav-link active" id="botaoProfessor"
+					onclick="admProfessor()">Professor</button>
+			</li>
+
+			<li class="nav-item">
+				<button class="nav-link active" id="aluno" onclick="admAluno()">Aluno</button>
+			</li>
+		</c:if>
+
 		<li class="nav-item">
 			<button class="nav-link active" id="curso" onclick="admCurso()">Curso</button>
 		</li>
 		<li class="nav-item">
 			<button class="nav-link active" id="materia" onclick="admMateria()">Matéria</button>
 		</li>
-		<li class="nav-item">
-			<button class="nav-link active" id="aluno" onclick="admAluno()">Aluno</button>
-		</li>
 	</ul>
 </div>
-<div class="row">
-
-	<c:import url="sccafolding/cadastroProfessor.html" />
+<div class="row d-flex justify-content-center align-items-center">
 	<c:import url="sccafolding/cadastroCurso.jsp" />
-	<c:import url="sccafolding/cadastroMateria.html" />
+	<c:import url="sccafolding/cadastroMateria.jsp" />
+	<c:import url="sccafolding/cadastroProfessor.html" />
 	<c:import url="sccafolding/cadastroAluno.html" />
-
 </div>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -68,11 +70,12 @@
 <script>
 	var p = document.querySelector(".professor");
 	var c = document.querySelector(".curso");
+	var cc = document.querySelector("#cardcursotunado")
 	var m = document.querySelector(".materia");
 	var a = document.querySelector(".aluno");
-	var ms = document.querySelector("#materiaSelect");
-
-
+	var uc = document.querySelector(".updateCurso");
+	var um = document.querySelector(".updateMateria");
+	cc.style.display = "none";
 	function admProfessor() {
 
 		if (p.style.display === "none") {
@@ -80,7 +83,8 @@
 			c.style.display = "none";
 			m.style.display = "none";
 			a.style.display = "none";
-			ms.style.display="none";
+			cc.style.display = "none";
+			um.style.display = "none";
 		}
 	}
 
@@ -90,7 +94,8 @@
 			c.style.display = "block";
 			m.style.display = "none";
 			a.style.display = "none";
-			ms.style.display= "block";
+			cc.style.display = "flex";
+			um.style.display = "none";
 
 		}
 	}
@@ -101,9 +106,11 @@
 			m.style.display = "block";
 			c.style.display = "none";
 			a.style.display = "none";
-			ms.style.display= "none";
+			cc.style.display = "none";
+			um.style.display = "block";
+
 		}
-		
+
 	}
 
 	function admAluno() {
@@ -112,7 +119,8 @@
 			m.style.display = "none";
 			c.style.display = "none";
 			a.style.display = "block";
-			ms.style.display="none";
+			cc.style.display = "none";
+			um.style.display = "none";
 
 		}
 	}
@@ -129,13 +137,6 @@
 			expanded = false;
 		}
 	}
-
-	/* 
-	var btnProf =$("#botaoProfessor");
-	btnProf.on("click", function(e){
-	e.preventDefault()
-	$(".professor").toggleClass("d-none");	
-	}) */
 
 	$(function() {
 		$('.material-card > .mc-btn-action').click(

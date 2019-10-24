@@ -1,6 +1,5 @@
 package br.com.techsow.sherlock.model.bo;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 import br.com.techsow.sherlock.model.dao.CursoDAO;
@@ -10,7 +9,6 @@ import br.com.techsow.sherlock.model.exception.DuplicatedException;
 import br.com.techsow.sherlock.model.exception.EmailNotFound;
 import br.com.techsow.sherlock.model.exception.LengthException;
 import br.com.techsow.sherlock.model.exception.NumberException;
-
 import br.com.techsow.sherlock.model.interfaces.bo.ICursoBO;
 
 public class CursoBO implements ICursoBO {
@@ -25,7 +23,7 @@ public class CursoBO implements ICursoBO {
 			throw new LengthException("Imagem nao existe");
 		if (curso.getNome().length() > 100)
 			throw new LengthException("Nome excedeu quantidade de caracteres");
-
+		if(materias.length <=0 ) throw new LengthException("Adicione ao menos uma matéria");
 		/*
 		 * if(curso.getUrlImg().length() >200 ) throw new
 		 * NumberException("Descrição excedeu quantidade de caracteres");
@@ -43,10 +41,10 @@ public class CursoBO implements ICursoBO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		Curso curso2 = this.getNoRelationedCurseId();
 		this.relateCursoMateria(curso2.getId_curso(), materias);
-		
+
 		if (retorno == 1) {
 			return "Sucesso ao adicionar curso";
 		} else {
@@ -54,7 +52,7 @@ public class CursoBO implements ICursoBO {
 		}
 	}
 
-	private Curso getNoRelationedCurseId() {
+	public Curso getNoRelationedCurseId() {
 		Curso curso = null;
 		try (CursoDAO dao = new CursoDAO()) {
 			curso = dao.getNoRelationedCurseId();
@@ -64,19 +62,19 @@ public class CursoBO implements ICursoBO {
 		return curso;
 	}
 
-	private int relateCursoMateria(int id,String[] materias ) {
+	public int relateCursoMateria(int cursoId,String[] materias ) {
 		for(int i = 0; i < materias.length; i++) {
-			
+
 			try(CursoDAO dao = new CursoDAO()){
-				dao.relateCursoMateria(id, Integer.parseInt(materias[i]));
+				dao.relateCursoMateria(cursoId, Integer.parseInt(materias[i]));
 			}catch(Exception e) {
 				e.printStackTrace();			
 			}
-			
+
 		}
-		
-		
-		
+
+
+
 		return 0;
 	}
 
@@ -93,93 +91,55 @@ public class CursoBO implements ICursoBO {
 	}
 
 	public int kill(int id) {
-
-		return 0;
-	}
-
-	public int update(Curso obj) {
-
-		return 0;
-	}
-
-	public String updateNome(Curso c, String nome) throws LengthException {
-		if (nome.length() > 100)
-			throw new LengthException("Nome excedeu quantidade de caracteres");
-
-		try (CursoDAO dao = new CursoDAO()) {
-			dao.updateNome(c, nome);
-		} catch (SQLException | ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (Exception e) {
+		try(CursoDAO dao = new CursoDAO()){
+			dao.killRelationBetweenCursoAndMateria(id);
+		}catch(Exception e) {
 			e.printStackTrace();
 		}
-
-		return "Nome alterado com sucesso";
+		
+		int ret= 0;
+		try(CursoDAO dao = new CursoDAO()){
+			ret = dao.kill(id);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		return ret;
 	}
 
-	public String updateDescricao(Curso c, String descricao) throws LengthException {
-
-		if (descricao.length() > 255)
+	public int updateCurso(Curso obj, String[] materias) throws LengthException, NumberException {
+		if (obj.getDescricao().length() > 255)
 			throw new LengthException("Descrição excedeu quantidade de caracteres");
-
-		try (CursoDAO dao = new CursoDAO()) {
-			dao.updateDescricao(c, descricao);
-		} catch (SQLException | ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		return "Descrição alterada";
-	}
-
-	public String updateDuracao(Curso c, int duracao) throws NumberException {
-
-		if (c.getDuracao() <= 0)
-			throw new NumberException("Valor invalido para Duracao");
-
-		try (CursoDAO dao = new CursoDAO()) {
-			dao.updateDuracao(c, duracao);
-		} catch (SQLException | ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (Exception e) {
+		if (obj.getDuracao() <= 0)
+			throw new NumberException("Numero de duração de curso inválido");
+		if (obj.getUrlImg() == null)
+			throw new LengthException("Imagem nao existe");
+		if (obj.getNome().length() > 100)
+		if(materias.length <=0 ) throw new LengthException("Adicione ao menos uma matéria");
+		
+		int retCurso = 0;
+		int dellCursos =0;
+		try(CursoDAO dao = new CursoDAO()){
+			retCurso = dao.update(obj);
+		}catch(Exception e) {
 			e.printStackTrace();
 		}
-
-		return "Duração alterada";
-	}
-
-	public String updateURL(Curso c, String url) throws LengthException {
-
-		if (c.getUrlImg().length() > 200)
-			throw new LengthException("URL da Imagem excedeu quantidade de caracteres");
-
-		try (CursoDAO dao = new CursoDAO()) {
-			dao.updateUrl(c, url);
-		} catch (SQLException | ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (Exception e) {
+		try(CursoDAO dao = new CursoDAO()){
+			dellCursos = dao.killRelationBetweenCursoAndMateria(obj.getId_curso());
+		}catch(Exception e) {
 			e.printStackTrace();
 		}
-
-		return "URL alterada";
+		
+		relateCursoMateria(obj.getId_curso(),materias);
+		
+		if(retCurso == 1 && dellCursos > 0)
+			return 1;
+		else
+			return 0;
 	}
 
-	public String updateDificuldade(Curso c, int dificuldade) throws NumberException {
-
-		if (c.getDificuldade() > 200)
-			throw new NumberException("Dificuldade excedeu quantidade de caracteres");
-
-		try (CursoDAO dao = new CursoDAO()) {
-			dao.updateDificuldade(c, dificuldade);
-		} catch (SQLException | ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		return "Dificuldade alterada";
-	}
+	
 
 	public ArrayList<Curso> getAll() {
 		ArrayList<Curso> cursos = null;
@@ -199,5 +159,11 @@ public class CursoBO implements ICursoBO {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public int update(Curso obj) {
+		// TODO Auto-generated method stub
+		return 0;
+	}	
 
 }

@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import br.com.techsow.sherlock.model.entities.Curso;
+import br.com.techsow.sherlock.model.entities.Materia;
 import br.com.techsow.sherlock.model.interfaces.repository.ICursoRepository;
 import br.com.techsow.sherlock.model.services.ConnectionFactory;
 
@@ -53,7 +54,7 @@ public class CursoDAO extends BaseDAO implements ICursoRepository {
 		rs = stmt.executeQuery();
 
 		if (rs.next()) 
-			return new Curso(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getLong(4),rs.getString(5), rs.getInt(6));
+			return new Curso(rs.getInt(1), rs.getString(3), rs.getString(2), rs.getLong(4),rs.getString(5), rs.getInt(6));
 
 		return null;
 	}
@@ -73,7 +74,7 @@ public class CursoDAO extends BaseDAO implements ICursoRepository {
 	
 	@Override
 	public int updateNome(Curso c, String nomeNovo) throws Exception {
-		stmt = conn.prepareStatement("UPDATE TS_T_CURSO SET NOME=? WHERE ID_MATERIA=?");
+		stmt = conn.prepareStatement("UPDATE TS_T_CURSO SET NOME=? WHERE ID_CURSO=?");
 		stmt.setString(1, nomeNovo);
 		stmt.setInt(2, c.getId_curso());
 		return stmt.executeUpdate();
@@ -88,16 +89,16 @@ public class CursoDAO extends BaseDAO implements ICursoRepository {
 		return stmt.executeUpdate();
 	}
 	
-	public int updateDuracao(Curso c, int novaDuracao) throws Exception {
+	public int updateDuracao(Curso c, long novaDuracao) throws Exception {
 		stmt = conn.prepareStatement("UPDATE TS_T_CURSO SET DURACAO=? WHERE ID_CURSO=?");
-		stmt.setInt(1, novaDuracao);
+		stmt.setLong(1, novaDuracao);
 		stmt.setInt(2, c.getId_curso());
 		return stmt.executeUpdate();
 	}
 	
 	
 	public int updateUrl(Curso c, String novaUrl) throws Exception {
-		stmt = conn.prepareStatement("UPDATE TS_T_CURSO SET DURACAO=? WHERE ID_CURSO=?");
+		stmt = conn.prepareStatement("UPDATE TS_T_CURSO SET URLIMG=? WHERE ID_CURSO=?");
 		stmt.setString(1, novaUrl);
 		stmt.setInt(2, c.getId_curso());
 		return stmt.executeUpdate();
@@ -111,9 +112,16 @@ public class CursoDAO extends BaseDAO implements ICursoRepository {
 		return stmt.executeUpdate();
 	}
 	
+	public int updateMaterias(Curso c, Materia novaMateria) throws Exception {
+		stmt = conn.prepareStatement("INSERT INTO TS_T_CURSO_MATERIA(ID_CURSO_MATERIA,FK_ID_MATERIA,FK_ID_CURSO) VALUES(c_curso_materia_seq.nextval,?,?)");
+		stmt.setInt(1, novaMateria.getId_materia());
+		stmt.setInt(2, c.getId_curso());
+		return stmt.executeUpdate();
+	}
+	
+	
 	@Override
 	public int kill(int id) throws Exception {
-
 		stmt = conn.prepareStatement("DELETE FROM TS_T_CURSO WHERE ID_CURSO=?");
 		stmt.setInt(1, id);
 		return stmt.executeUpdate();	}
@@ -139,6 +147,8 @@ public class CursoDAO extends BaseDAO implements ICursoRepository {
 		ArrayList<Curso> cursos = new ArrayList<Curso>();
 		
 		while(rs.next()) {
+			
+
 			Long duracao = rs.getLong(4); 
 			String nome = rs.getString(3);
 			String descricao = rs.getString(2);
@@ -159,11 +169,24 @@ public class CursoDAO extends BaseDAO implements ICursoRepository {
 
 	@Override
 	public int update(Curso obj) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		stmt = conn.prepareStatement("update ts_t_curso set nome=?, descricao = ?,duracao = ?, urlimg = ?, dificuldade=? where id_curso = ?");
+		stmt.setString(1, obj.getNome());
+		stmt.setString(2, obj.getDescricao());
+		stmt.setLong(3, obj.getDuracao());
+		stmt.setString(4, obj.getUrlImg());
+		stmt.setInt(5, obj.getDificuldade());
+		stmt.setInt(6, obj.getId_curso());
+		
+		
+		
+		return stmt.executeUpdate();
 	}
 
-
+	public int killRelationBetweenCursoAndMateria(int id) throws SQLException {
+		stmt = conn.prepareStatement("delete ts_t_curso_materia where fk_id_curso = ?");
+		stmt.setInt(1, id);
+		return stmt.executeUpdate();
+	}
 
 
 

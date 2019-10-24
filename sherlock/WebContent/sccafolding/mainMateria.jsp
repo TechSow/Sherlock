@@ -34,13 +34,13 @@
   position: relative;
   background: #333;
   width: 400px;
-  height: 75vh;
+  height: 600px;
   border-radius: 6px;
   padding: 2rem;
   color: #aaa;
   box-shadow: 0 0.25rem 0.25rem rgba(0, 0, 0, 0.2), 0 0 1rem rgba(0, 0, 0, 0.2);
   overflow: hidden;
-  margin-right:20px;
+  margin:20px;
 }
 .card__image-container {
   margin: -2rem -2rem 1rem -2rem;

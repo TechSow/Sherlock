@@ -1,10 +1,22 @@
 package br.com.techsow.sherlock.model.entities;
 
+import java.util.List;
+
 public class Curso {
 
 	private String nome, descricao, urlImg;
 	private long duracao;
 	private int id_curso, dificuldade;
+	private List<Materia> materias; 
+	
+	
+	public List<Materia> getMaterias() {
+		return materias;
+	}
+
+	public void setMaterias(List<Materia> materias) {
+		this.materias = materias;
+	}
 
 	public int getDificuldade() {
 		return dificuldade;

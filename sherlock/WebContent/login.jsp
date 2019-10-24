@@ -47,7 +47,7 @@
 <c:if test="${not empty erro}">
 
     <div id="toast">
-        <i class="fa fa-${erro[3]} text-${erro[1] }" id="img" aria-hidden="true"></i>
+        <i class="fa fa-${erro[2]} text-${erro[1] }" id="img" aria-hidden="true"></i>
 
         <div id="desc" class="bg-${erro[1] }">${erro[0]}</div>
     </div>

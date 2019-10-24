@@ -14,7 +14,7 @@
 					<c:if test="${usuario.professor == 1}">
 						<li class="item"><a href="">Área do Professor</a></li>
 					</c:if>
-						<li class="item"><a href="/sherlock/home.jsp">Lista de Cursos</a></li>
+						<li class="item"><a href="/sherlock/controller?tarefa=CursoController&cursobool=true">Lista de Cursos</a></li>
 			</div>
 			<div class="logo">
 				<c:import url="sccafolding/logo.html" />
@@ -22,7 +22,7 @@
 			<div class="header">
 				<div>
 					<h2>Listagem de conteúdo</h2>
-					<p>seja bem vindo ${usuario.apelido} !</p>
+					<p>Seja bem-vindo, ${usuario.apelido}!</p>
 				</div>
 				<div>
 					<i class="fa fa-user" aria-hidden="true"></i> <a

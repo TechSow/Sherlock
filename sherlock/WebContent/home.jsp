@@ -12,9 +12,9 @@
 						<li class="item"><a href="/sherlock/controller?tarefa=GetMateriaController">Área do administrador</a></li>
 					</c:if>
 					<c:if test="${usuario.professor == 1}">
-						<li class="item"><a href="">Área do Professor</a></li>
+						<li class="item"><a href="/sherlock/controller?tarefa=GetMateriaController">Área do Professor</a></li>
 					</c:if>
-						<li class="item"><a href="/sherlock/home.jsp">Lista de Cursos</a></li>
+						<li class="item"><a href="/sherlock/controller?tarefa=CursoController&cursobool=true">Lista de Cursos</a></li>
 					
 				</ul>
 			</div>
@@ -44,5 +44,12 @@
 			<c:import url="errors/erro401.html" />
 	</c:otherwise>
 </c:choose>
+<style>
+.main{
+	flex-wrap:wrap;
+	overflow:hidden;
+	overflot-y:scroll;
+}
+</style>
 </body>
 </html>
