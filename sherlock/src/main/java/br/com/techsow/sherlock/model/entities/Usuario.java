@@ -87,7 +87,21 @@ public class Usuario {
 	}
 	
 	
+	/**
+	 * Método para fazer update dos atributos do usuario
+	 * @param id
+	 * @param email
+	 * @param apelido
+	 * @param senha
+	 */
 	
+	public Usuario(int id, String email, String apelido, String senha) {
+		this.idUsuario = id;
+		this.email = email;
+		this.senha = senha;
+		this.apelido = apelido;
+	}
+
 	public int getAluno() {
 		return aluno;
 	}

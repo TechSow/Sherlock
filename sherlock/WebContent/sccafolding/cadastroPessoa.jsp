@@ -26,21 +26,6 @@
 	</div>
 	
 	<div class="form-group">
-		<label for="exampleInputEmail1">Nome: ${pessoa.nome}</label> <input
-			class="form-control" type="text" name="nome" minlength=3
-			placeholder="Digitar novo nome" > 
-			<small id="emailHelp" class="form-text text-muted">Nome apenas para identificação do Usuario</small>
-	</div>
-	
-	<div class="form-group">
-		<label for="exampleInputEmail1">Sobrenome: ${pessoa.sobrenome}</label> <input
-			class="form-control" type="text" name="sobrenome"
-			placeholder="Digitar Novo sobrenome" > 
-			<small id="emailHelp" class="form-text text-muted">Apenas para identificação do Usuario</small>
-	</div>
-
-
-	<div class="form-group">
 		<label for="exampleInputPassword1">Senha: ${usuario.senha}</label> <input
 			type="password" class="form-control" name="senha" minlength=6
 			id="exampleInputPassword1" placeholder="Digitar nova senha">

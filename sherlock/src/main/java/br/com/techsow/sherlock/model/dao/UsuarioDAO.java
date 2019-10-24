@@ -166,12 +166,24 @@ public class UsuarioDAO extends BaseDAO implements IUsuarioRepository{
 	}
 	
 	public int updateSenha(Usuario user, String senhaNova) throws Exception {
-		//String senhaAntinga = usuario.getSenha();
 
 		int idUsuario = user.getIdUsuario(); 
 		stmt = conn.prepareStatement("UPDATE TS_T_USUARIO SET SENHA =? WHERE ID_USUARIO=?");
 
 		stmt.setString(1, senhaNova);
+		stmt.setInt(2, idUsuario);
+
+		return stmt.executeUpdate();
+
+	}
+	
+	
+	public int updateApelido(Usuario user, String apelidoNovo) throws Exception {
+
+		int idUsuario = user.getIdUsuario(); 
+		stmt = conn.prepareStatement("UPDATE TS_T_USUARIO SET APELIDO =? WHERE ID_USUARIO=?");
+
+		stmt.setString(1, apelidoNovo);
 		stmt.setInt(2, idUsuario);
 
 		return stmt.executeUpdate();

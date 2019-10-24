@@ -142,7 +142,7 @@ public class PessoaDAO extends BaseDAO implements IPessoaRepository{
 	}
 
 	@Override
-	public int updateNome(Usuario user, String nomeNovo) throws Exception {
+	public int updateNome(Pessoa pessoa, String nomeNovo) throws Exception {
 
 		int idPessoa = pessoa.getId(); 
 		stmt = conn.prepareStatement("UPDATE TS_T_PESSOA SET NOME =? WHERE ID_PESSOA=?");
@@ -151,6 +151,7 @@ public class PessoaDAO extends BaseDAO implements IPessoaRepository{
 		stmt.setInt(2, idPessoa);
 
 		return stmt.executeUpdate();
-		return 0;
+		
 	}
+
 }

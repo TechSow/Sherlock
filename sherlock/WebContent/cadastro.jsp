@@ -16,8 +16,8 @@
   <div class="grid">
 
     <form action="controller" method="POST" class="form login">
-    	<input type="hidden" name="tarefa" id="tarefa" value="CadastroUsuario" />
-    	<input type="hidden" name="from" id="tarefa" value="1" />
+	<input type="hidden" name="tarefa" id="tarefa" value="CadastroUsuario" />
+	<input type="hidden" name="from" value="3" />
     	
 
       <div class="form__field">

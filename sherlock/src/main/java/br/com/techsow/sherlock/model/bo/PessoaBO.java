@@ -93,10 +93,10 @@ public class PessoaBO {
 	}
 	
 	
-	public int updateNome(Usuario user, String nomeNovo){
+	public int updateNome(Pessoa pessoa, String nomeNovo){
 		
 		try (PessoaDAO dao = new PessoaDAO()){
-			dao.updateNome(user, nomeNovo);
+			dao.updateNome(pessoa, nomeNovo);
 		} catch (SQLException | ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
