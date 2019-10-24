@@ -122,7 +122,6 @@ public class CursoDAO extends BaseDAO implements ICursoRepository {
 	
 	@Override
 	public int kill(int id) throws Exception {
-
 		stmt = conn.prepareStatement("DELETE FROM TS_T_CURSO WHERE ID_CURSO=?");
 		stmt.setInt(1, id);
 		return stmt.executeUpdate();	}
@@ -170,14 +169,24 @@ public class CursoDAO extends BaseDAO implements ICursoRepository {
 
 	@Override
 	public int update(Curso obj) throws Exception {
-		stmt = conn.prepareStatement("update ts_t_curso set nome=?, descricao = ?, where id_curso = 47");
+		stmt = conn.prepareStatement("update ts_t_curso set nome=?, descricao = ?,duracao = ?, urlimg = ?, dificuldade=? where id_curso = ?");
+		stmt.setString(1, obj.getNome());
+		stmt.setString(2, obj.getDescricao());
+		stmt.setLong(3, obj.getDuracao());
+		stmt.setString(4, obj.getUrlImg());
+		stmt.setInt(5, obj.getDificuldade());
+		stmt.setInt(6, obj.getId_curso());
 		
 		
 		
-		return 0;
+		return stmt.executeUpdate();
 	}
 
-
+	public int killRelationBetweenCursoAndMateria(int id) throws SQLException {
+		stmt = conn.prepareStatement("delete ts_t_curso_materia where fk_id_curso = ?");
+		stmt.setInt(1, id);
+		return stmt.executeUpdate();
+	}
 
 
 

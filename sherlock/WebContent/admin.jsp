@@ -18,7 +18,7 @@
 					<c:if test="${usuario.professor == 1}">
 						<li class="item"><a href="">Área do Professor</a></li>
 					</c:if>
-					<li class="item"><a href="/sherlock/home.jsp">Lista de
+					<li class="item"><a href="/sherlock/controller?tarefa=CursoController&cursobool=true">Lista de
 							Cursos</a></li>
 				</ul>
 			</div>
@@ -51,7 +51,7 @@
 <c:if test="${not empty erro}">
 
     <div id="toast">
-        <i class="fa fa-${erro[3]} text-${erro[1] }" id="img" aria-hidden="true"></i>
+        <i class="fa fa-${erro[2]} text-${erro[1] }" id="img" aria-hidden="true"></i>
 
         <div id="desc" class="bg-${erro[1] }">${erro[0]}</div>
     </div>

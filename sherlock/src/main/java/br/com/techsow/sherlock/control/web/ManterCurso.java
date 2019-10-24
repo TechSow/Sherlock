@@ -6,11 +6,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import br.com.techsow.sherlock.model.bo.CursoBO;
-import br.com.techsow.sherlock.model.dao.CursoDAO;
 import br.com.techsow.sherlock.model.entities.Curso;
 import br.com.techsow.sherlock.model.interfaces.web.Task;
 
-public class CadastroCurso implements Task {
+public class ManterCurso implements Task {
 
 
 	private String cursoBO;
@@ -28,8 +27,11 @@ public class CadastroCurso implements Task {
 	public String processTask(HttpServletRequest req, HttpServletResponse resp) throws ClassNotFoundException, SQLException, Exception {
 
 		String id = req.getParameter("id_curso");
+		String delete = req.getParameter("queroexcluir");
 		
-		if(id.isEmpty() || id == null) {
+		if(!(delete.isEmpty()) ) {
+			return doDelete(req,resp);
+		}else if(id.isEmpty() || id == null) {
 			return doPost(req,resp);
 		}else {
 			return doPut(req,resp);
@@ -41,6 +43,19 @@ public class CadastroCurso implements Task {
 		
 	}
 
+	private String doDelete(HttpServletRequest req, HttpServletResponse resp) {
+		String id = req.getParameter("id_curso");
+		
+		try {
+			new CursoBO().kill(Integer.parseInt(id));
+			req.setAttribute("erro", new String[] {"curso deletado", "success", "check"});
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+			
+		return "admin.jsp";
+	}
+
 	public String doPut(HttpServletRequest req,HttpServletResponse resp) {
 		String id = req.getParameter("id_curso");
 		String nome = req.getParameter("nome");
@@ -50,6 +65,8 @@ public class CadastroCurso implements Task {
 		int dificuldade = Integer.parseInt(req.getParameter("dificuldade"));
 		long duracao = Long.parseLong(req.getParameter("duracao"));
 			
+		
+		
 		try {
 			Curso curso= new Curso(nome, descricao, dificuldade, duracao,urlimg);
 			curso.setId_curso(Integer.parseInt(id));
@@ -57,9 +74,10 @@ public class CadastroCurso implements Task {
 			
 		} catch (Exception e) {
 			req.setAttribute("erro", new String[] {e.getMessage(), "danger", "exclamation"});
+			return "admin.jsp";
 		}
 		
-		req.setAttribute("erro", new String[] {"curso cadastrado com sucesso", "success", "check"});
+		req.setAttribute("erro", new String[] {"curso atualizado com sucesso", "success", "check"});
 		return "admin.jsp";
 	}
 	
@@ -81,9 +99,10 @@ public class CadastroCurso implements Task {
 			
 		} catch (Exception e) {
 			req.setAttribute("erro", new String[] {e.getMessage(), "danger", "exclamation"});
+			return "admin.jsp";
 		}
 		
-		req.setAttribute("erro", new String[] {"curso cadastrado com sucesso", "success", "check"});
+		req.setAttribute("erro", new String[] {cursoBO, "success", "check"});
 		return "admin.jsp";
 	}
 

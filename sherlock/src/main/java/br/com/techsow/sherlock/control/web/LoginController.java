@@ -32,7 +32,7 @@ public class LoginController implements Task {
 			HttpSession session = req.getSession();
 			session.setAttribute("usuario", usuario);
 			ArrayList<Curso> cursos = new CursoBO().getAll();
-			session.setAttribute("cursos", cursos);
+			req.setAttribute("cursos", cursos);
 			return "home.jsp";
 		}
 		

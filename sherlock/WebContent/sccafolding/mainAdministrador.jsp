@@ -70,11 +70,12 @@
 <script>
 	var p = document.querySelector(".professor");
 	var c = document.querySelector(".curso");
+	var cc = document.querySelector("#cardcursotunado")
 	var m = document.querySelector(".materia");
 	var a = document.querySelector(".aluno");
 	var uc = document.querySelector(".updateCurso");
 	var um = document.querySelector(".updateMateria");
-
+	cc.style.display = "none";
 	function admProfessor() {
 
 		if (p.style.display === "none") {
@@ -82,7 +83,7 @@
 			c.style.display = "none";
 			m.style.display = "none";
 			a.style.display = "none";
-			//uc.style.display = "none";
+			cc.style.display = "none";
 			um.style.display = "none";
 		}
 	}
@@ -93,7 +94,7 @@
 			c.style.display = "block";
 			m.style.display = "none";
 			a.style.display = "none";
-			//uc.style.display = "block";
+			cc.style.display = "flex";
 			um.style.display = "none";
 
 		}
@@ -105,7 +106,7 @@
 			m.style.display = "block";
 			c.style.display = "none";
 			a.style.display = "none";
-			//uc.style.display = "none";
+			cc.style.display = "none";
 			um.style.display = "block";
 
 		}
@@ -118,7 +119,7 @@
 			m.style.display = "none";
 			c.style.display = "none";
 			a.style.display = "block";
-			//uc.style.display = "none";
+			cc.style.display = "none";
 			um.style.display = "none";
 
 		}

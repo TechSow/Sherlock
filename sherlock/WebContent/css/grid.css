@@ -9,6 +9,7 @@
 .main {
 	grid-area: main;
 	display:flex;
+	
 }
 
 .footer {

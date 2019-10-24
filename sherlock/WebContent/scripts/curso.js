@@ -7,6 +7,7 @@ var urlimg = form.urlimg;
 var descricao = form.descricao;
 var duracao = form.duracao;
 var materias = form.selectedMaterias;
+var btnExcluir = document.querySelector(".btn-danger");
 
 $("#cursoOptionAtt").on("change", function(e) {
 	var idCurso = this.options[this.selectedIndex].value || 0;
@@ -24,7 +25,7 @@ $("#cursoOptionAtt").on("change", function(e) {
 			console.log(xhr.responseText);
 		}
 	});
-	
+	btnExcluir.style.display = "block"
 	var data = "id=" + idCurso;
 	xhr.send(data);
 })
@@ -88,3 +89,11 @@ function generateStar(){
 	i.classList.add("fa-star");
 	return i;
 }
+
+btnExcluir.addEventListener("click", function(e){
+	e.preventDefault();
+	document.querySelector("#queroexcluir").value = "true";
+	form.submit();
+})
+
+
