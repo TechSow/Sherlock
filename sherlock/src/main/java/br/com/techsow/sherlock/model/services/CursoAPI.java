@@ -1,4 +1,4 @@
-package br.com.techsow.sherlock.control.web.api;
+package br.com.techsow.sherlock.model.services;
 
 import java.io.IOException;
 import java.util.HashMap;

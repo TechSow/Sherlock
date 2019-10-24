@@ -97,8 +97,14 @@ public class CursoBO implements ICursoBO {
 		return 0;
 	}
 
-	public int update(Curso obj) {
+	public int updateCurso(Curso obj, String[] materias) {
 
+		try(CursoDAO dao = new CursoDAO()){
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
 		return 0;
 	}
 
@@ -198,5 +204,13 @@ public class CursoBO implements ICursoBO {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public int update(Curso obj) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	
 
 }

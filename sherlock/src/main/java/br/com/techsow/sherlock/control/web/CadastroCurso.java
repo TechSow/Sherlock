@@ -53,7 +53,7 @@ public class CadastroCurso implements Task {
 		try {
 			Curso curso= new Curso(nome, descricao, dificuldade, duracao,urlimg);
 			curso.setId_curso(Integer.parseInt(id));
-			cursoBO = new CursoBO().add(curso, materias);	
+			int ret = new CursoBO().updateCurso(curso, materias);	
 			
 		} catch (Exception e) {
 			req.setAttribute("erro", new String[] {e.getMessage(), "danger", "exclamation"});

@@ -12,4 +12,5 @@ public interface ICursoBO extends IBaseBO<Curso>{
 	public String updateDescricao(Curso c, String descricao) throws LengthException;
 	public List<Curso> getAll();
 	public String add(Curso curso, String[] materias) throws LengthException, NumberException;
+	public int updateCurso(Curso curso, String[] materias);
 }

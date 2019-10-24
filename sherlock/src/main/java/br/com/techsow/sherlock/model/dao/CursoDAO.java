@@ -170,7 +170,10 @@ public class CursoDAO extends BaseDAO implements ICursoRepository {
 
 	@Override
 	public int update(Curso obj) throws Exception {
-		// TODO Auto-generated method stub
+		stmt = conn.prepareStatement("update ts_t_curso set nome=?, descricao = ?, where id_curso = 47");
+		
+		
+		
 		return 0;
 	}
 
