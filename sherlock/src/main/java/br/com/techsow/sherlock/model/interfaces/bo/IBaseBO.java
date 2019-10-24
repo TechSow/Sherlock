@@ -1,5 +1,6 @@
 package br.com.techsow.sherlock.model.interfaces.bo;
 
+import br.com.techsow.sherlock.model.entities.Usuario;
 import br.com.techsow.sherlock.model.exception.ApelidoException;
 import br.com.techsow.sherlock.model.exception.DuplicatedException;
 import br.com.techsow.sherlock.model.exception.EmailNotFound;

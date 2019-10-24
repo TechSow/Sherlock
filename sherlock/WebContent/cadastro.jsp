@@ -16,8 +16,8 @@
   <div class="grid">
 
     <form action="controller" method="POST" class="form login">
-    	<input type="hidden" name="tarefa" id="tarefa" value="CadastroUsuario" />
-    	<input type="hidden" name="from" id="tarefa" value="CadastroUsuario" />
+	<input type="hidden" name="tarefa" id="tarefa" value="CadastroUsuario" />
+	<input type="hidden" name="from" value="3" />
     	
 
       <div class="form__field">
@@ -32,7 +32,7 @@
       
        <div class="form__field">
         <label style="margin-bottom:0 !important"for="login__password"><svg class="icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#lock"></use></svg><span class="hidden">Password</span></label>
-        <input id="login__password" type="password" name="senha" class="form__input" placeholder="Senha" required>
+        <input id="login__password" type="password" name="senha" class="form__input" placeholder="Senha" minlength=6 required>
       </div>
 
 

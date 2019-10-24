@@ -61,5 +61,12 @@ public class Pessoa {
 		this.usuarioId = usuarioId;
 	}
 	
+	
+	public Pessoa(String nome, String sobrenome, Usuario usuarioId) {
+		this.nome = nome;
+		this.sobrenome = sobrenome;
+		this.usuarioId = usuarioId;
+	}
+	
 		
 }

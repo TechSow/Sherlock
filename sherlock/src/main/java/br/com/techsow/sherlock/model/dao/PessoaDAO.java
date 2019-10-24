@@ -35,6 +35,25 @@ public class PessoaDAO extends BaseDAO implements IPessoaRepository{
 		}
 	}
 	
+	public Pessoa getByUserId(int id) throws Exception{
+
+		UsuarioDAO dao = null;
+		
+		stmt = conn.prepareStatement("SELECT * FROM TS_T_PESSOA WHERE ID_USUARIO=?");
+		stmt.setInt(1, id);
+		rs = stmt.executeQuery();
+		
+		if(rs.next()) {
+			return new Pessoa(
+					rs.getInt("ID_PESSOA"),
+					rs.getString("NOME"),
+					rs.getString("SOBRENOME"),
+					dao.getById(rs.getInt("ID_USUARIO")));
+		}else {
+			
+			return new Pessoa();
+		}
+	}
 	
 	public int add(Pessoa p)throws Exception{
 		stmt=conn.prepareStatement("insert into TS_T_PESSOA (ID_PESSOA,NOME,SOBRENOME,ID_USUARIO) values(c_pessoa_seq.nextval,?,?,?)");
@@ -53,18 +72,7 @@ public class PessoaDAO extends BaseDAO implements IPessoaRepository{
 	}
 	
 	
-	public int updateNome(Pessoa pessoa, String nomeNovo) throws Exception{
 
-		int idPessoa = pessoa.getId(); 
-		stmt = conn.prepareStatement("UPDATE TS_T_PESSOA SET NOME =? WHERE ID_PESSOA=?");
-
-		stmt.setString(1, nomeNovo);
-		stmt.setInt(2, idPessoa);
-
-		return stmt.executeUpdate();
-
-	}
-	
 	
 	public int updateSobrenome(Pessoa pessoa, String sobrenomeNovo) throws Exception{
 
@@ -126,15 +134,24 @@ public class PessoaDAO extends BaseDAO implements IPessoaRepository{
 		return null;
 	}
 
-	@Override
-	public int updateNome(Usuario user, String nomeNovo) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 	@Override
 	public int updateSobrenome(Usuario user, String SobrenomeNovo) throws Exception {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+	@Override
+	public int updateNome(Pessoa pessoa, String nomeNovo) throws Exception {
+
+		int idPessoa = pessoa.getId(); 
+		stmt = conn.prepareStatement("UPDATE TS_T_PESSOA SET NOME =? WHERE ID_PESSOA=?");
+
+		stmt.setString(1, nomeNovo);
+		stmt.setInt(2, idPessoa);
+
+		return stmt.executeUpdate();
+		
+	}
+
 }
